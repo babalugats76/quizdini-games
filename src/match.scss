@@ -1,0 +1,116 @@
+@import './variables';
+
+  @font-face {
+    font-family: 'bitstream_vera_sansroman';
+    src: url('Vera-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+  }
+
+  * {
+    font-family: 'bitstream_vera_sansroman';
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  body {
+    font-size: calc(.85em + .35vw);
+    background-color: $logo-white;
+  }
+
+  button {
+      background-color: $white;
+      color: $logo-gray;
+      font-weight: bold;
+      padding: 10px 20px;
+      text-transform: uppercase;
+      box-shadow: 0.2rem 0.2rem 0 rgba(240, 240, 240, 0.1), 0.4rem 0.4rem 0 rgba(128,127,126,.2);
+  }
+
+  #match-game {
+    background-color: $logo-white;
+  }
+
+  #match-board { 
+    padding-top: calc(10vh + 20px);
+    min-height: calc(90vh - 70px);
+  }
+
+  #splash {
+    background-color: $blue;
+    min-height: calc(100vh);
+  }
+
+  #scoreboard {
+    background-color: $blue;
+    opacity: 0.8;
+    min-height: calc(10vh + 20px);
+    overflow: auto;
+    color: $white;
+    border-bottom: 1px solid rgba(0,0,0,.1);
+  }
+
+  #badge-logo {
+    width: 75%;
+    max-width: 325px;
+  }
+
+  .term, .definition {
+    white-space: wrap; 
+    overflow: hidden;
+    text-overflow: ellipsis;
+    border-radius: 1px;
+  }
+  
+  .term {
+    background-color: $violet;
+    font-weight: bold;
+    box-shadow: 0.2rem 0.2rem 0, 0.4rem 0.4rem 0 rgba(0,0,0,.2);
+    color: #ffffff;
+    &.pink {
+        background-color: $pink;
+        &:hover {
+            background-color: $dark-pink;
+        }
+    } 
+    &.green {
+        background-color: $green;
+        &:hover {
+            background-color: $dark-green;
+        }
+    } 
+    &.blue {
+        background-color: $blue;
+        &:hover {
+            background-color: $dark-blue;
+        }
+    }
+    &.purple {
+      background-color: $violet;
+      &:hover {
+          background-color: $purple;
+      }
+    }
+  }
+
+  .term:hover {
+    background-color: $purple;  
+    color: $white;
+  }
+  
+  .definition {
+    background-color: $white;
+    border: 3px dashed $light-gray;
+    font-weight: bold;
+    color: $dark-gray;
+  }
+  
+  .dragging {
+    opacity: 0.3 !important;
+    color: $gray;
+    box-shadow: 0.25rem 0.25rem 0, 0.48rem 0.48rem 0 rgba(0,0,0,.2);
+  }
+  
+  .is-over {
+    border-color: $gray;
+  }

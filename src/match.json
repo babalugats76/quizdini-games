@@ -1,0 +1,16 @@
+{"matches": [
+    {"term": "rojo(a)", "definition": "red"},
+    {"term": "blanco(a)", "definition": "white"},
+    {"term": "verde", "definition": "green"},
+    {"term": "negro(a)", "definition": "black (masc. or fem.)"},
+    {"term": "rosado(a)", "definition": "pink"},
+    {"term": "naranja", "definition": "orange"},
+    {"term": "amarillo", "definition": "yellow"},
+    {"term": "gris", "definition": "gray"},
+    {"term": "azul", "definition": "blue"},
+    {"term": "turquesa", "definition": "turquoise"},
+    {"term": "café"},
+    {"term": "morado"},
+    {"term": "café claro", "definition": "tan is a special color and this is a really long stupid definition"},
+    {"term": "a pretty long, unused term"}
+   ]}

@@ -1,0 +1,30 @@
+<svg class="spin-scale" enable-background="new 0 0 390 390" version="1.1" viewBox="0 0 390 390" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+	<circle cx="195" cy="195" r="195" fill="#F1F2F2"/>
+	<circle cx="195" cy="195" r="190" fill="#488FCC"/>
+		<defs>
+			<circle id="b" cx="195" cy="195" r="167.5"/>
+		</defs>
+		<clipPath id="a">
+			<use xlink:href="#b"/>
+		</clipPath>
+		<circle cx="195" cy="195" r="167.5" clip-path="url(#a)" fill="#ccc"/>
+		<rect x="166" y="273.3" width="57.3" height="33.1" clip-path="url(#a)" fill="#fff"/>
+		<rect x="80.4" y="87.2" width="229" height="186.1" clip-path="url(#a)" fill="#fff"/>
+		<path d="m289.5 237.1c0 7.9-6.4 14.2-14.2 14.2h-161.2c-7.9 0-14.2-6.4-14.2-14.2v-113.7c0-7.9 6.4-14.2 14.2-14.2h161.1c7.9 0 14.2 6.4 14.2 14.2v113.7z" clip-path="url(#a)"/>
+		<path d="m195 152c0 2.2-1.8 4-4 4h-9.1v-10.9l-22.9-0.1v11h-32c-2.2 0-4-1.8-4-4v-24c0-2.2 1.8-4 4-4h64c2.2 0 4 1.8 4 4v24z" clip-path="url(#a)" fill="#488FCC"/>
+		<path d="m273.7 218.1c0 2.2-1.8 4-4 4h-64c-2.2 0-4-1.8-4-4v-24c0-2.2 1.8-4 4-4h64c2.2 0 4 1.8 4 4v24z" clip-path="url(#a)" fill="#8BC249"/>
+		<rect x="105.4" y="306.2" width="300.2" height="26.1" clip-path="url(#a)" fill="#fff"/>
+		<rect x="253" y="298.2" width="152.6" height="8" clip-path="url(#a)" fill="#8BC249"/>
+		<rect x="127.7" y="265.3" width="62.5" height="140.2" clip-path="url(#a)" fill="#E81F64"/>
+		<rect x="163.9" y="156.9" width="13.9" height="81" clip-path="url(#a)" fill="#FFE0BD"/>
+		<path d="m129.2 234.4h40.7v-43.7h-34.6l2 7.3s-9.2 2.7-7.3 3.4c20.9 8.7-0.8 33-0.8 33z" clip-path="url(#a)" fill="#FFE0BD"/>
+		<polygon points="127.7 237.9 190.2 237.9 190.2 214.8 177.8 212.5 177.8 199.4 127.7 199.4" clip-path="url(#a)" fill="#FFE0BD"/>
+		<g clip-path="url(#a)">
+			<rect x="128.2" y="238.4" width="61.5" height="26.5" fill="#fff"/>
+			<path d="m189.2 238.9v25.5h-60.5v-25.5h60.5m1-1h-62.5v27.5h62.5v-27.5z" fill="#EFEFEF"/>
+		</g>
+		<rect x="180.9" y="252.8" width="4.3" height="4.3" clip-path="url(#a)"/>
+		<ellipse cx="170.8" cy="157.4" rx="6.9" ry="7.3" clip-path="url(#a)" fill="#FFE0BD"/>
+		<ellipse cx="134.7" cy="198" rx="6.9" ry="7.3" clip-path="url(#a)" fill="#FFE0BD"/>
+		<path d="m190.1 213.9c0 4.9 0.7 11.9-2 8.2-2.6-3.5-8.6 1.5-11.2-2.2-1.2-1.7-5.1 1.8-4.2-2.7 0.5-2.5 2.9-7 5-8 0.7-0.4 4.6-0.9 7.3-0.2 3.1 0.8 5.1 3.1 5.1 4.9z" clip-path="url(#a)" fill="#FFE0BD"/>
+  </svg>

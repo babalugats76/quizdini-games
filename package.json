@@ -3,9 +3,17 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "node-sass": "^4.10.0",
     "react": "^16.6.3",
+    "react-dnd": "^6.0.0",
+    "react-dnd-html5-backend": "^7.0.0",
+    "react-dnd-multi-backend": "^3.1.11",
+    "react-dnd-touch-backend": "^0.6.0",
     "react-dom": "^16.6.3",
-    "react-scripts": "2.1.1"
+    "react-scripts": "2.1.1",
+    "react-transition-group": "^2.5.0",
+    "shortid": "^2.2.14",
+    "uuid": "^3.3.2"
   },
   "scripts": {
     "start": "react-scripts start",
