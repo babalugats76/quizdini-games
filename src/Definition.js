@@ -24,7 +24,7 @@ class Definition extends Component {
   render() {
     // eslint-disable-next-line
     const { isOver, canDrop, connectDropTarget, id, term, definition, style } = this.props;
-    let classes = ['definition', 'd-flex', 'text-center', 'justify-content-center', 'align-items-center', 'col-md-4', 'col-lg-3', 'my-lg-2', 'my-2', 'mr-md-2', 'py-2', 'px-3', 'px-lg-3'];
+    let classes = ['definition', 'd-flex', 'text-center', 'justify-content-center', 'align-items-center', 'col-md-4', 'col-lg-3', 'p-1', 'm-1', 'p-md-2', 'm-md-2'];
     const classString = classes.concat(...((isOver && canDrop) ? [' is-over'] : [])).join(' ');
 
     return connectDropTarget(

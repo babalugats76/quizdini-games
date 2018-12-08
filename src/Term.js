@@ -11,7 +11,7 @@ const termSource = {
   endDrag(props, monitor) {
     console.log('end drag...');
     if (monitor.didDrop()) { 
-      return props.onDrop(props, monitor.getDropResult());
+      return props.onDrop(monitor.getDropResult());
     }
   }
 }

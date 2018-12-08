@@ -1,26 +1,14 @@
 import React, { Component } from 'react';
+
+import { shuffle } from './utilities.js';
 import GameTransition from './GameTransition';
 import Term from './Term';
 import Definition from './Definition';
 
 class MatchBoard extends Component {
 
-  constructor(props) {
-    super(props);
-    console.log(props.matches);
-  }
-
   componentDidMount() {
-    console.log('component mounted...');
-    setTimeout(() => this.props.onGameStart(), this.props.wait);
-  }
-
-  termEntered(term) {
-    console.log(term + " entered");
-  }
-
-  termExited(term) {
-    console.log(term + " exited!");
+    setTimeout(() => this.props.onRoundStart(), this.props.wait);
   }
 
   renderTerms(matches) {
@@ -29,8 +17,8 @@ class MatchBoard extends Component {
 
       /* Dynamically determine enter/exit transition times, i.e., achieve brick-laying effect */
       const timeout = {
-        enter: (idx * 100),
-        exit: 1000
+        enter: (idx * (this.props.wait/5)),
+        exit: this.props.wait
       };
 
       /* Define object for the following states: 'default', 'entering', 'entered', 'exiting', 'exited' */
@@ -49,8 +37,12 @@ class MatchBoard extends Component {
           in={match.show}
           timeout={timeout}
           transitionStyles={transitionStyles}
+          onExited={(id) => this.props.onExited(match.id)}
         >
-          <Term id={match.id} term={match.term} onDrop={this.props.onDrop}></Term>
+          <Term 
+            id={match.id} 
+            term={match.term} 
+            onDrop={this.props.onDrop} />
         </GameTransition>);
     });
   }
@@ -58,12 +50,12 @@ class MatchBoard extends Component {
   renderDefinitions(matches) {
 
     /* Filter out non-matching terms by using .filter() */
-    return matches.filter((match, idx) => { return match.definition }).map((match, idx) => {
+    return shuffle(matches).filter((match, idx) => { return match.definition }).map((match, idx) => {
 
       /* Set transition times */
       const timeout = {
-        enter: (matches.length * 100),
-        exit: 1000
+        enter: (matches.length * (this.props.wait/5)),
+        exit: this.props.wait
       };
 
       /* Define object for the following states: 'default', 'entering', 'entered', 'exiting', 'exited' */
@@ -82,10 +74,12 @@ class MatchBoard extends Component {
           in={match.show} 
           timeout={timeout} 
           transitionStyles={transitionStyles}
-          onExited={(id) => this.props.onExited(match.id)}
           >
-          <Definition 
-           id={match.id} definition={match.definition} term={match.term}></Definition>
+            <Definition 
+              id={match.id} 
+              definition={match.definition} 
+              term={match.term}>
+            </Definition>
         </GameTransition>);
     });
   }

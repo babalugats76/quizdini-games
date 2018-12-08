@@ -3,6 +3,8 @@ import { DragDropContext } from 'react-dnd';
 import MultiBackend from 'react-dnd-multi-backend';
 import HTML5toTouch from 'react-dnd-multi-backend/lib/HTML5toTouch'; // or any other pipeline
 import shortid from 'shortid';
+
+import { shuffle } from './utilities.js';
 import data from './match2.json';
 import './match.scss';
 
@@ -11,140 +13,172 @@ import MatchSplash from './MatchSplash';
 
 class MatchGame extends Component {
 
+  /**
+   * Initialize component, setting default values, etc.
+   * @param {Object} props - Properties passed to component
+   */
   constructor(props) {
-   
     super(props);
-   
     let matchDeck = this.transformData(data.matches);
-
     this.state = {
-      termsPerBoard: 5,
-      playing: false,
+      termsPerBoard: 30,
+      showSplash: true,
+      showBoard: false,
       matchDeck: matchDeck,
       matches: [],
       unmatched: 0,
       score: 0,
+      correct: 0,
+      incorrect: 0,
       elapsedTime: 0,
       totalTime: 0
     };
   }
 
-  shuffle(array) {
-    console.log('shuffling...');
-    for (let i = array.length - 1; i > 0; i--) {
-      const j = Math.floor(Math.random() * (i + 1));
-      [array[i], array[j]] = [array[j], array[i]];
-    }
-    return array;
-  }
-
+  /**
+   * Augments each object within additional info (needed by game)
+   * @param {Array} matches - Array of match objects to augment
+   */
   transformData(matches) {
     return matches.map((match) => {
       return {
         ...match,
         id: shortid.generate(),
-        show: false,
-        correct: 0,
-        incorrect: 0
+        show: false
       }
     })
   }
 
-  togglePlaying = () => {
-    this.setState({ playing: !this.state.playing });
-  }
-
-  dealMatches = () => {
-    console.log('dealing...')
-    const matchDeck = this.shuffle(this.state.matchDeck);
-    const matches = matchDeck.slice(0, Math.min(this.state.termsPerBoard, matchDeck.length));
-    const unmatched = matches.reduce((total, match) => { return (match.definition ? total + 1 : total) }, 0);
-
-    this.setState({
-      matchDeck: matchDeck,
-      matches: matches,
-      unmatched: unmatched
+  /**
+   * Shows or hides splash screen
+   * @param {bool} show - Whether to show splash
+   */
+  showSplash = (show) => {
+    this.setState((state, props) => {
+      return { showSplash: show }
     });
-  }
-
-  toggleMatches = () => {
-    console.log('toggling matches...which begins game');
-    const matches = this.state.matches.map((match) => { match.show = !match.show; return match; })
-    this.setState({
-      matches: matches
-    });
-  }
-
-  toggleMatch = (id) => {
-    console.log('toggling match with id', id);
-    const matches = this.state.matches.map((match) => {
-      if (match.id === id) {
-        match.show = !match.show
-      };
-      return match;
-    })
-    this.setState({ matches: matches })
-  }
-
-  handleGameStart = () => {
-    console.log('handle game start fired');
-    this.togglePlaying();
-  }
-
-  nextRound = () => {
-    this.dealMatches();
-    this.toggleMatches();
-  }
-
-  handleDrop = (props, dropResult) => {
-    console.log('handle drop called');
-    console.log('matched:', dropResult.matched)
-    if (dropResult.matched) {
-      return this.toggleMatch(dropResult.id);
-    }
   }
 
   /**
-   * Applies to descriptions exiting only
-   * This is because we support non-matching terms
+   * Shows or hides game board
+   * @param {bool} show - Whether to show board
+   */
+  showBoard = (show) => {
+    this.setState((state, props) => {
+      return { showBoard: show }
+    });
+  }
+
+  /**
+   * Shows or hides all match objects, triggering transitions
+   * @param {bool} show - Whether to show matches
+   */
+  showMatches = (show) => {
+    this.setState((state, props) => {
+      const matches = state.matches.map((match) => { match.show = show; return match; })
+      return { matches };
+    });
+  }
+
+  /**
+   * Toggles, i.e., shows/hides match, triggering transitions
+   * @param {string} id - Match id to toggle visibility
+   */
+  toggleMatch = (id) => {
+    const matches = this.state.matches.map((match) => {
+      if (match.id === id) match.show = !match.show
+      return match;
+    })
+    this.setState({ matches })
+  }
+
+  /* Shuffles the match deck, picks subset, calculates unmatched */
+  dealMatches = () => {
+    this.setState((state, props) => {
+      const matchDeck = shuffle(state.matchDeck);
+      const matches = matchDeck.slice(0, Math.min(state.termsPerBoard, matchDeck.length));
+      const unmatched = matches.reduce((total, match) => { return (match.definition ? total + 1 : total) }, 0);
+      return { matchDeck, matches, unmatched };
+    })
+  }
+
+  /* Hides splash screen and shows the game board */
+  handleGameStart = () => {
+    this.showSplash(false);
+    this.showBoard(true);
+  }
+
+  /* Begins the round */
+  handleRoundStart = () => { this.beginRound(); }
+
+  /* Prepares new game round */
+  beginRound = () => {
+    this.dealMatches();
+    this.showMatches(true);
+  }
+
+  /* Starts a new round; after brief timeout */
+  nextRound = () => {
+    this.showBoard(false);
+    setTimeout(() => this.showBoard(true), 250);
+  }
+
+  /**
+   * When a Term component is dropped upon a Definition
+   * If dropResult.matched, increment score, correct; decrement unmatched
+   * Otherwise, decrement increment
+   * 
+   * @param {object} dropResult - Results of drag-and-drop operation
+   */
+  handleDrop = (dropResult) => {
+    
+    let unmatched; // needed beyond state settings
+    
+    this.setState((state, props) => {
+      let { correct, incorrect, score } = state;
+      unmatched = state.unmatched;
+      if (dropResult.matched) {
+        correct += 1; unmatched -= 1; score += 1;
+      } else {
+        incorrect += 1;
+      }
+      return { correct, incorrect, score, unmatched };
+    });
+   
+    if (dropResult.matched) this.toggleMatch(dropResult.id);
+    if (unmatched < 1) this.showMatches(false);
+  }
+
+  /**
+   * Removes id from matches
+   * If board has been cleared, start next round, i.e., nextRound()
+   * @param {string} id - Match id to remove from matches
    */
   handleExited = (id) => {
-    console.log('removing..', id);
     const matches = this.state.matches.filter((match) => { return match.id !== id; });
-    const unmatched = this.state.unmatched - 1;
-    const score = this.state.score + 1;
-    this.setState({ matches: matches, 
-                    unmatched: unmatched, 
-                    score: score });
-    console.log('There are', unmatched, 'unmatched terms');
-    console.log('The new score is', score);
-    if(unmatched < 1) {
-       this.nextRound();
-    }
+    this.setState({ matches });
+    // If all data has been removed, proceed to next round 
+    if (matches.length === 0) return this.nextRound();
   }
 
-  renderGame() {
-    return (<div id="match-game">
-      <div id="scoreboard" className="fixed-top"></div>
-      <MatchBoard
-        wait={1000}
-        matches={this.state.matches}
-        onDrop={(props, dropResult) => this.handleDrop(props, dropResult)}
-        onExited={(id) => this.handleExited(id)}
-        onGameStart={this.toggleMatches} />
-    </div>);
-  }
-
-  renderSplash() {
-    return (<MatchSplash wait={1000} onGameStart={this.handleGameStart} />);
-  }
-
+  /* Conditionally render splash, scoreboard, and game board */
   render() {
-    if (this.state.playing) {
-      return (this.renderGame());
-    } else {
-      return (this.renderSplash());
-    }
+    const { showSplash, showBoard } = this.state;
+    return (
+      showSplash
+        ? (<MatchSplash wait={500} onGameStart={this.handleGameStart} />)
+        : (<div id="match-game">
+            <div id="scoreboard" className="fixed-top"></div>
+            {showBoard &&
+              (<MatchBoard
+                 wait={1000}
+                 matches={this.state.matches}
+                 onDrop={(dropResult) => this.handleDrop(dropResult)}
+                 onExited={(id) => this.handleExited(id)}
+                 onRoundStart={this.handleRoundStart} />)
+            }
+          </div>)
+    ); 
   }
 }
 
