@@ -4,7 +4,7 @@ import './index.css';
 import MatchGame from './MatchGame';
 import * as serviceWorker from './serviceWorker';
 
-ReactDOM.render(<MatchGame />, document.getElementById('root'));
+ReactDOM.render(<MatchGame />, document.getElementById('quizdini-games'));
 
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.

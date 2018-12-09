@@ -1,4 +1,5 @@
 @import './variables';
+@import './mixins';
 
   @font-face {
     font-family: 'bitstream_vera_sansroman';
@@ -15,80 +16,62 @@
 
   body {
     font-size: calc(.85em + .35vw);
-    background-color: $logo-white;
+    background-color: $light-light-gray;
+    height: 100%;
   }
 
+  div, span {
+    @include user-select(none);
+  }
+  
   button {
       background-color: $white;
       color: $logo-gray;
       font-weight: bold;
       padding: 10px 20px;
       text-transform: uppercase;
-      box-shadow: 0.2rem 0.2rem 0 rgba(240, 240, 240, 0.1), 0.4rem 0.4rem 0 rgba(128,127,126,.2);
+      box-shadow: 0.2rem 0.2rem 0 rgba(238, 238, 238, 0.1), 0.4rem 0.4rem 0 rgba(128,127,126,.2);
   }
 
-  #match-game {
-    background-color: $logo-white;
+  .quizdini-app {
+    min-height: 100vh;
+    margin: 0 auto;
   }
-
-  #match-board { 
-    padding-top: calc(10vh + 20px);
-    min-height: calc(90vh - 70px);
-  }
-
-  #splash {
-    background-color: $blue;
-    min-height: calc(100vh);
-  }
-
-  #scoreboard {
-    background-color: $blue;
-    opacity: 0.8;
-    min-height: calc(10vh + 20px);
-    overflow: auto;
-    color: $white;
-    border-bottom: 1px solid rgba(0,0,0,.1);
-  }
-
-  #badge-logo {
-    width: 75%;
-    max-width: 325px;
-  }
-
+  
   .term, .definition {
     white-space: wrap; 
     overflow: hidden;
     text-overflow: ellipsis;
-    border-radius: 1px;
+    border-radius: 5px;
   }
   
   .term {
     background-color: $violet;
     font-weight: bold;
-    box-shadow: 0.2rem 0.2rem 0, 0.4rem 0.4rem 0 rgba(0,0,0,.2);
+    box-shadow: 0.2em 0.2em 0, 0.4em 0.4em 0 rgba(0,0,0,.2);
     color: #ffffff;
     &.pink {
-        background-color: $pink;
+        background-color: $dark-pink;
         &:hover {
-            background-color: $dark-pink;
+            background-color: $pink;
         }
     } 
     &.green {
-        background-color: $green;
+        background-color: $dark-green;
         &:hover {
-            background-color: $dark-green;
+            background-color: $green;
         }
     } 
     &.blue {
-        background-color: $blue;
+        background-color: $dark-blue;
         &:hover {
-            background-color: $dark-blue;
+            background-color: $blue;
         }
     }
     &.purple {
-      background-color: $violet;
+      background-color: $purple;
       &:hover {
-          background-color: $purple;
+          background-color: $violet;
       }
     }
   }
@@ -102,15 +85,60 @@
     background-color: $white;
     border: 3px dashed $light-gray;
     font-weight: bold;
-    color: $dark-gray;
+    color: $gray;
   }
   
   .dragging {
-    opacity: 0.3 !important;
+    opacity: 0.5 !important;
     color: $gray;
-    box-shadow: 0.25rem 0.25rem 0, 0.48rem 0.48rem 0 rgba(0,0,0,.2);
+    box-shadow: 0.25em 0.25em 0, 0.48em 0.48em 0 rgba(0,0,0,.2);
   }
   
   .is-over {
     border-color: $gray;
+  }
+
+  #match-game {
+    background-color: $light-light-gray;
+    min-height: calc(60vh);
+    position: relative;
+  }
+
+  #match-board { 
+    min-height: calc(90vh - 70px);
+    /* padding-top: calc(10vh + 20px);  */
+  }
+
+  #splash {
+    background-color: $blue;
+    min-height: calc(100vh);
+  }
+
+  #scoreboard {
+    position: relative;
+    position: sticky;
+    display: block;
+    min-height: 10vh;
+    top: 0;
+    width: 100%;
+    opacity: 0.95;
+    background-color: $blue;
+    color: $white;
+    border-bottom: 1px solid rgba(0,0,0,.1);
+    z-index: 1001;
+  }
+
+  #badge-logo {
+    width: 75%;
+    max-width: 325px;
+  }
+
+  @media (min-width: 768px) { 
+    #scoreboard {
+      position: relative;
+      min-height: calc(10vh + 20px);
+    }
+    #match-board {
+      padding-top: 0;
+    }   
   }

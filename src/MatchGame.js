@@ -8,8 +8,9 @@ import { shuffle } from './utilities.js';
 import data from './match2.json';
 import './match.scss';
 
-import MatchBoard from './MatchBoard';
 import MatchSplash from './MatchSplash';
+import Scoreboard from './Scoreboard';
+import MatchBoard from './MatchBoard';
 
 class MatchGame extends Component {
 
@@ -21,7 +22,7 @@ class MatchGame extends Component {
     super(props);
     let matchDeck = this.transformData(data.matches);
     this.state = {
-      termsPerBoard: 30,
+      termsPerBoard: 3,
       showSplash: true,
       showBoard: false,
       matchDeck: matchDeck,
@@ -31,7 +32,7 @@ class MatchGame extends Component {
       correct: 0,
       incorrect: 0,
       elapsedTime: 0,
-      totalTime: 0
+      totalTime: 0,
     };
   }
 
@@ -47,6 +48,17 @@ class MatchGame extends Component {
         show: false
       }
     })
+  }
+
+  /**
+   * Assign random application color to each match
+   * @param {Array} matches - Array of match objects to assign color
+   */
+  addColor(matches) {
+    const colors = ['pink', 'green', 'blue', 'purple'];
+    return matches.map((match) => {
+      return { ...match, color: colors[Math.floor(Math.random() * (colors.length))] }
+    });
   }
 
   /**
@@ -96,7 +108,8 @@ class MatchGame extends Component {
   dealMatches = () => {
     this.setState((state, props) => {
       const matchDeck = shuffle(state.matchDeck);
-      const matches = matchDeck.slice(0, Math.min(state.termsPerBoard, matchDeck.length));
+      let matches = matchDeck.slice(0, Math.min(state.termsPerBoard, matchDeck.length));
+      matches = this.addColor(matches);
       const unmatched = matches.reduce((total, match) => { return (match.definition ? total + 1 : total) }, 0);
       return { matchDeck, matches, unmatched };
     })
@@ -131,9 +144,9 @@ class MatchGame extends Component {
    * @param {object} dropResult - Results of drag-and-drop operation
    */
   handleDrop = (dropResult) => {
-    
+
     let unmatched; // needed beyond state settings
-    
+
     this.setState((state, props) => {
       let { correct, incorrect, score } = state;
       unmatched = state.unmatched;
@@ -144,7 +157,7 @@ class MatchGame extends Component {
       }
       return { correct, incorrect, score, unmatched };
     });
-   
+
     if (dropResult.matched) this.toggleMatch(dropResult.id);
     if (unmatched < 1) this.showMatches(false);
   }
@@ -163,22 +176,21 @@ class MatchGame extends Component {
 
   /* Conditionally render splash, scoreboard, and game board */
   render() {
-    const { showSplash, showBoard } = this.state;
+    const { showSplash, showBoard, matches, score, correct, incorrect } = this.state;
     return (
       showSplash
-        ? (<MatchSplash wait={500} onGameStart={this.handleGameStart} />)
+        ? (<MatchSplash wait={250} onGameStart={this.handleGameStart} />)
         : (<div id="match-game">
-            <div id="scoreboard" className="fixed-top"></div>
-            {showBoard &&
-              (<MatchBoard
-                 wait={1000}
-                 matches={this.state.matches}
-                 onDrop={(dropResult) => this.handleDrop(dropResult)}
-                 onExited={(id) => this.handleExited(id)}
-                 onRoundStart={this.handleRoundStart} />)
-            }
-          </div>)
-    ); 
+             <Scoreboard score={score} correct={correct} incorrect={incorrect} />
+             {showBoard && (<MatchBoard
+                              wait={250}
+                              matches={matches}
+                              onDrop={(dropResult) => this.handleDrop(dropResult)}
+                              onExited={(id) => this.handleExited(id)}
+                              onRoundStart={this.handleRoundStart} />)
+          }
+        </div>)
+    );
   }
 }
 

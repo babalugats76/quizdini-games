@@ -26,8 +26,8 @@ class MatchBoard extends Component {
         default: { opacity: 0, visibility: 'hidden' },
         entering: { opacity: 0, visibility: 'hidden' },
         entered: { transition: `visibility 0ms linear ${timeout.enter}ms, opacity ${timeout.enter}ms linear`, opacity: 1.0, visibility: 'visible' },
-        exiting: { transition: `opacity ${timeout.exit}ms ease-in-out`, opacity: 0, visibility: 'visible' },
-        exited: { opacity: 0, display: 'none'}
+        exiting: { transition: `opacity ${timeout.exit}ms ease-in-out`, opacity: 0.5, visibility: 'visible' },
+        exited: { opacity: 0 }
       };
 
       /* Return the terms, wrapped in transitions */
@@ -41,6 +41,7 @@ class MatchBoard extends Component {
         >
           <Term 
             id={match.id} 
+            color={match.color}
             term={match.term} 
             onDrop={this.props.onDrop} />
         </GameTransition>);
@@ -63,8 +64,8 @@ class MatchBoard extends Component {
         default: { opacity: 0 },
         entering: { opacity: 0 },
         entered: { transition: `opacity ${timeout.enter}ms cubic-bezier(1,.01,.7,.84)`, opacity: 1.0, visibility: 'visible'},
-        exiting: { transition: `opacity ${timeout.exit}ms ease-in-out`, opacity: 0, visibility: 'visible' },
-        exited: { opacity: 0, display: 'none'}
+        exiting: { transition: `opacity ${timeout.exit}ms ease-in-out`, opacity: 0.8, visibility: 'visible' },
+        exited: { opacity: 0 }
       };
 
       /* Return the terms, wrapped in transitions */
@@ -92,10 +93,10 @@ class MatchBoard extends Component {
 
     return (
       <div id="match-board" className="fluid-container">
-        <div id="term-container" className="d-flex flex-row flex-wrap justify-content-center align-content-center align-items-center mt-2 offset-md-1 col-md-10">
+        <div id="term-container" className="d-flex flex-row flex-wrap justify-content-center align-content-center align-items-center pt-1 mt-1 pt-md-4 mt-md-4 offset-md-1 col-md-10">
           {terms}
         </div>
-        <div id="definition-container" className="d-flex flex-column flex-md-row flex-wrap flex-fill justify-content-center align-items-stretch mt-3 col-md-12">
+        <div id="definition-container" className="d-flex flex-column flex-md-row flex-wrap flex-fill justify-content-center align-items-stretch pb-5 mt-3 col-md-12">
           {definitions}
         </div>
       </div>);
