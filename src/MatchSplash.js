@@ -58,10 +58,10 @@ class MatchSplash extends Component {
               transitionStyles={transitionStyles}
               onExited={this.handleExited}>
               <div id="splash" className="py-5 fluid-container" style={this.props.style}>
-                <div id="badge-logo" className="mx-auto">
-                  <a href="/" onClick={(e) => this.handleClick(e)}>
-                    <img className="img-fluid" id="badge" src={badge} alt="Quizdini badge" />
-                    <img className="img-fluid" id="logo" src={logo} alt="Quizdini logo" />
+                <div id="badge-logo" className="mx-auto text-center">
+                  <a href="/" onClick={(e) => this.handleClick(e)} title="Click to Start Game">
+                    <img className="img-fluid spin-scale" id="badge" src={badge} alt="Quizdini badge" />
+                    <img className="img-fluid scale" id="logo" src={logo} alt="Quizdini logo" />
                   </a>
                 </div>
               </div>

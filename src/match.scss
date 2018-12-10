@@ -38,6 +38,26 @@
     margin: 0 auto;
   }
   
+  @include keyframes(spin-scale) {
+    0% { transform: rotate(0deg) scale(1.0); } 
+    15% { transform: rotate(-360deg) scale(.98); }
+    30% { transform: rotate(0deg) scale(1.0); } 
+  }
+
+  .spin-scale {
+    @include animation('spin-scale 15s ease-in-out 1s infinite normal both running');
+  }
+
+  @include keyframes(scale) {
+    0% { transform: scale(1.0); } 
+    15% { transform: scale(.98); }
+    30% { transform: scale(1.0); }
+  }
+
+  .scale {
+    @include animation('scale 15s ease-in-out 1s infinite normal both running');
+  }
+
   .term, .definition {
     white-space: wrap; 
     overflow: hidden;
@@ -48,7 +68,7 @@
   .term {
     background-color: $violet;
     font-weight: bold;
-    box-shadow: 0.2em 0.2em 0, 0.4em 0.4em 0 rgba(0,0,0,.2);
+    box-shadow: 0.2rem 0.2rem 0, 0.4rem 0.4rem 0 rgba(0,0,0,.2);
     color: #ffffff;
     &.pink {
         background-color: $dark-pink;
@@ -91,7 +111,7 @@
   .dragging {
     opacity: 0.5 !important;
     color: $gray;
-    box-shadow: 0.25em 0.25em 0, 0.48em 0.48em 0 rgba(0,0,0,.2);
+    box-shadow: 0.25rem 0.25rem 0, 0.48rem 0.48rem 0 rgba(0,0,0,.2);
   }
   
   .is-over {
@@ -100,18 +120,40 @@
 
   #match-game {
     background-color: $light-light-gray;
-    min-height: calc(60vh);
+    min-height: 60vh;
     position: relative;
+  }
+
+  #splash {
+    background-color: $blue;
+    min-height: 100vh;
+  }
+
+  #badge-logo {
+    position: relative;
+    width: 80%;
+    max-width: 350px;
+    min-height: 275px;
+  }
+
+  #badge-logo img {
+    position: absolute;
+  }
+  
+  #badge-logo img#badge {
+    top: 0%;
+    left: 0%; 
+  }
+  
+  #badge-logo img#logo {
+    top: 73%;
+    left: 0%;
+    z-index: 1001;
   }
 
   #match-board { 
     min-height: calc(90vh - 70px);
     /* padding-top: calc(10vh + 20px);  */
-  }
-
-  #splash {
-    background-color: $blue;
-    min-height: calc(100vh);
   }
 
   #scoreboard {
@@ -126,11 +168,6 @@
     color: $white;
     border-bottom: 1px solid rgba(0,0,0,.1);
     z-index: 1001;
-  }
-
-  #badge-logo {
-    width: 75%;
-    max-width: 325px;
   }
 
   @media (min-width: 768px) { 
