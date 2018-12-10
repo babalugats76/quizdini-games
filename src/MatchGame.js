@@ -21,7 +21,12 @@ class MatchGame extends Component {
   constructor(props) {
     super(props);
     let matchDeck = this.transformData(data.matches);
+    const {title, topic, author, instructions} = data;
     this.state = {
+      title: title,
+      topic: topic,
+      author: author,
+      instructions: instructions,
       termsPerBoard: 3,
       showSplash: true,
       showBoard: false,
@@ -176,10 +181,16 @@ class MatchGame extends Component {
 
   /* Conditionally render splash, scoreboard, and game board */
   render() {
-    const { showSplash, showBoard, matches, score, correct, incorrect } = this.state;
+    const { showSplash, showBoard, matches, score, correct, incorrect, title, topic, author, instructions } = this.state;
     return (
       showSplash
-        ? (<MatchSplash wait={250} onGameStart={this.handleGameStart} />)
+        ? (<MatchSplash 
+             title={title}
+             topic={topic}
+             author={author}
+             instructions={instructions}
+             wait={250} 
+             onGameStart={this.handleGameStart} />)
         : (<div id="match-game">
              <Scoreboard score={score} correct={correct} incorrect={incorrect} />
              {showBoard && (<MatchBoard

@@ -1,30 +1,31 @@
-<svg enable-background="new 0 0 390 390" version="1.1" viewBox="0 0 390 390" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-	<circle cx="195" cy="195" r="195" fill="#F1F2F2"/>
-	<circle cx="195" cy="195" r="190" fill="#488FCC"/>
+<svg enable-background="new 0 0 450 450" version="1.1" viewBox="0 0 450 450" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+	<circle cx="225" cy="225" r="190" fill="#F1F2F2"/>
+	<path d="m407.7 225c0 100.9-81.8 182.7-182.7 182.7s-182.7-81.8-182.7-182.7 81.8-182.7 182.7-182.7 182.7 81.8 182.7 182.7z" fill="#488FCC"/>
 		<defs>
-			<circle id="b" cx="195" cy="195" r="167.5"/>
+			<circle id="b" cx="225" cy="225" r="161.1"/>
 		</defs>
 		<clipPath id="a">
 			<use xlink:href="#b"/>
 		</clipPath>
-		<circle cx="195" cy="195" r="167.5" clip-path="url(#a)" fill="#ccc"/>
-		<rect x="166" y="273.3" width="57.3" height="33.1" clip-path="url(#a)" fill="#fff"/>
-		<rect x="80.4" y="87.2" width="229" height="186.1" clip-path="url(#a)" fill="#fff"/>
-		<path d="m289.5 237.1c0 7.9-6.4 14.2-14.2 14.2h-161.2c-7.9 0-14.2-6.4-14.2-14.2v-113.7c0-7.9 6.4-14.2 14.2-14.2h161.1c7.9 0 14.2 6.4 14.2 14.2v113.7z" clip-path="url(#a)"/>
-		<path d="m195 152c0 2.2-1.8 4-4 4h-9.1v-10.9l-22.9-0.1v11h-32c-2.2 0-4-1.8-4-4v-24c0-2.2 1.8-4 4-4h64c2.2 0 4 1.8 4 4v24z" clip-path="url(#a)" fill="#488FCC"/>
-		<path d="m273.7 218.1c0 2.2-1.8 4-4 4h-64c-2.2 0-4-1.8-4-4v-24c0-2.2 1.8-4 4-4h64c2.2 0 4 1.8 4 4v24z" clip-path="url(#a)" fill="#8BC249"/>
-		<rect x="105.4" y="306.2" width="300.2" height="26.1" clip-path="url(#a)" fill="#fff"/>
-		<rect x="253" y="298.2" width="152.6" height="8" clip-path="url(#a)" fill="#8BC249"/>
-		<rect x="127.7" y="265.3" width="62.5" height="140.2" clip-path="url(#a)" fill="#E81F64"/>
-		<rect x="163.9" y="156.9" width="13.9" height="81" clip-path="url(#a)" fill="#FFE0BD"/>
-		<path d="m129.2 234.4h40.7v-43.7h-34.6l2 7.3s-9.2 2.7-7.3 3.4c20.9 8.7-0.8 33-0.8 33z" clip-path="url(#a)" fill="#FFE0BD"/>
-		<polygon points="127.7 237.9 190.2 237.9 190.2 214.8 177.8 212.5 177.8 199.4 127.7 199.4" clip-path="url(#a)" fill="#FFE0BD"/>
+		<circle cx="225" cy="225" r="161.1" clip-path="url(#a)" fill="#ccc"/>
+		<rect x="197.1" y="300.3" width="55.1" height="31.8" clip-path="url(#a)" fill="#fff"/>
+		<rect x="114.8" y="121.3" width="220.1" height="178.9" clip-path="url(#a)" fill="#fff"/>
+		<path d="m315.8 265.5c0 7.5-6.1 13.7-13.7 13.7h-154.9c-7.5 0-13.7-6.1-13.7-13.7v-109.4c0-7.6 6.1-13.7 13.7-13.7h154.9c7.6 0 13.7 6.1 13.7 13.7v109.4z" clip-path="url(#a)"/>
+		<path d="m225 183.6c0 2.1-1.7 3.8-3.8 3.8h-8.7v-10.4l-22-0.1v10.6h-30.8c-2.1 0-3.8-1.7-3.8-3.8v-23.1c0-2.1 1.7-3.8 3.8-3.8h61.6c2.1 0 3.8 1.7 3.8 3.8v23z" clip-path="url(#a)" fill="#488FCC"/>
+		<path d="m300.7 247.2c0 2.1-1.7 3.8-3.8 3.8h-61.6c-2.1 0-3.8-1.7-3.8-3.8v-23.1c0-2.1 1.7-3.8 3.8-3.8h61.6c2.1 0 3.8 1.7 3.8 3.8v23.1z" clip-path="url(#a)" fill="#8BC249"/>
+		<rect x="138.9" y="331.9" width="288.7" height="25.1" clip-path="url(#a)" fill="#fff"/>
+		<rect x="280.8" y="324.2" width="146.8" height="7.7" clip-path="url(#a)" fill="#8BC249"/>
+		<rect x="160.3" y="292.6" width="60.1" height="134.8" clip-path="url(#a)" fill="#E81F64"/>
+		<rect x="195.1" y="188.4" width="13.3" height="77.9" clip-path="url(#a)" fill="#FFE0BD"/>
+		<path d="m161.8 262.9h39.1v-42h-33.3l1.9 7s-8.8 2.6-7 3.3c20.1 8.3-0.7 31.7-0.7 31.7z" clip-path="url(#a)" fill="#FFE0BD"/>
+		<polygon points="160.3 266.2 220.4 266.2 220.4 244 208.4 241.9 208.4 229.2 160.3 229.2" clip-path="url(#a)" fill="#FFE0BD"/>
 		<g clip-path="url(#a)">
-			<rect x="128.2" y="238.4" width="61.5" height="26.5" fill="#fff"/>
-			<path d="m189.2 238.9v25.5h-60.5v-25.5h60.5m1-1h-62.5v27.5h62.5v-27.5z" fill="#EFEFEF"/>
+			<rect x="160.8" y="266.7" width="59.1" height="25.4" fill="#fff"/>
+			<path d="m219.4 267.2v24.4h-58.1v-24.4h58.1m1-1h-60.1v26.4h60.1v-26.4z" fill="#EFEFEF"/>
 		</g>
-		<rect x="180.9" y="252.8" width="4.3" height="4.3" clip-path="url(#a)"/>
-		<ellipse cx="170.8" cy="157.4" rx="6.9" ry="7.3" clip-path="url(#a)" fill="#FFE0BD"/>
-		<ellipse cx="134.7" cy="198" rx="6.9" ry="7.3" clip-path="url(#a)" fill="#FFE0BD"/>
-		<path d="m190.1 213.9c0 4.9 0.7 11.9-2 8.2-2.6-3.5-8.6 1.5-11.2-2.2-1.2-1.7-5.1 1.8-4.2-2.7 0.5-2.5 2.9-7 5-8 0.7-0.4 4.6-0.9 7.3-0.2 3.1 0.8 5.1 3.1 5.1 4.9z" clip-path="url(#a)" fill="#FFE0BD"/>
-  </svg>
+		<rect x="211.4" y="280.6" width="4.1" height="4.1" clip-path="url(#a)"/>
+		<ellipse cx="201.8" cy="188.9" rx="6.7" ry="7" clip-path="url(#a)" fill="#FFE0BD"/>
+		<ellipse cx="167" cy="227.9" rx="6.7" ry="7" clip-path="url(#a)" fill="#FFE0BD"/>
+		<path d="m220.3 243.1c0 4.7 0.6 11.4-1.9 7.9-2.5-3.4-8.2 1.5-10.8-2.1-1.2-1.7-4.9 1.8-4.1-2.6 0.5-2.4 2.8-6.7 4.8-7.7 0.7-0.4 4.4-0.9 7-0.2 3.1 0.8 5 3 5 4.7z" clip-path="url(#a)" fill="#FFE0BD"/>
+	<rect width="450" height="450" fill="none"/>
+</svg>

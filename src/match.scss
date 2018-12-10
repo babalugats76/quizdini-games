@@ -125,29 +125,23 @@
   }
 
   #splash {
-    background-color: $blue;
+    background-color: $light-blue;
     min-height: 100vh;
   }
 
   #badge-logo {
     position: relative;
-    width: 80%;
-    max-width: 350px;
-    min-height: 275px;
+    width: 285px;
+    height: 285px;
   }
 
   #badge-logo img {
     position: absolute;
-  }
-  
-  #badge-logo img#badge {
-    top: 0%;
-    left: 0%; 
+    top: 0;
+    left: 0;
   }
   
   #badge-logo img#logo {
-    top: 73%;
-    left: 0%;
     z-index: 1001;
   }
 
@@ -175,7 +169,8 @@
       position: relative;
       min-height: calc(10vh + 20px);
     }
-    #match-board {
-      padding-top: 0;
-    }   
+    #badge-logo {
+      height: 375px;
+      width: 375px;
+    }
   }
