@@ -62,24 +62,28 @@ class MatchSplash extends Component {
      * Perhaps turn into jumbotron? Fluid jumbotron?
      */
     return (<GameTransition
-              in={show}
-              timeout={timeout}
-              transitionStyles={transitionStyles}
-              onExited={this.handleExited}>
-              <div id="splash" className="fluid-container col-12 col-md-6 offset-md-3 d-flex flex-column align-items-start py-5" style={style}>
-                <div id="badge-logo" className="mx-auto text-center jumbotron-fluid">
-                  <a href="/" onClick={(e) => this.handleClick(e)} title="Click to Learn!">
-                    <img className="img-fluid spin-scale" id="badge" src={badge} alt="Quizdini badge" />
-                    <img className="img-fluid scale" id="logo" src={logo} alt="Quizdini logo" />
-                  </a>
-                </div>
-                <div id="match-details">
-                  <div id="match-title" className="game-title-topic">{title} {topic}</div>
-                  <div id="match-author" className="game-author">{author}</div>
-                  <div id="match-instructions" className="game-instructions">{instructions}</div>
-                </div>
+      in={show}
+      timeout={timeout}
+      transitionStyles={transitionStyles}
+      onExited={this.handleExited}>
+      <div id="splash-wrapper" className="container d-flex flex-column" style={style}>
+          <div id="splash-jumbotron" className="jumbotron jumbotron-fluid">
+            <div id="splash" className="fluid-container">
+              <div id="badge-logo" className="text-center mx-auto">
+                <a href="/" onClick={(e) => this.handleClick(e)} title="Click to Learn!">
+                  <img className="img-fluid spin-scale" id="badge" src={badge} alt="Quizdini badge" />
+                  <img className="img-fluid scale" id="logo" src={logo} alt="Quizdini logo" />
+                </a>
               </div>
-            </GameTransition>);
+              <div id="match-details" className="py-2 text-center mx-auto">
+                <div id="match-title" className="game-title-topic h2">{title} {topic}</div>
+                <div id="match-author" className="game-author">{author}</div>
+                <div id="match-instructions" className="game-instructions">{instructions}</div>
+              </div>
+          </div>
+        </div>
+      </div>
+    </GameTransition>);
   }
 }
 
