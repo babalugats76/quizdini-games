@@ -9,7 +9,7 @@
     {"term": "bit", "definition": "smallest unit of information"},
     {"term": "byte", "definition": "8 bits"},
     {"term": "decimal", "definition": "base-10 number system"},
-    {"term": "encoding", "definition": "converting to easier form"},
+    {"term": "encoding", "definition": "converting to easier form; there are many different kinds of encoding, yada, yada, I am so long"},
     {"term": "Unicode", "definition": "universal encoding standard"},
     {"term": "Sir Tim Berners-Lee", "definition": "invented WWW" },
     {"term": "protocol", "definition": "system of rules"},

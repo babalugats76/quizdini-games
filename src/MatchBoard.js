@@ -18,7 +18,7 @@ class MatchBoard extends Component {
       /* Dynamically determine enter/exit transition times, i.e., achieve brick-laying effect */
       const timeout = {
         enter: (idx * (this.props.wait/5)),
-        exit: this.props.wait
+        exit: 1500
       };
 
       /* Define object for the following states: 'default', 'entering', 'entered', 'exiting', 'exited' */
@@ -26,8 +26,8 @@ class MatchBoard extends Component {
         default: { opacity: 0, visibility: 'hidden' },
         entering: { opacity: 0, visibility: 'hidden' },
         entered: { transition: `visibility 0ms linear ${timeout.enter}ms, opacity ${timeout.enter}ms linear`, opacity: 1.0, visibility: 'visible' },
-        exiting: { transition: `opacity ${timeout.exit}ms ease-in-out`, opacity: 0.5, visibility: 'visible' },
-        exited: { opacity: 0 }
+        exiting: { transition: `opacity ${timeout.exit}ms ease-in-out`, opacity: 1.0, visibility: 'visible', 'background-color': '#FFFFFF', 'border-color': '#1FE73F', 'color': '#1FE73F' },
+        exited: { opacity: 0, 'color': '#FFFFFF', 'border-color': '#FFFFFF' }
       };
 
       /* Return the terms, wrapped in transitions */
@@ -43,6 +43,7 @@ class MatchBoard extends Component {
             id={match.id} 
             color={match.color}
             term={match.term} 
+            show={match.show}
             onDrop={this.props.onDrop} />
         </GameTransition>);
     });
@@ -56,7 +57,7 @@ class MatchBoard extends Component {
       /* Set transition times */
       const timeout = {
         enter: (matches.length * (this.props.wait/5)),
-        exit: this.props.wait
+        exit: 1500
       };
 
       /* Define object for the following states: 'default', 'entering', 'entered', 'exiting', 'exited' */
@@ -64,8 +65,8 @@ class MatchBoard extends Component {
         default: { opacity: 0 },
         entering: { opacity: 0 },
         entered: { transition: `opacity ${timeout.enter}ms cubic-bezier(1,.01,.7,.84)`, opacity: 1.0, visibility: 'visible'},
-        exiting: { transition: `opacity ${timeout.exit}ms ease-in-out`, opacity: 0.8, visibility: 'visible' },
-        exited: { opacity: 0 }
+        exiting: { transition: `opacity ${timeout.exit}ms ease-in-out`, opacity: 1.0, visibility: 'visible',  'background-color': '#FFFFFF', 'border-color': '#1FE73F', 'color': '#1FE73F' },
+        exited: { opacity: 0, 'color': '#FFFFFF', 'border-color': '#FFFFFF' }
       };
 
       /* Return the terms, wrapped in transitions */
@@ -79,7 +80,8 @@ class MatchBoard extends Component {
             <Definition 
               id={match.id} 
               definition={match.definition} 
-              term={match.term}>
+              term={match.term}
+              show={match.show}>
             </Definition>
         </GameTransition>);
     });
@@ -92,11 +94,11 @@ class MatchBoard extends Component {
     const definitions = this.renderDefinitions(matches);
 
     return (
-      <div id="match-board" className="fluid-container">
-        <div id="term-container" className="d-flex flex-row flex-wrap justify-content-center align-content-center align-items-center pt-1 mt-1 pt-md-4 mt-md-4 offset-md-1 col-md-10">
+      <div id="match-board">
+        <div id="term-container">
           {terms}
         </div>
-        <div id="definition-container" className="d-flex flex-column flex-md-row flex-wrap flex-fill justify-content-center align-items-stretch pb-5 mt-3 col-md-12">
+        <div id="definition-container">
           {definitions}
         </div>
       </div>);

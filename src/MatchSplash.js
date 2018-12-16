@@ -55,33 +55,28 @@ class MatchSplash extends Component {
     };
 
     /* Render splash screen, wrapped in a transition */
-    /**
-     * Wrap splash in a #splash container to preserve background color, etc.
-     * Make sure it gets style prop
-     * Move splash to a div with the padding, etc.
-     * Perhaps turn into jumbotron? Fluid jumbotron?
-     */
     return (<GameTransition
       in={show}
       timeout={timeout}
       transitionStyles={transitionStyles}
       onExited={this.handleExited}>
-      <div id="splash-wrapper" className="container d-flex flex-column" style={style}>
-          <div id="splash-jumbotron" className="jumbotron jumbotron-fluid">
-            <div id="splash" className="fluid-container">
-              <div id="badge-logo" className="text-center mx-auto">
-                <a href="/" onClick={(e) => this.handleClick(e)} title="Click to Learn!">
-                  <img className="img-fluid spin-scale" id="badge" src={badge} alt="Quizdini badge" />
-                  <img className="img-fluid scale" id="logo" src={logo} alt="Quizdini logo" />
-                </a>
-              </div>
-              <div id="match-details" className="py-2 text-center mx-auto">
-                <div id="match-title" className="game-title-topic h2">{title} {topic}</div>
-                <div id="match-author" className="game-author">{author}</div>
-                <div id="match-instructions" className="game-instructions">{instructions}</div>
-              </div>
+      <div id="splash-container" className="container d-flex flex-row justify-content-center align-content-center mx-auto" style={style}>
+        <section id="splash" className="fluid-container align-self-center mt-3">
+          <div id="badge-logo" className="mx-auto">
+            <a href="/" onClick={(e) => this.handleClick(e)} title="Click to Learn!">
+              <img className="img-fluid spin-scale" id="badge" src={badge} alt="Quizdini badge" />
+              <img className="img-fluid scale" id="logo" src={logo} alt="Quizdini logo" />
+            </a>
           </div>
-        </div>
+          <div id="match-details" className="py-1 px-3 pt-md-2 pb-md-4 px-md-5 text-center mx-auto">
+            <div id="match-title" className="game-title h2">{title}</div>
+            <div id="match-topic-author" className="h5">
+              <span id="match-topic" className="game-topic">{topic}</span>
+              <span id="match-author" className="game-author">{author}</span>
+            </div>
+            <div id="match-instructions" className="game-instructions">{instructions}</div>
+          </div>
+        </section>
       </div>
     </GameTransition>);
   }

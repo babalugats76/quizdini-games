@@ -27,7 +27,7 @@ class MatchGame extends Component {
       topic: topic,
       author: author,
       instructions: instructions,
-      termsPerBoard: 3,
+      termsPerBoard: 9,
       showSplash: true,
       showBoard: false,
       matchDeck: matchDeck,
@@ -191,10 +191,10 @@ class MatchGame extends Component {
              instructions={instructions}
              wait={250} 
              onGameStart={this.handleGameStart} />)
-        : (<div id="match-game">
+        : (<div id="match-container">
              <Scoreboard score={score} correct={correct} incorrect={incorrect} />
              {showBoard && (<MatchBoard
-                              wait={250}
+                              wait={1000}
                               matches={matches}
                               onDrop={(dropResult) => this.handleDrop(dropResult)}
                               onExited={(id) => this.handleExited(id)}

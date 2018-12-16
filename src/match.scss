@@ -1,29 +1,42 @@
 @import './variables';
 @import './mixins';
 
-  @font-face {
-    font-family: 'bitstream_vera_sansroman';
-    src: url('Vera-webfont.woff') format('woff');
-    font-weight: normal;
-    font-style: normal;
-  }
+  @include font-face('bitstream_vera_sansroman', '/fonts/vera-webfont');
+  @include font-face('blogger_sansregular', '/fonts/blogger_sans-webfont');
+  @include font-face('blogger_sansmedium', '/fonts/blogger_sans-medium-webfont');
 
+  $margin: 15px;
   $min_width: 320px;
   $max_width: 1200px;
   $min_font: 16px;
-  $max_font: 24px;
+  $max_font: 26px;
   
-  html {
+  :root {
     @include fluid-type($min_width, $max_width, $min_font, $max_font);
   }
 
-  body {
-    font-family: 'bitstream_vera_sansroman';
+  * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: $blogger-sans;
+    @include fluid-type($min_width, $max_width, $min_font, $max_font);
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    font-size: calc(.85em + .35vw);
   }
-  
+
+  html, body {
+    width: 100%;
+    height: 100%;
+    background-color: $light-light-gray;
+  }
+
+
+  h1, h2, h3, h4, h5, h6 {
+    line-height: 1.1;
+    margin: .6rem;
+  }
+
   button {
       background-color: $white;
       color: $logo-gray;
@@ -34,14 +47,14 @@
   }
 
   .quizdini-app {
-    min-height: 100vh;
-    margin: 0 auto;
-    background-color: $light-light-gray;
+    height: 100vh;
+    overflow-y: visible;
+    background-color: $light-blue;
   }
   
   @include keyframes(spin-scale) {
     0% { transform: rotate(0deg) scale(1.0); } 
-    15% { transform: rotate(-360deg) scale(.98); }
+    15% { transform: rotate(-360deg) scale(.99); }
     30% { transform: rotate(0deg) scale(1.0); } 
   }
 
@@ -51,7 +64,7 @@
 
   @include keyframes(scale) {
     0% { transform: scale(1.0); } 
-    15% { transform: scale(.98); }
+    15% { transform: scale(.99); }
     30% { transform: scale(1.0); }
   }
 
@@ -59,41 +72,59 @@
     @include animation('scale 15s ease-in-out 1s infinite normal both running');
   }
 
+  .game-title {
+    font-family: $blogger-sans-medium;
+  }
+
+  .game-author, .game-instructions {
+    font-family: $blogger-sans;
+  }
+
   .term, .definition {
-    white-space: wrap; 
-    overflow: hidden;
-    text-overflow: ellipsis;
-    border-radius: 5px;
+    @include flexbox;
+    @include justify-content(center);
+    @include align-items(center);
+    width: 80%;
+    padding: #{$margin / 8};
+    padding: calc(100vmax / 320);
+    margin:  #{$margin / 8}; 
+    margin: calc(100vmax / 320);
     @include user-select(none);
   }
   
   .term {
+    min-width: 0;
     background-color: $violet;
+    font-family: $bitstream-vera-sans;
     font-weight: bold;
-    box-shadow: 0.2rem 0.2rem 0, 0.4rem 0.4rem 0 rgba(0,0,0,.2);
+    font-size: .8rem;
+    border: #{$margin / 8} solid $white;
+    border: #{$margin / calc(100vmax / 320)} solid $white;
+
+    /* box-shadow: 0.2rem 0.2rem 0, 0.4rem 0.4rem 0 rgba(0,0,0,.2); */
     color: $white;
     &.pink {
-        background-color: $dark-pink;
+        background-color: $pink;
         &:hover {
-            background-color: $pink;
+            background-color: $dark-pink;
         }
     } 
     &.green {
-        background-color: $dark-green;
+        background-color: $green;
         &:hover {
-            background-color: $green;
+            background-color: $dark-green;
         }
     } 
     &.blue {
-        background-color: $dark-blue;
+        background-color: $blue;
         &:hover {
-            background-color: $blue;
+            background-color: $dark-blue;
         }
     }
     &.purple {
-      background-color: $purple;
+      background-color: $violet;
       &:hover {
-          background-color: $violet;
+          background-color: $purple;
       }
     }
   }
@@ -104,12 +135,29 @@
   }
   
   .definition {
+    min-width: 0;
     background-color: $white;
-    border: 3px dashed $light-gray;
+    font-family: $blogger-sans-medium;
+    font-size: .7rem;
     font-weight: bold;
-    color: $gray;
+    border: 3px dashed $light-gray;
+    color: $dark-gray;
   }
   
+  .term-text, .definition-text {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .definition-text.expand, 
+  .term.dragging > .term-text, 
+  .definition.is-over > .definition-text,
+  .definition.exiting > .definition-text {
+    white-space: normal!important;
+    overflow: visible;
+  }
+
   .dragging {
     opacity: 0.5 !important;
     color: $gray;
@@ -120,25 +168,19 @@
     border-color: $gray;
   }
 
-  #splash-jumbotron {
+  #splash-container {
+    width: calc(100% - #{$margin * 2});
+    height: 91vh;
+  }
+
+  #splash {
     background-color: $light-blue;
-    margin: 10vh 0;
-    padding: 3vh 3vh 5vh 3vh;
-    border: 3vh solid $white;
     color: $white;
-    @include box-shadow(.5rem .5rem .6rem #CCC, 0 0 .2rem rgba(0,0,0,.2) inset);
   }
-
-  #match-game {
-    background-color: $light-light-gray;
-    min-height: 60vh;
-    position: relative;
-  }
-
+  
   #badge-logo {
     position: relative;
-    width: 285px;
-    height: 285px;
+    @include fluid-logo($min_width, $max_width, 175px, 400px);
   }
 
   #badge-logo img {
@@ -151,16 +193,39 @@
     z-index: 1001;
   }
 
+  #match-topic::after {
+    content: '\00A0\00B7\00A0'
+  }
+
+  #match-container {
+    width: 100%;
+    height: 100%;
+    overflow: visible;
+    background-color: $light-light-gray;
+  }
+
   #match-board { 
-    min-height: calc(90vh - 70px);
-    /* padding-top: calc(10vh + 20px);  */
+    @include flexbox;
+    @include flex-direction(column);
+    @include justify-content(flex-end);
+    min-height: calc(92vh);
+    width: 100%;
+    margin: 1vh auto;
+  }
+
+  #term-container, #definition-container {
+    @include flexbox;
+    @include flex-direction(column);
+    @include justify-content(center);
+    @include align-items(center);
+    min-height: 45vh;
+    overflow-y: visible;
   }
 
   #scoreboard {
     position: relative;
     position: sticky;
     display: block;
-    min-height: 10vh;
     top: 0;
     width: 100%;
     opacity: 0.95;
@@ -170,16 +235,93 @@
     z-index: 1001;
   }
 
-  @media (min-width: 768px) { 
+  @media (min-width: 360px) { 
+  }
+
+  @media (max-device-width: 960px) and (orientation: landscape) {
     
+    #match-container {}
+
+    #match-board { 
+       min-height: calc(92vh);
+       width: 100%;
+       margin: 0 auto;
+       @include justify-content(flex-start);
+       @include align-items(center);
+    }
+
+    #term-container, #definition-container {
+      min-height: 40vh;
+      width: 96%;
+      margin: 2vh 0 1vh;
+      @include align-items(flex-start);
+      @include justify-content(center);
+      @include flex-direction(row);
+      @include flex-wrap(wrap);
+      @include align-content(center);
+    }
+
+    .term, .definition {
+      max-width: 30vw;
+      min-height: 6vw;
+      @include flex-basis(30vw);
+      @include flex-grow(0);
+    }
+
+  }
+
+  @media (min-width: 576px) {
+     
+  }
+
+  @media (min-width: 768px) { 
     #scoreboard {
       position: relative;
-      min-height: calc(10vh + 20px);
+      /* min-height: calc(10vh + 20px); */
     }
+  }
+
+  @media (min-width: 1200px) {
     
-    #badge-logo {
-      height: 375px;
-      width: 375px;
+    .quizdini-app {
+      background-color: $light-light-gray;
     }
+
+    #splash {
+      border: 1.3rem solid $white;
+      @include box-shadow(.6rem .6rem .6rem #CCC, 0 0 .4rem rgba(238, 238, 238,.4) inset);
+    }
+
+    #match-board { 
+      min-height: calc(92vh);
+      width: 100%;
+      margin: 0 auto;
+      @include flex-direction(row);
+      @include justify-content(flex-start);
+      @include align-items(center);
+   }
+
+   #term-container, #definition-container {
+     min-height: 0;
+     width: 50%;
+     margin: 2vh 0;
+     @include align-items(flex-start);
+     @include justify-content(center);
+     @include flex-direction(row);
+     @include flex-wrap(wrap);
+     @include align-content(center);
+   }
+
+   .term, .definition {
+     width: 12vw;
+     height: 8vw;
+
+     @include flex-basis(12vw);
+     @include flex-grow(0);
+   }
+
+   .term-text, .definition-text {
+     white-space: normal!important;
+   }
 
   }
