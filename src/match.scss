@@ -85,8 +85,6 @@
     @include justify-content(center);
     @include align-items(center);
     width: 80%;
-    padding: #{$margin / 8};
-    padding: calc(100vmax / 320);
     margin:  #{$margin / 8}; 
     margin: calc(100vmax / 320);
     @include user-select(none);
@@ -143,19 +141,36 @@
     border: 3px dashed $light-gray;
     color: $dark-gray;
   }
-  
+
   .term-text, .definition-text {
+    /*padding: #{$margin / 8}; 
+    padding: calc(100vmax / 320); */
+    line-height: 1.2;
+    min-height: 1.2em;
+    margin: auto;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
   }
 
-  .definition-text.expand, 
-  .term.dragging > .term-text, 
-  .definition.is-over > .definition-text,
-  .definition.exiting > .definition-text {
-    white-space: normal!important;
+
+  /*.definition.expand, .term.expand, .term:hover > .term-text {
     overflow: visible;
+    max-height: none;
+  }*/
+
+  .term:hover,
+  .definition:hover
+  {
+    z-index: 100;
+    overflow: visible; 
+    max-height: none !important;
+  }
+
+  .term:hover > .term-text, .definition:hover > .definition-text {
+    max-height: none !important;
+    background-color: inherit;
+    border: 3px solid $yellow;
   }
 
   .dragging {
@@ -240,8 +255,6 @@
 
   @media (max-device-width: 960px) and (orientation: landscape) {
     
-    #match-container {}
-
     #match-board { 
        min-height: calc(92vh);
        width: 100%;
@@ -315,13 +328,22 @@
    .term, .definition {
      width: 12vw;
      height: 8vw;
-
+     min-height: 3.6em;
      @include flex-basis(12vw);
      @include flex-grow(0);
+     overflow: hidden;
    }
 
    .term-text, .definition-text {
-     white-space: normal!important;
+     white-space: normal;
+     display: -webkit-box !important;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;  
+     min-height: 1.2em ;
+     max-height: 3.6em ;
+     text-overflow: ellipsis;
+     position: relative;
+     padding            : 0 !important;
    }
 
   }

@@ -42,7 +42,7 @@ class Definition extends Component {
     const { expand } = this.state;
     let parentClasses = ['definition', 'text-center'];
     //let parentClasses = ['definition', 'text-center', 'd-flex', 'flex-fill', 'p-1', 'm-1', 'p-md-2'];
-    const parentClassString = parentClasses.concat(...((isOver && canDrop) ? ['is-over'] : []), ((!show) ? ['exiting'] : [])).join(' ');
+    const parentClassString = parentClasses.concat(...((isOver && canDrop) ? ['is-over'] : []), ((expand) ? ['expand']: []), ((!show) ? ['exiting'] : [])).join(' ');
 
     let childClasses = ['definition-text'];
 

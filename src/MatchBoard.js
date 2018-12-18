@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import { shuffle } from './utilities.js';
+//import { shuffleArray } from './utilities.js';
 import GameTransition from './GameTransition';
 import Term from './Term';
 import Definition from './Definition';
@@ -11,9 +11,11 @@ class MatchBoard extends Component {
     setTimeout(() => this.props.onRoundStart(), this.props.wait);
   }
 
-  renderTerms(matches) {
+  renderTerms(termOrder, matches) {
+    
+    return termOrder.map((matchIdx, idx) => {
 
-    return matches.map((match, idx) => {
+      const match = matches[matchIdx];
 
       /* Dynamically determine enter/exit transition times, i.e., achieve brick-laying effect */
       const timeout = {
@@ -26,8 +28,8 @@ class MatchBoard extends Component {
         default: { opacity: 0, visibility: 'hidden' },
         entering: { opacity: 0, visibility: 'hidden' },
         entered: { transition: `visibility 0ms linear ${timeout.enter}ms, opacity ${timeout.enter}ms linear`, opacity: 1.0, visibility: 'visible' },
-        exiting: { transition: `opacity ${timeout.exit}ms ease-in-out`, opacity: 1.0, visibility: 'visible', 'background-color': '#FFFFFF', 'border-color': '#1FE73F', 'color': '#1FE73F' },
-        exited: { opacity: 0, 'color': '#FFFFFF', 'border-color': '#FFFFFF' }
+        exiting: { transition: `opacity ${timeout.exit}ms ease-in-out`, opacity: 1.0, visibility: 'visible', 'backgroundColor': '#FFFFFF', 'borderColor': '#1FE73F', 'color': '#1FE73F' },
+        exited: { opacity: 0, 'color': '#FFFFFF', 'borderColor': '#FFFFFF' }
       };
 
       /* Return the terms, wrapped in transitions */
@@ -49,10 +51,11 @@ class MatchBoard extends Component {
     });
   }
 
-  renderDefinitions(matches) {
+  renderDefinitions(definitionOrder, matches) {
 
-    /* Filter out non-matching terms by using .filter() */
-    return shuffle(matches).filter((match, idx) => { return match.definition }).map((match, idx) => {
+    return definitionOrder.map((matchIdx, idx) => {
+
+      const match = matches[matchIdx];
 
       /* Set transition times */
       const timeout = {
@@ -65,8 +68,8 @@ class MatchBoard extends Component {
         default: { opacity: 0 },
         entering: { opacity: 0 },
         entered: { transition: `opacity ${timeout.enter}ms cubic-bezier(1,.01,.7,.84)`, opacity: 1.0, visibility: 'visible'},
-        exiting: { transition: `opacity ${timeout.exit}ms ease-in-out`, opacity: 1.0, visibility: 'visible',  'background-color': '#FFFFFF', 'border-color': '#1FE73F', 'color': '#1FE73F' },
-        exited: { opacity: 0, 'color': '#FFFFFF', 'border-color': '#FFFFFF' }
+        exiting: { transition: `opacity ${timeout.exit}ms ease-in-out`, opacity: 1.0, visibility: 'visible', 'backgroundColor': '#FFFFFF', 'borderColor': '#1FE73F', 'color': '#1FE73F' },
+        exited: { opacity: 0, 'color': '#FFFFFF', 'borderColor': '#FFFFFF' }
       };
 
       /* Return the terms, wrapped in transitions */
@@ -89,9 +92,9 @@ class MatchBoard extends Component {
 
   render() {
 
-    const { matches } = this.props;
-    const terms = this.renderTerms(matches);
-    const definitions = this.renderDefinitions(matches);
+    const { matches, termOrder, definitionOrder } = this.props;
+    const terms = this.renderTerms(termOrder, matches);
+    const definitions = this.renderDefinitions(definitionOrder, matches);
 
     return (
       <div id="match-board">

@@ -4,7 +4,7 @@ import MultiBackend from 'react-dnd-multi-backend';
 import HTML5toTouch from 'react-dnd-multi-backend/lib/HTML5toTouch'; // or any other pipeline
 import shortid from 'shortid';
 
-import { shuffle } from './utilities.js';
+import { shuffleArray } from './utilities.js';
 import data from './match2.json';
 import './match.scss';
 
@@ -32,6 +32,8 @@ class MatchGame extends Component {
       showBoard: false,
       matchDeck: matchDeck,
       matches: [],
+      termOrder: [],
+      definitionOrder: [],
       unmatched: 0,
       score: 0,
       correct: 0,
@@ -64,6 +66,27 @@ class MatchGame extends Component {
     return matches.map((match) => {
       return { ...match, color: colors[Math.floor(Math.random() * (colors.length))] }
     });
+  }
+
+  /**
+   * Get key (index) of each match and shuffle
+   * Used in randomizing display of terms
+   * @param {Array} matches 
+   */
+  getTermOrder = (matches) => {
+    return shuffleArray(matches.map((match, index) => { return index }));
+  }
+
+  /**
+   * Get key (index) of each match, filter out dummy terms, and shuffle
+   * Used in randomizing display of definitions
+   * @param {Array} matches 
+   */
+  getDefinitionOrder = (matches) => {
+    // Add index to each item (order); filter out non-matches, i.e., match.definition; limit to order and shuffle
+    return shuffleArray(matches.map((match, index) => { return { definition: match.definition, order: index } })
+                               .filter((match) => { return match.definition })
+                               .map((match) => { return match.order }));
   }
 
   /**
@@ -112,11 +135,13 @@ class MatchGame extends Component {
   /* Shuffles the match deck, picks subset, calculates unmatched */
   dealMatches = () => {
     this.setState((state, props) => {
-      const matchDeck = shuffle(state.matchDeck);
+      const matchDeck = shuffleArray(state.matchDeck);
       let matches = matchDeck.slice(0, Math.min(state.termsPerBoard, matchDeck.length));
       matches = this.addColor(matches);
-      const unmatched = matches.reduce((total, match) => { return (match.definition ? total + 1 : total) }, 0);
-      return { matchDeck, matches, unmatched };
+      const termOrder = this.getTermOrder(matches);
+      const definitionOrder = this.getDefinitionOrder(matches);
+      const unmatched = definitionOrder.length;
+      return { matchDeck, matches, termOrder, definitionOrder, unmatched };
     })
   }
 
@@ -169,19 +194,22 @@ class MatchGame extends Component {
 
   /**
    * Removes id from matches
+   * Recreate shuffled arrays specifying the rendor order of terms and defs
    * If board has been cleared, start next round, i.e., nextRound()
    * @param {string} id - Match id to remove from matches
    */
   handleExited = (id) => {
     const matches = this.state.matches.filter((match) => { return match.id !== id; });
-    this.setState({ matches });
+    const termOrder = this.getTermOrder(matches);
+    const definitionOrder = this.getDefinitionOrder(matches);
+    this.setState({ matches, termOrder, definitionOrder });
     // If all data has been removed, proceed to next round 
     if (matches.length === 0) return this.nextRound();
   }
 
   /* Conditionally render splash, scoreboard, and game board */
   render() {
-    const { showSplash, showBoard, matches, score, correct, incorrect, title, topic, author, instructions } = this.state;
+    const { showSplash, showBoard, matches, termOrder, definitionOrder, score, correct, incorrect, title, topic, author, instructions } = this.state;
     return (
       showSplash
         ? (<MatchSplash 
@@ -196,6 +224,8 @@ class MatchGame extends Component {
              {showBoard && (<MatchBoard
                               wait={1000}
                               matches={matches}
+                              termOrder={termOrder}
+                              definitionOrder={definitionOrder}
                               onDrop={(dropResult) => this.handleDrop(dropResult)}
                               onExited={(id) => this.handleExited(id)}
                               onRoundStart={this.handleRoundStart} />)
