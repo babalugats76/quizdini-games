@@ -28,13 +28,14 @@
   html, body {
     width: 100%;
     height: 100%;
-    background-color: $light-light-gray;
+    background-color: $gray-light-light;
   }
 
 
+  /* Needs to be refined */
   h1, h2, h3, h4, h5, h6 {
     line-height: 1.1;
-    margin: .6rem;
+    margin: .6em;
   }
 
   button {
@@ -49,7 +50,7 @@
   .quizdini-app {
     height: 100vh;
     overflow-y: visible;
-    background-color: $light-blue;
+    background-color: $blue-light;
   }
   
   @include keyframes(spin-scale) {
@@ -98,38 +99,27 @@
     font-size: .8rem;
     border: #{$margin / 8} solid $white;
     border: #{$margin / calc(100vmax / 320)} solid $white;
-
-    /* box-shadow: 0.2rem 0.2rem 0, 0.4rem 0.4rem 0 rgba(0,0,0,.2); */
     color: $white;
-    &.pink {
-        background-color: $pink;
+    /* box-shadow: 0.2rem 0.2rem 0, 0.4rem 0.4rem 0 rgba(0,0,0,.2); */
+    
+    /* Colors for tiles */
+    $tileColors: (('pink', $pink, $pink-dark),
+                  ('green', $green, $green-dark),
+                  ('blue', $blue, $blue-dark),
+                  ('purple', $violet, $purple),
+                  ('orange', $orange, $orange-dark),
+                  ('asphalt', $asphalt, $asphalt-dark),
+                  ('green-sea', $green-sea, $green-sea-dark));
+    
+    /* Dynamically generate tile color classes */            
+    @each $color, $bgColor, $hoverBgColor in $tileColors {
+      &.#{$color} {
+        background-color: #{$bgColor};
         &:hover {
-            background-color: $dark-pink;
+          background-color: #{$hoverBgColor};
         }
-    } 
-    &.green {
-        background-color: $green;
-        &:hover {
-            background-color: $dark-green;
-        }
-    } 
-    &.blue {
-        background-color: $blue;
-        &:hover {
-            background-color: $dark-blue;
-        }
-    }
-    &.purple {
-      background-color: $violet;
-      &:hover {
-          background-color: $purple;
       }
     }
-  }
-
-  .term:hover {
-    background-color: $purple;  
-    color: $white;
   }
   
   .definition {
@@ -138,13 +128,13 @@
     font-family: $blogger-sans-medium;
     font-size: .7rem;
     font-weight: bold;
-    border: 3px dashed $light-gray;
-    color: $dark-gray;
+    border: 3px dashed $gray-light;
+    color: $gray-dark;
   }
 
   .term-text, .definition-text {
-    /*padding: #{$margin / 8}; 
-    padding: calc(100vmax / 320); */
+    padding: #{$margin / 8}; 
+    padding: calc(100vmax / 320); 
     line-height: 1.2;
     min-height: 1.2em;
     margin: auto;
@@ -153,12 +143,8 @@
     text-overflow: ellipsis;
   }
 
-
-  /*.definition.expand, .term.expand, .term:hover > .term-text {
-    overflow: visible;
-    max-height: none;
-  }*/
-
+  .term.expand,
+  .definition.expand,
   .term:hover,
   .definition:hover
   {
@@ -167,7 +153,10 @@
     max-height: none !important;
   }
 
-  .term:hover > .term-text, .definition:hover > .definition-text {
+  .term.expand > .term-text,
+  .definition.expand > .definition-text,
+  .term:hover > .term-text, 
+  .definition:hover > .definition-text {
     max-height: none !important;
     background-color: inherit;
     border: 3px solid $yellow;
@@ -189,7 +178,7 @@
   }
 
   #splash {
-    background-color: $light-blue;
+    background-color: $blue-light;
     color: $white;
   }
   
@@ -216,7 +205,7 @@
     width: 100%;
     height: 100%;
     overflow: visible;
-    background-color: $light-light-gray;
+    background-color: $gray-light-light;
   }
 
   #match-board { 
@@ -297,7 +286,7 @@
   @media (min-width: 1200px) {
     
     .quizdini-app {
-      background-color: $light-light-gray;
+      background-color: $gray-light-light;
     }
 
     #splash {
@@ -341,9 +330,6 @@
     -webkit-box-orient: vertical;  
      min-height: 1.2em ;
      max-height: 3.6em ;
-     text-overflow: ellipsis;
-     position: relative;
-     padding            : 0 !important;
    }
 
   }
