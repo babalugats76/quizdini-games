@@ -28,7 +28,7 @@ class MatchBoard extends Component {
         default: { opacity: 0, visibility: 'hidden' },
         entering: { opacity: 0, visibility: 'hidden' },
         entered: { transition: `visibility 0ms linear ${timeout.enter}ms, opacity ${timeout.enter}ms linear`, opacity: 1.0, visibility: 'visible' },
-        exiting: { transition: `opacity ${timeout.exit}ms ease-in-out`, opacity: 1.0, visibility: 'visible', 'backgroundColor': '#FFFFFF', 'borderColor': '#1FE73F', 'color': '#1FE73F' },
+        exiting: { transition: `opacity ${timeout.exit}ms ease-in-out`, opacity: 1.0, visibility: 'visible' },
         exited: { opacity: 0, 'color': '#FFFFFF', 'borderColor': '#FFFFFF' }
       };
 
@@ -46,6 +46,7 @@ class MatchBoard extends Component {
             color={match.color}
             term={match.term} 
             show={match.show}
+            matched={match.matched}
             onDrop={this.props.onDrop} />
         </GameTransition>);
     });
@@ -68,8 +69,8 @@ class MatchBoard extends Component {
         default: { opacity: 0 },
         entering: { opacity: 0 },
         entered: { transition: `opacity ${timeout.enter}ms cubic-bezier(1,.01,.7,.84)`, opacity: 1.0, visibility: 'visible'},
-        exiting: { transition: `opacity ${timeout.exit}ms ease-in-out`, opacity: 1.0, visibility: 'visible', 'backgroundColor': '#FFFFFF', 'borderColor': '#1FE73F', 'color': '#1FE73F' },
-        exited: { opacity: 0, 'color': '#FFFFFF', 'borderColor': '#FFFFFF' }
+        exiting: { transition: `opacity ${timeout.exit}ms ease-in-out`, opacity: 1.0, visibility: 'visible'},
+        exited: { opacity: 0, 'color': '#FFFFFF', 'borderColor': '#FFFFFF'}
       };
 
       /* Return the terms, wrapped in transitions */
@@ -84,7 +85,8 @@ class MatchBoard extends Component {
               id={match.id} 
               definition={match.definition} 
               term={match.term}
-              show={match.show}>
+              show={match.show}
+              matched={match.matched}>
             </Definition>
         </GameTransition>);
     });

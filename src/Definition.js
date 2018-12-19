@@ -29,34 +29,40 @@ class Definition extends Component {
     })
   }
 
-  toggleExpand = () => {
+  handleMouseEnterLeave = (e, expand) => {
+    e.preventDefault();
+    this.setState((state, props) => {
+      return { expand: expand }
+    });
+  }
+
+  handleTouchEnd = (e) => {
+    e.preventDefault();
     this.setState((state, props) => {
       return { expand: !state.expand }
     });
   }
 
-
   render() {
     // eslint-disable-next-line
-    const { isOver, canDrop, connectDropTarget, id, term, definition, show, style } = this.props;
+    const { isOver, canDrop, connectDropTarget, id, term, definition, show, matched, style } = this.props;
     const { expand } = this.state;
     let parentClasses = ['definition', 'text-center'];
-    //let parentClasses = ['definition', 'text-center', 'd-flex', 'flex-fill', 'p-1', 'm-1', 'p-md-2'];
-    const parentClassString = parentClasses.concat(...((isOver && canDrop) ? ['is-over'] : []), ((expand) ? ['expand']: []), ((!show) ? ['exiting'] : [])).join(' ');
-
+    const parentClassString = parentClasses.concat(...((isOver && canDrop) ? ['is-over'] : []), ((expand) ? ['expand']: []), ((!show) ? ['exiting'] : []), ((matched) ? ['matched'] : [])).join(' ');
     let childClasses = ['definition-text'];
-
-    const childClassString = childClasses.concat(...((expand) ? ['expand']: []), ).join(' ');
+    //const childClassString = childClasses.concat(...((expand) ? ['expand']: [])).join(' ');
+    const childClassString = childClasses.join(' ');
 
     return connectDropTarget(
-      <div style={style} className={parentClassString}>
-        <div 
-          className={childClassString} 
-          onClick={this.toggleExpand} 
-          onMouseEnter={this.toggleExpand} 
-          onMouseLeave={this.toggleExpand}>
-            {definition}
-        </div>
+      <div style={style} 
+           className={parentClassString}
+           onMouseEnter={(e) => this.handleMouseEnterLeave(e, true)}
+           onMouseLeave={(e) => this.handleMouseEnterLeave(e, false)}
+           onTouchEnd={(e) => this.handleTouchEnd(e)}
+      >
+
+        <div className={childClassString}
+        >{definition}</div>
       </div>
     );
   }

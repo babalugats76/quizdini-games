@@ -8,8 +8,8 @@
   $margin: 15px;
   $min_width: 320px;
   $max_width: 1200px;
-  $min_font: 16px;
-  $max_font: 26px;
+  $min_font: 15px;
+  $max_font: 25px;
   
   :root {
     @include fluid-type($min_width, $max_width, $min_font, $max_font);
@@ -91,14 +91,19 @@
     @include user-select(none);
   }
   
+  .term.matched, .definition.matched {
+    background-color: $white !important;
+    border-color: $lime;
+    color: $lime;
+  } 
+
   .term {
     min-width: 0;
     background-color: $violet;
     font-family: $bitstream-vera-sans;
     font-weight: bold;
     font-size: .8rem;
-    border: #{$margin / 8} solid $white;
-    border: #{$margin / calc(100vmax / 320)} solid $white;
+    border: calc(2px + (100vw / 640)) solid $white;
     color: $white;
     /* box-shadow: 0.2rem 0.2rem 0, 0.4rem 0.4rem 0 rgba(0,0,0,.2); */
     
@@ -128,13 +133,13 @@
     font-family: $blogger-sans-medium;
     font-size: .7rem;
     font-weight: bold;
-    border: 3px dashed $gray-light;
+    border: calc(2px + (100vw / 640)) dashed $gray-light;
     color: $gray-dark;
+    touch-action: none;
   }
 
   .term-text, .definition-text {
-    padding: #{$margin / 8}; 
-    padding: calc(100vmax / 320); 
+    padding: .1em .25em;
     line-height: 1.2;
     min-height: 1.2em;
     margin: auto;
@@ -145,31 +150,28 @@
 
   .term.expand,
   .definition.expand,
-  .term:hover,
-  .definition:hover
   {
     z-index: 100;
     overflow: visible; 
     max-height: none !important;
+    border: none;
   }
 
   .term.expand > .term-text,
   .definition.expand > .definition-text,
-  .term:hover > .term-text, 
-  .definition:hover > .definition-text {
+   {
     max-height: none !important;
     background-color: inherit;
-    border: 3px solid $yellow;
-  }
+    overflow: visible;
+  }  
 
   .dragging {
     opacity: 0.5 !important;
-    color: $gray;
-    box-shadow: 0.25rem 0.25rem 0, 0.48rem 0.48rem 0 rgba(0,0,0,.2);
+    box-shadow: 0.25em 0.25em 0, 0.48rem 0.48rem 0 rgba(0,0,0,.2);
   }
   
   .is-over {
-    border-color: $gray;
+    border-color: $yellow;
   }
 
   #splash-container {
@@ -325,11 +327,8 @@
 
    .term-text, .definition-text {
      white-space: normal;
-     display: -webkit-box !important;
-    -webkit-line-clamp: 3;
-    -webkit-box-orient: vertical;  
      min-height: 1.2em ;
-     max-height: 3.6em ;
+     max-height: 4.2em ;
    }
 
   }

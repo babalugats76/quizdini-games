@@ -27,10 +27,10 @@ function collect(connect, monitor) {
 class Term extends Component {
   render() {
     // eslint-disable-next-line
-    const { isDragging, connectDragSource, id, term, show, color, style} = this.props;
+    const { isDragging, connectDragSource, id, term, show, matched, color, style} = this.props;
     let parentClasses = ['term', 'text-center'];
     // eslint-disable-next-line
-    const parentClassString = parentClasses.concat(...(isDragging ? ['dragging'] : []), ((!show) ? ['exiting'] : []) , color).join(' ');
+    const parentClassString = parentClasses.concat(...(isDragging ? ['dragging'] : []), ((!show) ? ['exiting'] : []), ((matched) ? ['matched'] : []), color).join(' ');
     // eslint-disable-next-line
   
     return connectDragSource(

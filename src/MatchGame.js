@@ -52,7 +52,8 @@ class MatchGame extends Component {
       return {
         ...match,
         id: shortid.generate(),
-        show: false
+        show: false,
+        ...match.definition && { matched: false }
       }
     })
   }
@@ -62,7 +63,7 @@ class MatchGame extends Component {
    * @param {Array} matches - Array of match objects to assign color
    */
   addColor(matches) {
-    const colors = ['pink', 'green', 'blue', 'purple', 'orange', 'green-sea','asphalt'];
+    const colors = ['pink', 'green', 'blue', 'purple', 'orange', 'green-sea', 'asphalt'];
     return matches.map((match) => {
       return { ...match, color: colors[Math.floor(Math.random() * (colors.length))] }
     });
@@ -74,7 +75,7 @@ class MatchGame extends Component {
    * @param {Array} matches 
    */
   getTermOrder = (matches) => {
-    return shuffleArray(matches.map((match, index) => { return index }));
+    return shuffleArray([...matches.keys()]);
   }
 
   /**
@@ -121,15 +122,23 @@ class MatchGame extends Component {
   }
 
   /**
-   * Toggles, i.e., shows/hides match, triggering transitions
-   * @param {string} id - Match id to toggle visibility
+   * Updates state of matched term/definition combo
+   * For matched id:
+   *   Set show to false, triggering transition
+   *   Set matched to true, facilitates exiting styling, etc.
+   * @param {string} id - Match id that 
    */
-  toggleMatch = (id) => {
-    const matches = this.state.matches.map((match) => {
-      if (match.id === id) match.show = !match.show
-      return match;
-    })
-    this.setState({ matches })
+  handleMatched = (id) => {
+    this.setState((state, props) => {
+      const matches = state.matches.map((match) => {
+        if (match.id === id) {
+          match.show = false;
+          match.matched = true;
+        }
+        return match;
+      })
+      return { matches }
+    });
   }
 
   /* Shuffles the match deck, picks subset, calculates unmatched */
@@ -188,7 +197,7 @@ class MatchGame extends Component {
       return { correct, incorrect, score, unmatched };
     });
 
-    if (dropResult.matched) this.toggleMatch(dropResult.id);
+    if (dropResult.matched) this.handleMatched(dropResult.id);
     if (unmatched < 1) this.showMatches(false);
   }
 
