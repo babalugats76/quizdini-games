@@ -2,8 +2,9 @@ import React, { Component } from 'react';
 
 //import { shuffleArray } from './utilities.js';
 import GameTransition from './GameTransition';
-import Term from './Term';
+
 import Definition from './Definition';
+import Term from './Term';
 
 class MatchBoard extends Component {
 

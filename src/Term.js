@@ -24,17 +24,26 @@ function collect(connect, monitor) {
   }
 }
 
+export function generatePreview (type, item, style) {
+  const classes = ['term', 'text-center', 'dragging'];
+  const classesString = classes.concat(...(item.color ? [item.color] : [])).join(' ');
+  return (<div style={style} className={classesString}>
+            <div className="term-text">{item.term}</div>
+          </div>);
+} 
+
 class Term extends Component {
+
   render() {
     // eslint-disable-next-line
     const { isDragging, connectDragSource, id, term, show, matched, color, style} = this.props;
-    let parentClasses = ['term', 'text-center'];
+    let classes = ['term', 'text-center'];
     // eslint-disable-next-line
-    const parentClassString = parentClasses.concat(...(isDragging ? ['dragging'] : []), ((!show) ? ['exiting'] : []), ((matched) ? ['matched'] : []), color).join(' ');
+    const classesString = classes.concat(...(isDragging ? ['dragging'] : []), ((!show) ? ['exiting'] : []), ((matched) ? ['matched'] : []), color).join(' ');
     // eslint-disable-next-line
   
     return connectDragSource(
-      <div style={style} className={parentClassString}>
+      <div style={style} className={classesString}>
         <div className="term-text">{term}</div>
       </div>
     );

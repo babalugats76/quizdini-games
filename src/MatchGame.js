@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { DragDropContext } from 'react-dnd';
 import MultiBackend from 'react-dnd-multi-backend';
 import HTML5toTouch from 'react-dnd-multi-backend/lib/HTML5toTouch'; // or any other pipeline
+import {generatePreview} from './Term';
+import {Preview} from 'react-dnd-multi-backend';
 import shortid from 'shortid';
 
 import { shuffleArray } from './utilities.js';
@@ -229,6 +231,7 @@ class MatchGame extends Component {
              wait={250} 
              onGameStart={this.handleGameStart} />)
         : (<div id="match-container">
+             <Preview generator={generatePreview} />
              <Scoreboard score={score} correct={correct} incorrect={incorrect} />
              {showBoard && (<MatchBoard
                               wait={1000}
@@ -238,8 +241,8 @@ class MatchGame extends Component {
                               onDrop={(dropResult) => this.handleDrop(dropResult)}
                               onExited={(id) => this.handleExited(id)}
                               onRoundStart={this.handleRoundStart} />)
-          }
-        </div>)
+             }
+           </div>)
     );
   }
 }
