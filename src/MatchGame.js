@@ -249,7 +249,7 @@ class MatchGame extends Component {
         : (<div id="match-container">
              <Preview generator={generatePreview} />
              {showScore && (<Scoreboard 
-                              wait={1000}
+                              wait={500}
                               duration={duration} 
                               score={score} 
                               correct={correct} 
@@ -257,7 +257,7 @@ class MatchGame extends Component {
                               onGameOver={this.handleGameOver} />)
              }
              {showBoard && (<MatchBoard
-                              wait={1000}
+                              wait={500}
                               matches={matches}
                               termOrder={termOrder}
                               definitionOrder={definitionOrder}

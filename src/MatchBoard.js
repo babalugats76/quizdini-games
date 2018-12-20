@@ -20,7 +20,7 @@ class MatchBoard extends Component {
       /* Dynamically determine enter/exit transition times, i.e., achieve brick-laying effect */
       const timeout = {
         enter: (idx * (this.props.wait/5)),
-        exit: 1500
+        exit: this.props.wait
       };
 
       /* Define object for the following states: 'default', 'entering', 'entered', 'exiting', 'exited' */
@@ -61,7 +61,7 @@ class MatchBoard extends Component {
       /* Set transition times */
       const timeout = {
         enter: (matches.length * (this.props.wait/5)),
-        exit: 1500
+        exit: this.props.wait
       };
 
       /* Define object for the following states: 'default', 'entering', 'entered', 'exiting', 'exited' */
