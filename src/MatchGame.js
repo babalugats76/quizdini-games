@@ -30,8 +30,10 @@ class MatchGame extends Component {
       author: author,
       instructions: instructions,
       termsPerBoard: 9,
+      duration: 60,
       showSplash: true,
       showBoard: false,
+      showScore: false,
       matchDeck: matchDeck,
       matches: [],
       termOrder: [],
@@ -39,9 +41,7 @@ class MatchGame extends Component {
       unmatched: 0,
       score: 0,
       correct: 0,
-      incorrect: 0,
-      elapsedTime: 0,
-      totalTime: 0,
+      incorrect: 0
     };
   }
 
@@ -113,6 +113,16 @@ class MatchGame extends Component {
   }
 
   /**
+   * Shows or hides scoreboard
+   * @param {bool} show - Whether to show scoreboard
+   */
+  showScore = (show) => {
+    this.setState((state, props) => {
+      return { showScore: show }
+    });
+  }
+  
+  /**
    * Shows or hides all match objects, triggering transitions
    * @param {bool} show - Whether to show matches
    */
@@ -160,6 +170,12 @@ class MatchGame extends Component {
   handleGameStart = () => {
     this.showSplash(false);
     this.showBoard(true);
+    this.showScore(true);
+  }
+
+  /* When timer runs out */
+  handleGameOver = () => {
+    console.log('game over...');
   }
 
   /* Begins the round */
@@ -220,7 +236,7 @@ class MatchGame extends Component {
 
   /* Conditionally render splash, scoreboard, and game board */
   render() {
-    const { showSplash, showBoard, matches, termOrder, definitionOrder, score, correct, incorrect, title, topic, author, instructions } = this.state;
+    const { title, topic, author, instructions, showSplash, showScore, showBoard, duration, score, correct, incorrect, matches, termOrder, definitionOrder } = this.state;
     return (
       showSplash
         ? (<MatchSplash 
@@ -232,7 +248,14 @@ class MatchGame extends Component {
              onGameStart={this.handleGameStart} />)
         : (<div id="match-container">
              <Preview generator={generatePreview} />
-             <Scoreboard score={score} correct={correct} incorrect={incorrect} />
+             {showScore && (<Scoreboard 
+                              wait={1000}
+                              duration={duration} 
+                              score={score} 
+                              correct={correct} 
+                              incorrect={incorrect}
+                              onGameOver={this.handleGameOver} />)
+             }
              {showBoard && (<MatchBoard
                               wait={1000}
                               matches={matches}

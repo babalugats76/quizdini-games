@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 
-//import { shuffleArray } from './utilities.js';
 import GameTransition from './GameTransition';
 
 import Definition from './Definition';
@@ -101,12 +100,8 @@ class MatchBoard extends Component {
 
     return (
       <div id="match-board">
-        <div id="term-container">
-          {terms}
-        </div>
-        <div id="definition-container">
-          {definitions}
-        </div>
+        <div id="term-container">{terms}</div>
+        <div id="definition-container">{definitions}</div>
       </div>);
   }
 
