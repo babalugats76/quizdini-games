@@ -15,9 +15,7 @@ const GameTransition = ({ children, ...props }) => {
    * Make sure props.styles is pushed down to rendered HTML
    */
 
-  return (<Transition {...props}
-    mountOnEnter={true}
-    unmountOnExit={false}>
+  return (<Transition {...props}>
     {(transitionState, innerProps) => React.cloneElement(children, {
       style: getStyles({...props.transitionStyles})(transitionState)
     })}

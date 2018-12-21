@@ -29,11 +29,12 @@ class MatchGame extends Component {
       topic: topic,
       author: author,
       instructions: instructions,
-      termsPerBoard: 9,
+      termsPerBoard: 2,
       duration: 60,
+      playing: false,
       showSplash: true,
-      showBoard: false,
-      showScore: false,
+      showBoard: true,
+      showScore: true,
       matchDeck: matchDeck,
       matches: [],
       termOrder: [],
@@ -93,35 +94,26 @@ class MatchGame extends Component {
   }
 
   /**
-   * Shows or hides splash screen
-   * @param {bool} show - Whether to show splash
+   * Toggles boolean state properties
+   * @param {string} property - Property in the state object to toggle
    */
-  showSplash = (show) => {
+  toggle = (property) => {
     this.setState((state, props) => {
-      return { showSplash: show }
-    });
+      return { [property] : !state[property]};
+    })
   }
 
   /**
-   * Shows or hides game board
-   * @param {bool} show - Whether to show board
+   * Updates value of item in state
+   * @param {string} property - State item to update
+   * @param {any} value - New value to assign to state item
    */
-  showBoard = (show) => {
+  switch = (property, value) => {
     this.setState((state, props) => {
-      return { showBoard: show }
-    });
+      return { [property] : value };
+    })
   }
 
-  /**
-   * Shows or hides scoreboard
-   * @param {bool} show - Whether to show scoreboard
-   */
-  showScore = (show) => {
-    this.setState((state, props) => {
-      return { showScore: show }
-    });
-  }
-  
   /**
    * Shows or hides all match objects, triggering transitions
    * @param {bool} show - Whether to show matches
@@ -168,29 +160,28 @@ class MatchGame extends Component {
 
   /* Hides splash screen and shows the game board */
   handleGameStart = () => {
-    this.showSplash(false);
-    this.showBoard(true);
-    this.showScore(true);
+    this.switch('showSplash', false);
+    this.switch('playing', true);
+    /*this.switch('showBoard', true); */
   }
 
   /* When timer runs out */
   handleGameOver = () => {
-    console.log('game over...');
+    this.switch('playing', false);
+    this.switch('showSplash', true);
   }
 
-  /* Begins the round */
-  handleRoundStart = () => { this.beginRound(); }
-
-  /* Prepares new game round */
-  beginRound = () => {
+   /* Prepares new game round */
+  handleRoundStart = () => {
+    console.log('starting round..')
     this.dealMatches();
     this.showMatches(true);
   }
-
+  
   /* Starts a new round; after brief timeout */
   nextRound = () => {
-    this.showBoard(false);
-    setTimeout(() => this.showBoard(true), 250);
+    this.switch('showBoard', false);
+    setTimeout(() => this.switch('showBoard', true), 250);
   }
 
   /**
@@ -236,7 +227,7 @@ class MatchGame extends Component {
 
   /* Conditionally render splash, scoreboard, and game board */
   render() {
-    const { title, topic, author, instructions, showSplash, showScore, showBoard, duration, score, correct, incorrect, matches, termOrder, definitionOrder } = this.state;
+    const { title, topic, author, instructions, playing, showSplash, showScore, showBoard, duration, score, correct, incorrect, matches, termOrder, definitionOrder } = this.state;
     return (
       showSplash
         ? (<MatchSplash 
@@ -248,16 +239,18 @@ class MatchGame extends Component {
              onGameStart={this.handleGameStart} />)
         : (<div id="match-container">
              <Preview generator={generatePreview} />
-             {showScore && (<Scoreboard 
+             {playing && (<Scoreboard 
                               wait={500}
+                              show={showScore}
                               duration={duration} 
                               score={score} 
                               correct={correct} 
                               incorrect={incorrect}
                               onGameOver={this.handleGameOver} />)
              }
-             {showBoard && (<MatchBoard
+             {playing && (<MatchBoard
                               wait={500}
+                              show={showBoard}
                               matches={matches}
                               termOrder={termOrder}
                               definitionOrder={definitionOrder}

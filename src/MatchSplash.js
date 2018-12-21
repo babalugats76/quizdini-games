@@ -56,6 +56,9 @@ class MatchSplash extends Component {
 
     /* Render splash screen, wrapped in a transition */
     return (<GameTransition
+      mountOnEnter={false}
+              unmountOnExit={true}
+              appear={true}
       in={show}
       timeout={timeout}
       transitionStyles={transitionStyles}

@@ -7,9 +7,9 @@ import Term from './Term';
 
 class MatchBoard extends Component {
 
-  componentDidMount() {
+  /*componentDidMount() {
     setTimeout(() => this.props.onRoundStart(), this.props.wait);
-  }
+  } */
 
   renderTerms(termOrder, matches) {
     
@@ -35,6 +35,8 @@ class MatchBoard extends Component {
       /* Return the terms, wrapped in transitions */
       return (
         <GameTransition
+          mountOnEnter={true}
+          unmountOnExit={false}
           key={match.id}
           in={match.show}
           timeout={timeout}
@@ -76,6 +78,8 @@ class MatchBoard extends Component {
       /* Return the terms, wrapped in transitions */
       return (
         <GameTransition 
+          mountOnEnter={true}
+          unmountOnExit={false}
           key={match.id} 
           in={match.show} 
           timeout={timeout} 
@@ -94,15 +98,41 @@ class MatchBoard extends Component {
 
   render() {
 
-    const { matches, termOrder, definitionOrder } = this.props;
+    // eslint-disable-next-line
+    const { show, matches, termOrder, definitionOrder, onRoundStart } = this.props;
     const terms = this.renderTerms(termOrder, matches);
     const definitions = this.renderDefinitions(definitionOrder, matches);
 
-    return (
-      <div id="match-board">
-        <div id="term-container">{terms}</div>
-        <div id="definition-container">{definitions}</div>
-      </div>);
+    /* Transition timeouts */
+    const timeout = {
+      enter: this.props.wait,
+      exit: this.props.wait
+    };
+
+    /* Define object for the following states: 'default', 'entering', 'entered', 'exiting', 'exited' */
+    const transitionStyles = {
+      default: { opacity: 0 },
+      entering: { opacity: 0 },
+      entered: { transition: `opacity ${timeout.enter}ms ease-in-out`, opacity: 1.0 },
+      exiting: { transition: `opacity ${timeout.exit}ms ease-in-out`, opacity: 0.1 },
+      exited: { opacity: 0 }
+    };    
+
+    console.log()
+
+    return (<GameTransition
+              mountOnEnter={false}
+              unmountOnExit={true}
+              appear={true}
+              in={show}
+              timeout={timeout}
+              transitionStyles={transitionStyles}
+              onEnter={onRoundStart}>
+                <div id="match-board">
+                  <div id="term-container">{terms}</div>
+                  <div id="definition-container">{definitions}</div>
+                </div>
+            </GameTransition>);
   }
 
 }
