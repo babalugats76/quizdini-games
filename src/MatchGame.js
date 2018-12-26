@@ -29,7 +29,7 @@ class MatchGame extends Component {
       topic: topic,
       author: author,
       instructions: instructions,
-      termsPerBoard: 2,
+      termsPerBoard: 9,
       duration: 60,
       playing: false,
       showSplash: true,
