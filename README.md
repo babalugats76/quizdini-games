@@ -1,12 +1,10 @@
 ## To-Do List
 
-* Add mouse and touch events to Term class to expand oversized text
 * Convert style classes to style rules for MatchSplash
 * Tryout flex shorthand syntax, e.g., 1 0 40px
 * Add PLAY GAME button to MatchSplash
 * Add way of tracking first game vs. nth game, e.g., PLAY GAME vs. PLAY AGAIN
 * Refactor so that game-related state values are reset in `handleGameStart` method
-* Enhance time to accept `scale` prop to control format of timer, e.g., 3 vs 3.1
 * Mock up Scoreboard and Timer on full bleed
    * Vectorize Computer and Stars
    * Mock up Computer and starts of MatchGame using `position: fixed; left: calc(vw-1/2 width); bottom: 0px !important`

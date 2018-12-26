@@ -120,8 +120,6 @@ class MatchBoard extends Component {
       exited: { opacity: 0 }
     };    
 
-    console.log()
-
     return (<GameTransition
               mountOnEnter={false}
               unmountOnExit={true}

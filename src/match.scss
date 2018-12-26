@@ -48,9 +48,21 @@
   }
 
   .quizdini-app {
+    @include flexbox;
+    @include flex-direction(column);
+    position: relative;
+    background-color: #eee;
+    min-height: 100vh;
+  }
+
+  .page-container {
+    position: relative;
+    width: 100%;
     height: 100vh;
     overflow-y: visible;
-    background-color: $blue-light;
+    overflow-x: hidden;
+    max-width: 1200px;
+    margin: 0 auto;
   }
   
   @include keyframes(spin-scale) {
@@ -215,22 +227,15 @@
     z-index: 1001;
   }
 
-  #scoreboard #stars, #scoreboard #logo {
+  #match-container #computer-stars, #match-container #computer {
     display: none;
-  }
-
-  #match-container {
-    width: 100%;
-    height: 100%;
-    overflow: visible;
-    background-color: $gray-light-light;
   }
 
   #match-board { 
     @include flexbox;
     @include flex-direction(column);
     @include justify-content(flex-end);
-    min-height: calc(92vh);
+    min-height: calc(60%);
     width: 100%;
     margin: 1vh auto;
   }
@@ -294,37 +299,44 @@
       background-color: $gray-light-light;
     }
 
+    .page-container {
+      max-width: none;
+    }
+
     #splash {
       border: 1.3rem solid $white;
       @include box-shadow(.6rem .6rem .6rem #CCC, 0 0 .4rem rgba(238, 238, 238,.4) inset);
     }
 
-    #scoreboard #logo {
+    #match-container #computer {
       display: block;
       z-index: 100;
       display: block;
-      width: 230px;
-      position: fixed;
+      max-width: 230px;
+      width: 12%;
+      position: absolute;
       bottom: 0 !important;
-      left: calc(50vw - 115px) !important; // Subtract half of logo's width
+      //left: calc(50% - 115px) !important; // Subtract half of logo's width
+      right: 6%;
     }
 
-    #scoreboard #stars {
+    #match-container #computer-stars {
       display: block;
       z-index: 99;
-      width: 350px;
-      position: fixed;
-      bottom: 0 !important; 
-      left: calc(50vw - 175px) !important; // Subtract half of star's width
+      max-width: 500px;
+      width: 26%;
+      position: absolute;
+      bottom: 10px !important; 
+      //left: calc(50% - 225px) !important; // Subtract half of stars' width
+      right: -1%;
+      //transform: rotate(-180deg);
     }
 
     #match-board { 
-      min-height: calc(92vh);
-      width: 100%;
-      margin: 0 auto;
       @include flex-direction(row);
       @include justify-content(flex-start);
       @include align-items(center);
+      min-height: calc(60%);
    }
 
    #term-container, #definition-container {

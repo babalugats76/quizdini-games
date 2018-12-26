@@ -57,30 +57,28 @@ class MatchSplash extends Component {
     /* Render splash screen, wrapped in a transition */
     return (<GameTransition
       mountOnEnter={false}
-              unmountOnExit={true}
-              appear={true}
+      unmountOnExit={true}
+      appear={true}
       in={show}
       timeout={timeout}
       transitionStyles={transitionStyles}
       onExited={this.handleExited}>
-      <div id="splash-container" className="container d-flex flex-row justify-content-center align-content-center mx-auto" style={style}>
-        <section id="splash" className="fluid-container align-self-center mt-3">
-          <div id="badge-logo" className="mx-auto">
-            <a href="/" onClick={(e) => this.handleClick(e)} title="Click to Learn!">
-              <img className="img-fluid spin-scale" id="badge" src={badge} alt="Quizdini badge" />
-              <img className="img-fluid scale" id="logo" src={logo} alt="Quizdini logo" />
-            </a>
+      <section id="splash" className="fluid-container align-self-center mt-3" style={style}>
+        <div id="badge-logo" className="mx-auto">
+          <a href="/" onClick={(e) => this.handleClick(e)} title="Click to Learn!">
+            <img className="img-fluid spin-scale" id="badge" src={badge} alt="Quizdini badge" />
+            <img className="img-fluid scale" id="logo" src={logo} alt="Quizdini logo" />
+          </a>
+        </div>
+        <div id="match-details" className="py-1 px-3 pt-md-2 pb-md-4 px-md-5 text-center mx-auto">
+          <div id="match-title" className="game-title h2">{title}</div>
+          <div id="match-topic-author" className="h5">
+            <span id="match-topic" className="game-topic">{topic}</span>
+            <span id="match-author" className="game-author">{author}</span>
           </div>
-          <div id="match-details" className="py-1 px-3 pt-md-2 pb-md-4 px-md-5 text-center mx-auto">
-            <div id="match-title" className="game-title h2">{title}</div>
-            <div id="match-topic-author" className="h5">
-              <span id="match-topic" className="game-topic">{topic}</span>
-              <span id="match-author" className="game-author">{author}</span>
-            </div>
-            <div id="match-instructions" className="game-instructions">{instructions}</div>
-          </div>
-        </section>
-      </div>
+          <div id="match-instructions" className="game-instructions">{instructions}</div>
+        </div>
+      </section>
     </GameTransition>);
   }
 }

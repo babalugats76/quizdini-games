@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 
 import Timer from './Timer';
+import computer from './computer.svg';
+import stars from './computer-stars.svg';
 
 class Scoreboard extends Component {
 
@@ -24,7 +26,8 @@ class Scoreboard extends Component {
    render() {
        const { score, correct, incorrect, duration, onGameOver } = this.props;
        const { active } = this.state;
-       return(<div id="scoreboard">
+       return(<React.Fragment>
+              <div id="scoreboard">
                 { active && (<Timer duration={duration} 
                                     interval={100} 
                                     scale={1} 
@@ -32,9 +35,10 @@ class Scoreboard extends Component {
                 <span id="score">{score}</span>
                 <span id="correct">{correct}</span>
                 <span id="incorrect">{incorrect}</span>
-                <img id="logo" alt="Computer logo" src="https://via.placeholder.com/380x387?text=Computer+Goes+Here" />
-                <img id="stars" alt="Accent stars" src="https://via.placeholder.com/700x403?text=Stars+Go+Here" />
-             </div>);
+             </div>
+             <img id="computer" alt="Computer" src={computer} />
+             <img id="computer-stars" alt="Computer Accent Stars" src={stars} />
+             </React.Fragment>);
    }
 }
 
