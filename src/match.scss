@@ -202,6 +202,23 @@
     content: '\00A0\00B7\00A0'
   }
 
+  #scoreboard {
+    position: relative;
+    position: sticky;
+    display: block;
+    top: 0;
+    width: 100%;
+    opacity: 0.95;
+    background-color: $blue;
+    color: $white;
+    border-bottom: 1px solid rgba(0,0,0,.1);
+    z-index: 1001;
+  }
+
+  #scoreboard #stars, #scoreboard #logo {
+    display: none;
+  }
+
   #match-container {
     width: 100%;
     height: 100%;
@@ -225,19 +242,6 @@
     @include align-items(center);
     min-height: 45vh;
     overflow-y: visible;
-  }
-
-  #scoreboard {
-    position: relative;
-    position: sticky;
-    display: block;
-    top: 0;
-    width: 100%;
-    opacity: 0.95;
-    background-color: $blue;
-    color: $white;
-    border-bottom: 1px solid rgba(0,0,0,.1);
-    z-index: 1001;
   }
 
   @media (min-width: 360px) { 
@@ -293,6 +297,25 @@
     #splash {
       border: 1.3rem solid $white;
       @include box-shadow(.6rem .6rem .6rem #CCC, 0 0 .4rem rgba(238, 238, 238,.4) inset);
+    }
+
+    #scoreboard #logo {
+      display: block;
+      z-index: 100;
+      display: block;
+      width: 230px;
+      position: fixed;
+      bottom: 0 !important;
+      left: calc(50vw - 115px) !important; // Subtract half of logo's width
+    }
+
+    #scoreboard #stars {
+      display: block;
+      z-index: 99;
+      width: 350px;
+      position: fixed;
+      bottom: 0 !important; 
+      left: calc(50vw - 175px) !important; // Subtract half of star's width
     }
 
     #match-board { 

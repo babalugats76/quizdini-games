@@ -32,7 +32,9 @@ class Scoreboard extends Component {
                 <span id="score">{score}</span>
                 <span id="correct">{correct}</span>
                 <span id="incorrect">{incorrect}</span>
-              </div>);
+                <img id="logo" alt="Computer logo" src="https://via.placeholder.com/380x387?text=Computer+Goes+Here" />
+                <img id="stars" alt="Accent stars" src="https://via.placeholder.com/700x403?text=Stars+Go+Here" />
+             </div>);
    }
 }
 
