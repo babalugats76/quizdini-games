@@ -34,17 +34,45 @@ export function generatePreview (type, item, style) {
 
 class Term extends Component {
 
+  constructor(props) {
+    super(props);
+    this.state = ({
+      expand: false
+    });
+  }
+
+  handleMouseEnterLeave = (e, expand) => {
+    e.preventDefault();
+    this.setState((state, props) => {
+      return { expand: expand }
+    });
+  }
+
+  handleTouchEnd = (e) => {
+    e.preventDefault();
+    this.setState((state, props) => {
+      return { expand: !state.expand }
+    });
+  }
+
   render() {
     // eslint-disable-next-line
     const { isDragging, connectDragSource, id, term, show, matched, color, style} = this.props;
-    let classes = ['term', 'text-center'];
+    const { expand } = this.state;
+    let parentClasses = ['term', 'text-center'];
     // eslint-disable-next-line
-    const classesString = classes.concat(...(isDragging ? ['dragging'] : []), ((!show) ? ['exiting'] : []), ((matched) ? ['matched'] : []), color).join(' ');
+    const parentClassString = parentClasses.concat(...(isDragging ? ['dragging'] : []), ((!show) ? ['exiting'] : []), ((expand) ? ['expand']: []), ((matched) ? ['matched'] : []), color).join(' ');
     // eslint-disable-next-line
+    let childClasses = ['term-text'];
+    const childClassString = childClasses.join(' ');
   
     return connectDragSource(
-      <div style={style} className={classesString}>
-        <div className="term-text">{term}</div>
+      <div style={style} 
+           className={parentClassString}
+           onMouseEnter={(e) => this.handleMouseEnterLeave(e, true)}
+           onMouseLeave={(e) => this.handleMouseEnterLeave(e, false)}
+           onTouchEnd={(e) => this.handleTouchEnd(e)}>
+        <div className={childClassString}>{term}</div>
       </div>
     );
   }

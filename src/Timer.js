@@ -21,7 +21,7 @@ class Timer extends Component {
   tick = () => {
 
     // Calculate time remaining
-    const remaining = this.props.duration - Math.floor((Date.now() - this.state.startTime) / 1000);
+    const remaining = this.props.duration - ((Date.now() - this.state.startTime) / 1000);
 
     if (remaining < 0) { // If game over  
       clearInterval(this.state.id); // clear execution of tick
@@ -36,7 +36,8 @@ class Timer extends Component {
 
   render() {
     const { remaining } = this.state;
-    return (<div>{Math.max(remaining, 0)}</div>);
+    const { scale } = this.props; 
+    return (<div>{Math.max(remaining, 0).toFixed(scale)}</div>);
   }
 
 }

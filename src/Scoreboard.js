@@ -25,7 +25,10 @@ class Scoreboard extends Component {
        const { score, correct, incorrect, duration, onGameOver } = this.props;
        const { active } = this.state;
        return(<div id="scoreboard">
-                { active && (<Timer duration={duration} interval={1000} onGameOver={onGameOver} />) } 
+                { active && (<Timer duration={duration} 
+                                    interval={100} 
+                                    scale={1} 
+                                    onGameOver={onGameOver} />) } 
                 <span id="score">{score}</span>
                 <span id="correct">{correct}</span>
                 <span id="incorrect">{incorrect}</span>

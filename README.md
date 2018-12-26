@@ -8,6 +8,11 @@
 * Refactor so that game-related state values are reset in `handleGameStart` method
 * Enhance time to accept `scale` prop to control format of timer, e.g., 3 vs 3.1
 * Mock up Scoreboard and Timer on full bleed
+   * Vectorize Computer and Stars
+   * Mock up Computer and starts of MatchGame using `position: fixed; left: calc(vw-1/2 width); bottom: 0px !important`
+* Add OpenSans and Helsinki web fonts (if possible) to project
+* Vectorize parts of Splash screen and add to project
+* Determine media query that isolates iPads
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 

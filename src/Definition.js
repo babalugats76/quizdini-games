@@ -26,7 +26,7 @@ class Definition extends Component {
     super(props);
     this.state = ({
        expand: false
-    })
+    });
   }
 
   handleMouseEnterLeave = (e, expand) => {
@@ -50,7 +50,6 @@ class Definition extends Component {
     let parentClasses = ['definition', 'text-center'];
     const parentClassString = parentClasses.concat(...((isOver && canDrop) ? ['is-over'] : []), ((expand) ? ['expand']: []), ((!show) ? ['exiting'] : []), ((matched) ? ['matched'] : [])).join(' ');
     let childClasses = ['definition-text'];
-    //const childClassString = childClasses.concat(...((expand) ? ['expand']: [])).join(' ');
     const childClassString = childClasses.join(' ');
 
     return connectDropTarget(
@@ -61,8 +60,7 @@ class Definition extends Component {
            onTouchEnd={(e) => this.handleTouchEnd(e)}
       >
 
-        <div className={childClassString}
-        >{definition}</div>
+        <div className={childClassString}>{definition}</div>
       </div>
     );
   }
