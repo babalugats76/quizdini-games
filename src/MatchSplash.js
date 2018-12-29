@@ -58,7 +58,6 @@ class MatchSplash extends Component {
     return (<GameTransition
       mountOnEnter={false}
       unmountOnExit={true}
-      appear={true}
       in={show}
       timeout={timeout}
       transitionStyles={transitionStyles}
