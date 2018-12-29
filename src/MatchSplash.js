@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import badge from './badge.svg';
-import logo from './logo.svg';
+/*import badge from './badge.svg'; */
+/* import logo from './logo.svg'; */
 import GameTransition from './GameTransition';
 
 class MatchSplash extends Component {
@@ -49,8 +49,8 @@ class MatchSplash extends Component {
     const transitionStyles = {
       default: { opacity: 0 },
       entering: { opacity: 0 },
-      entered: { transition: `opacity ${timeout.enter}ms ease-in-out`, opacity: 1.0 },
-      exiting: { transition: `opacity ${timeout.exit}ms ease-in-out`, opacity: 0.1 },
+      entered: { transition: `opacity ${timeout.enter}ms cubic-bezier(1,.01,.7,.84)`, opacity: 1.0 },
+      exiting: { transition: `opacity ${timeout.exit}ms cubic-bezier(1,.01,.7,.84)`, opacity: 0.1 },
       exited: { opacity: 0 }
     };
 
@@ -63,22 +63,20 @@ class MatchSplash extends Component {
       timeout={timeout}
       transitionStyles={transitionStyles}
       onExited={this.handleExited}>
-      <section id="splash" className="fluid-container align-self-center mt-3" style={style}>
-        <div id="badge-logo" className="mx-auto">
-          <a href="/" onClick={(e) => this.handleClick(e)} title="Click to Learn!">
-            <img className="img-fluid spin-scale" id="badge" src={badge} alt="Quizdini badge" />
-            <img className="img-fluid scale" id="logo" src={logo} alt="Quizdini logo" />
-          </a>
-        </div>
-        <div id="match-details" className="py-1 px-3 pt-md-2 pb-md-4 px-md-5 text-center mx-auto">
-          <div id="match-title" className="game-title h2">{title}</div>
-          <div id="match-topic-author" className="h5">
-            <span id="match-topic" className="game-topic">{topic}</span>
-            <span id="match-author" className="game-author">{author}</span>
+      <React.Fragment>
+        <button id="play" onClick={(e) => this.handleClick(e)} style={style}>PLAY GAME</button>
+        <div id="splash">
+          <div id="match-main">
+            <div id="title">{title}</div>
+            <div id="match-term">50</div>
           </div>
-          <div id="match-instructions" className="game-instructions">{instructions}</div>
+          <div id="match-details" style={style}>
+            <span id="topic">{topic}</span>
+            <span id="author">{author}</span>
+            <div id="instructions">{instructions}</div>
+          </div>
         </div>
-      </section>
+      </React.Fragment>
     </GameTransition>);
   }
 }

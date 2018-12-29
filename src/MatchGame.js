@@ -30,7 +30,7 @@ class MatchGame extends Component {
       author: author,
       instructions: instructions,
       termsPerBoard: 9,
-      duration: 600,
+      duration: 60,
       playing: false,
       showSplash: true,
       showBoard: true,
@@ -230,7 +230,7 @@ class MatchGame extends Component {
     const { title, topic, author, instructions, playing, showSplash, showScore, showBoard, duration, score, correct, incorrect, matches, termOrder, definitionOrder } = this.state;
     return (
       showSplash
-        ? (<div id="splash-container" class="page-container">
+        ? (<div id="splash-container" class="page-container sandpaper purple">
               <MatchSplash 
                 title={title}
                 topic={topic}
@@ -239,7 +239,7 @@ class MatchGame extends Component {
                 wait={250} 
                 onGameStart={this.handleGameStart} />
            </div>)
-        : (<div id="match-container" class="page-container">
+        : (<div id="match-container" class="page-container sandpaper gray-light">
              <Preview generator={generatePreview} />
              {playing && (<Scoreboard 
                               wait={500}

@@ -7,6 +7,7 @@
   @include font-face('source_sans_prolight', '/fonts/sourcesanspro-light-webfont');
   @include font-face('source_sans_proregular', '/fonts/sourcesanspro-regular-webfont');
   @include font-face('jollygood_sansbasic', '/fonts/jollygoodsans-basic-webfont');
+  @include font-face('helsinkiregular', '/fonts/helsinki-webfont');
 
   $margin: 14px;
   $min_width: 320px;
@@ -46,12 +47,18 @@
   }
 
   button {
-      background-color: $white;
-      color: $logo-gray;
-      font-weight: bold;
-      padding: 10px 20px;
-      text-transform: uppercase;
-      box-shadow: 0.2rem 0.2rem 0 rgba(238, 238, 238, 0.1), 0.4rem 0.4rem 0 rgba(128,127,126,.2);
+    line-height: 1.2;
+    font-size: 1.3rem;
+    border-radius: 5px;  
+    padding: .8rem 1.6rem;
+    background-color: $hot-pink;
+    color: $white;
+    border-radius: 5px;
+    border: 3px solid $white-alpha9;
+    font-family: $helsinki;
+    text-transform: uppercase;
+    text-align: center;
+    box-shadow: 0.2rem 0.2rem 0 rgba(238, 238, 238, 0.1), 0.4rem 0.4rem 0 rgba(128,127,126,.2);
   }
 
   .quizdini-app {
@@ -59,8 +66,6 @@
     @include flex-direction(column);
     position: relative;
     min-height: 100vh;
-    background-color: $gray-light;
-    background-image: url("https://www.transparenttextures.com/patterns/sandpaper.png");
   }
 
   .page-container {
@@ -72,8 +77,21 @@
     max-width: 1200px;
     margin: 0 auto;
   }
+
+  .sandpaper {
+    background-image: url("https://www.transparenttextures.com/patterns/sandpaper.png");
+    background-repeat: repeat;
+  }
+
+  .gray-light {
+    background-color: $gray-light;
+  }
+
+  .purple {
+    background-color: #e6beff;
+  }
   
-  @include keyframes(spin-scale) {
+  /*@include keyframes(spin-scale) {
     0% { transform: rotate(0deg) scale(1.0); } 
     15% { transform: rotate(-360deg) scale(.99); }
     30% { transform: rotate(0deg) scale(1.0); } 
@@ -91,14 +109,47 @@
 
   .scale {
     @include animation('scale 15s ease-in-out 1s infinite normal both running');
+  } */
+
+
+  button#play {
+    width: 12rem;
+    position: fixed;
+    bottom: 9vh !important;
+    left: calc(50% - 6rem);
+  }
+
+  #splash {
+    position: relative;
+    margin: 0 auto;
+    width: inherit;
+    height: inherit;
+  }
+
+  #match-main {
+    position: absolute;
+    color: $white;
+    line-height: 1.2;
+
+    #title {
+      font-size: 3.2rem;
+      font-family: $helsinki;
+    }
+
+    #term {
+      font-size: .8rem;
+    }
+
   }
 
   .game-title {
     font-family: $blogger-sans-medium;
+
+
   }
 
   .game-author, .game-instructions {
-    font-family: $blogger-sans;
+    font-family: 'Rubik';
   }
 
   .term, .definition {
@@ -107,7 +158,7 @@
     @include align-items(center);
     min-width: 0;
     width: 80%;
-    margin:  #{$margin / 8}; 
+    margin: #{$margin / 8}; 
     margin: calc(100vmax / 320);
     @include user-select(none);
     z-index: 102;
@@ -115,16 +166,18 @@
   
   .term {
 
-    border-radius: 2px;
+    border-radius: 3px;
     padding: 3px;
     background-image: url("https://www.transparenttextures.com/patterns/brilliant.png"); 
     background-repeat: repeat; 
 
-    -webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+   box-shadow: 0.2rem 0.2rem 0 rgba(238, 238, 238, 0.1), 0.4rem 0.4rem 0 rgba(128,127,126,.2); 
+
+  /*  -webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
   -moz-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
   -ms-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
   -o-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24); */
     /* This is mostly intended for prototyping; please download the pattern and re-host for production environments. Thank you! */
 
     /*border: calc(2px + (100vw / 640)) solid $white; */
@@ -282,16 +335,6 @@ background-size: 100% 1.2em;
   .is-over {
     border-color: $yellow;
   }
-
-  #splash-container {
-    width: calc(100% - #{$margin * 2});
-    height: 91vh;
-  }
-
-  #splash {
-    background-color: $blue;
-    color: $white;
-  }
   
   #badge-logo {
     position: relative;
@@ -350,6 +393,13 @@ background-size: 100% 1.2em;
   @media (min-width: 360px) { 
   }
 
+  @media screen and (max-width: 567px) {
+    #match-main {
+      margin-left: 24px;
+      margin-top: 144px;
+    }
+  }
+
   @media (max-device-width: 960px) and (orientation: landscape) {
     
     #match-board { 
@@ -389,17 +439,21 @@ background-size: 100% 1.2em;
       position: relative;
       /* min-height: calc(10vh + 20px); */
     }
+
+    #splash {
+      width: 1450px !important;
+    } 
+
+    #match-main {
+      max-width: 480px;
+    }
+
   }
 
   @media (min-width: 1200px) {
     
     .page-container {
       max-width: none;
-    }
-
-    #splash {
-      border: 1.3rem solid $white;
-      @include box-shadow(.6rem .6rem .6rem #CCC, 0 0 .4rem rgba(238, 238, 238,.4) inset);
     }
 
     #scoreboard {
