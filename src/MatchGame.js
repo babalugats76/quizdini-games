@@ -66,7 +66,7 @@ class MatchGame extends Component {
    * @param {Array} matches - Array of match objects to assign color
    */
   addColor(matches) {
-    const colors = ['red', 'orange', 'yellow', 'lime', 'green', 'cyan', 'blue', 'purple', 'magenta', 'gray', 'navy', 'teal'];
+    const colors = ['red', 'orange', 'yellow', 'lime', 'green', 'cyan', 'blue', 'purple', 'magenta', 'navy', 'gray', 'teal'];
     return matches.map((match) => {
       return { ...match, color: colors[Math.floor(Math.random() * (colors.length))] }
     });
