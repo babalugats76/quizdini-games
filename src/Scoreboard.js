@@ -36,7 +36,13 @@ class Scoreboard extends Component {
                 <span id="correct">{correct}</span>
                 <span id="incorrect">{incorrect}</span>
              </div>
+             { active && (<Timer duration={duration} 
+                                    interval={100} 
+                                    scale={1} 
+                                    onGameOver={onGameOver} />) } 
+             <div className="correct">{correct}</div>
              <img id="computer" alt="Computer" src={computer} />
+             <div className="incorrect">{incorrect}</div>
              <img id="computer-stars" alt="Computer Accent Stars" src={stars} />
              </React.Fragment>);
    }

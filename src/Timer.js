@@ -37,7 +37,7 @@ class Timer extends Component {
   render() {
     const { remaining } = this.state;
     const { scale } = this.props; 
-    return (<div>{Math.max(remaining, 0).toFixed(scale)}</div>);
+    return (<div className="timer">{Math.max(remaining, 0).toFixed(scale)}</div>);
   }
 
 }

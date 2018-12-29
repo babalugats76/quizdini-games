@@ -4,12 +4,15 @@
   @include font-face('bitstream_vera_sansroman', '/fonts/vera-webfont');
   @include font-face('blogger_sansregular', '/fonts/blogger_sans-webfont');
   @include font-face('blogger_sansmedium', '/fonts/blogger_sans-medium-webfont');
+  @include font-face('source_sans_prolight', '/fonts/sourcesanspro-light-webfont');
+  @include font-face('source_sans_proregular', '/fonts/sourcesanspro-regular-webfont');
+  @include font-face('jollygood_sansbasic', '/fonts/jollygoodsans-basic-webfont');
 
-  $margin: 15px;
+  $margin: 14px;
   $min_width: 320px;
   $max_width: 1200px;
-  $min_font: 15px;
-  $max_font: 25px;
+  $min_font: 14px;
+  $max_font: 26px;
   
   :root {
     @include fluid-type($min_width, $max_width, $min_font, $max_font);
@@ -28,14 +31,18 @@
   html, body {
     width: 100%;
     height: 100%;
-    background-color: $gray-light-light;
+    background-color: $white;
   }
 
+  table {
+    border-collapse: collapse;
+    border-spacing: 0;
+  }
 
   /* Needs to be refined */
   h1, h2, h3, h4, h5, h6 {
     line-height: 1.1;
-    margin: .6em;
+    margin: .6rem;
   }
 
   button {
@@ -51,8 +58,9 @@
     @include flexbox;
     @include flex-direction(column);
     position: relative;
-    background-color: #eee;
     min-height: 100vh;
+    background-color: $gray-light;
+    background-image: url("https://www.transparenttextures.com/patterns/sandpaper.png");
   }
 
   .page-container {
@@ -97,76 +105,164 @@
     @include flexbox;
     @include justify-content(center);
     @include align-items(center);
+    min-width: 0;
     width: 80%;
     margin:  #{$margin / 8}; 
     margin: calc(100vmax / 320);
     @include user-select(none);
+    z-index: 102;
   }
   
-  .term.matched, .definition.matched {
-    background-color: $white !important;
-    border-color: $lime;
-    color: $lime;
-  } 
-
   .term {
-    min-width: 0;
-    background-color: $violet;
-    font-family: $bitstream-vera-sans;
-    font-weight: bold;
-    font-size: .8rem;
-    border: calc(2px + (100vw / 640)) solid $white;
-    color: $white;
-    /* box-shadow: 0.2rem 0.2rem 0, 0.4rem 0.4rem 0 rgba(0,0,0,.2); */
+
+    border-radius: 2px;
+    padding: 3px;
+    background-image: url("https://www.transparenttextures.com/patterns/brilliant.png"); 
+    background-repeat: repeat; 
+
+    -webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+  -moz-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+  -ms-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+  -o-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+    /* This is mostly intended for prototyping; please download the pattern and re-host for production environments. Thank you! */
+
+    /*border: calc(2px + (100vw / 640)) solid $white; */
+   /* border-radius: calc(1px + (100vw / 420)); */
+
+  /* -webkit-box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+  -moz-box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+  -ms-box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+  -o-box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23); */
+
+  /*-webkit-transition: box-shadow 0.25s ease-in-out !important;
+  -moz-transition:  box-shadow 0.25s ease-in-out  !important;
+  -ms-transition: box-shadow 0.25s ease-in-out  !important;
+  -o-transition: box-shadow 0.25s ease-in-out  !important;
+  transition: box-shadow 0.25s ease-in-out  !important; */
     
     /* Colors for tiles */
-    $tileColors: (('pink', $pink, $pink-dark),
-                  ('green', $green, $green-dark),
-                  ('blue', $blue, $blue-dark),
-                  ('purple', $violet, $purple),
-                  ('orange', $orange, $orange-dark),
-                  ('asphalt', $asphalt, $asphalt-dark),
-                  ('green-sea', $green-sea, $green-sea-dark));
+    $tileColors: (('red', $red, $white),
+                  ('orange', $orange, $white),
+                  ('yellow', $yellow, $logo-gray),
+                  ('lime', $lime, $logo-gray),
+                  ('green', $green, $white),
+                  ('cyan', $cyan, $logo-gray),
+                  ('blue', $blue, $white),
+                  ('purple', $purple, $white),
+                  ('magenta', $magenta, $white),
+                  ('gray', $gray, $white),
+                  ('navy', $navy, $white),
+                  ('teal', $teal, $white)
+                 );
     
     /* Dynamically generate tile color classes */            
-    @each $color, $bgColor, $hoverBgColor in $tileColors {
+    @each $color, $background, $textColor in $tileColors {
       &.#{$color} {
-        background-color: #{$bgColor};
-        &:hover {
-          background-color: #{$hoverBgColor};
-        }
+        background-color: #{$background};
+        color: #{$textColor};
       }
+
+
+
+      &.#{$color}:hover, &.#{$color}.dragging {
+        border: 3px solid $textColor;
+        transform: scale(1.08, 1.08);
+        transition: transform .5s cubic-bezier(.25,.8,.25,1) !important;
+      }
+
+      &.#{$color}.dragging {
+        text-transform: uppercase;
+      }
+
     }
   }
-  
+
+  .term:hover {
+    -webkit-box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
+  -moz-box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
+  -ms-box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
+  -o-box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
+  }
+
   .definition {
-    min-width: 0;
-    background-color: $white;
-    font-family: $blogger-sans-medium;
-    font-size: .7rem;
-    font-weight: bold;
-    border: calc(2px + (100vw / 640)) dashed $gray-light;
-    color: $gray-dark;
+    /*border: calc(1px + (100vw / 420)) dashed $logo-white;
+    border-radius: calc(2px + (100vw / 320)); */
+    border-radius: 2px;
+    padding: 3px;
+    background-color: $gray-light-light;
     touch-action: none;
+    background-color: $logo-white;
+background-image:
+linear-gradient(90deg, transparent 23px, #abced4 23px, #abced4 25px, transparent 25px),
+linear-gradient(#eee .1em, transparent .1em);
+background-size: 100% 1.2em;
+-webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+  -moz-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+  -ms-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+  -o-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
   }
 
   .term-text, .definition-text {
-    padding: .1em .25em;
-    line-height: 1.2;
-    min-height: 1.2em;
     margin: auto;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
   }
+  
+  .term-text {
+    background: inherit;
+    min-height: 1.1rem;
+    padding: .15rem .35rem;
+    font-family: 'Rubik';
+    font-family: 'Open Sans';
+    line-height: 1.1;
+    font-weight: bold;
+    font-size: .9rem;
+    /* text-shadow: .08rem .08rem .05rem rgba(128,128,128,0.10); */
+  }
+
+  .definition-text {
+    min-height: 1.3rem;
+    padding: .15rem .35rem;
+    font-family: $jolly-good-sans;
+    line-height: 1.3;
+    color: $graphite;
+    /*font-style: italic; */
+    font-weight: bold;
+    font-size: 0.8rem;
+  }
+
+  .term.matched, .definition.matched {
+    background-color: $white !important;
+    border-color: $bright-green !important;
+  } 
+
+  .term.matched > .term-text, 
+  .definition.matched > .definition-text {
+    color: $bright-green !important;
+    text-shadow: none !important;
+  }
+
 
   .term.expand,
   .definition.expand,
   {
-    z-index: 100;
+    z-index: 103;
     overflow: visible; 
     max-height: none !important;
     border: none;
+  }
+
+  .term.expand { 
+    border: 3px solid $white;
+  }
+
+  .definition.expand {
+    border: 3px solid $graphite;
   }
 
   .term.expand > .term-text,
@@ -178,7 +274,10 @@
   }  
 
   .dragging {
-    opacity: 0.8 !important;
+    opacity: .9 !important;
+    /*color: $logo-black; */
+    /* background-color: $logo-white; */
+    text-transform: uppercase;
   }
   
   .is-over {
@@ -191,7 +290,7 @@
   }
 
   #splash {
-    background-color: $blue-light;
+    background-color: $blue;
     color: $white;
   }
   
@@ -295,10 +394,6 @@
 
   @media (min-width: 1200px) {
     
-    .quizdini-app {
-      background-color: $gray-light-light;
-    }
-
     .page-container {
       max-width: none;
     }
@@ -306,6 +401,39 @@
     #splash {
       border: 1.3rem solid $white;
       @include box-shadow(.6rem .6rem .6rem #CCC, 0 0 .4rem rgba(238, 238, 238,.4) inset);
+    }
+
+    #scoreboard {
+      display: none;
+    }
+
+    #match-board { 
+      @include flex-direction(row);
+      @include justify-content(flex-start);
+      @include align-items(center);
+      min-height: calc(60%);
+      position: absolute;
+      top: 5vh;
+   }
+
+   #term-container, #definition-container {
+     min-height: 0;
+     width: 50%;
+     margin: 2vh 0;
+     @include align-items(flex-start);
+     @include justify-content(center);
+     @include flex-direction(row);
+     @include flex-wrap(wrap);
+     @include justify-content(center);
+     @include align-content(center);
+   }
+
+    #term-container {
+      padding-left: 2vw;
+    }
+
+    #definition-container {
+      padding-right: 2vw;
     }
 
     #match-container #computer {
@@ -332,37 +460,70 @@
       //transform: rotate(-180deg);
     }
 
-    #match-board { 
-      @include flex-direction(row);
-      @include justify-content(flex-start);
-      @include align-items(center);
-      min-height: calc(60%);
-   }
+    .timer {
+      position: absolute;
+      bottom: 2vh !important;
+      left: calc(50vw - 5rem);
+      width: 10rem;
+      z-index: 104;
+      background-color: $logo-black;
+      color: $white;
+      line-height: 1.2;
+      font-size: 3rem;
+      font-weight: bold;
+      text-align: center;
+    }
 
-   #term-container, #definition-container {
-     min-height: 0;
-     width: 50%;
-     margin: 2vh 0;
-     @include align-items(flex-start);
-     @include justify-content(center);
-     @include flex-direction(row);
-     @include flex-wrap(wrap);
-     @include align-content(center);
-   }
+    .correct {
+      position: absolute;
+      bottom: 2vh !important;
+      right: 5vw;
+      min-width: 4rem;
+      z-index: 104;
+      background-color: $logo-black;
+      color: $lime;
+      line-height: 1.2;
+      font-size: 3rem;
+      font-weight: bold;
+      text-align: center;
+    }
+
+    .incorrect {
+      position: absolute;
+      bottom: 2vh !important;
+      left: 5vw;
+      min-width: 4rem;
+      z-index: 104;
+      background-color: $logo-black;
+      color: $red;
+      line-height: 1.2;
+      font-size: 3rem;
+      font-weight: bold;
+      text-align: center;
+    }
 
    .term, .definition {
-     width: 12vw;
+     width: 14vw;
      height: 8vw;
-     min-height: 3.6em;
-     @include flex-basis(12vw);
+     min-height: 3.6rem;
+     margin: .3rem;
+     @include flex-basis(14vw);
      @include flex-grow(0);
      overflow: hidden;
    }
 
    .term-text, .definition-text {
      white-space: normal;
-     min-height: 1.2em ;
-     max-height: 4.2em ;
+   }
+
+  .term-text {
+    min-height: 1.3rem ;
+    max-height: 4.1rem ;
+  }
+
+  .definition-text {
+     min-height: 1.3rem ;
+     max-height: 3.7rem ;
    }
 
   }
