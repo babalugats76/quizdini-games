@@ -36,7 +36,7 @@ class MatchSplash extends Component {
 
   render() {
 
-    const { style, title, topic, author, instructions } = this.props;
+    const { style, title, termCount, topic, author, instructions } = this.props;
     const { show } = this.state;
 
     /* Transition timeouts */
@@ -62,20 +62,18 @@ class MatchSplash extends Component {
       timeout={timeout}
       transitionStyles={transitionStyles}
       onExited={this.handleExited}>
-      <React.Fragment>
-        <button id="play" onClick={(e) => this.handleClick(e)} style={style}>PLAY GAME</button>
-        <div id="splash">
+        <div id="splash" style={style}>
           <div id="match-main">
             <div id="title">{title}</div>
-            <div id="match-term">50</div>
           </div>
-          <div id="match-details" style={style}>
-            <span id="topic">{topic}</span>
-            <span id="author">{author}</span>
+          <div id="match-details">
+            <div id="term">{termCount} terms</div>
+            <div id="topic">{topic}</div>
+            <div id="author">{author}</div>
             <div id="instructions">{instructions}</div>
           </div>
+          <button id="play" onClick={(e) => this.handleClick(e)} style={style}>PLAY GAME</button>
         </div>
-      </React.Fragment>
     </GameTransition>);
   }
 }

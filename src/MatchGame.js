@@ -36,6 +36,7 @@ class MatchGame extends Component {
       showBoard: true,
       showScore: true,
       matchDeck: matchDeck,
+      termCount: matchDeck.length,
       matches: [],
       termOrder: [],
       definitionOrder: [],
@@ -227,12 +228,13 @@ class MatchGame extends Component {
 
   /* Conditionally render splash, scoreboard, and game board */
   render() {
-    const { title, topic, author, instructions, playing, showSplash, showScore, showBoard, duration, score, correct, incorrect, matches, termOrder, definitionOrder } = this.state;
+    const { title, termCount, topic, author, instructions, playing, showSplash, showScore, showBoard, duration, score, correct, incorrect, matches, termOrder, definitionOrder } = this.state;
     return (
       showSplash
         ? (<div id="splash-container" className="page-container sandpaper purple">
               <MatchSplash 
                 title={title}
+                termCount={termCount}
                 topic={topic}
                 author={author}
                 instructions={instructions}

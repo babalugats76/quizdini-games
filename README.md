@@ -1,14 +1,11 @@
 ## To-Do List
 
-* Convert style classes to style rules for MatchSplash
 * Tryout flex shorthand syntax, e.g., 1 0 40px
-* Add PLAY GAME button to MatchSplash
 * Add way of tracking first game vs. nth game, e.g., PLAY GAME vs. PLAY AGAIN
 * Refactor so that game-related state values are reset in `handleGameStart` method
 * Mock up Scoreboard and Timer on full bleed
    * Vectorize Computer and Stars
    * Mock up Computer and starts of MatchGame using `position: fixed; left: calc(vw-1/2 width); bottom: 0px !important`
-* Add OpenSans and Helsinki web fonts (if possible) to project
 * Vectorize parts of Splash screen and add to project
 * Determine media query that isolates iPads
 
