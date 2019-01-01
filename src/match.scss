@@ -392,9 +392,11 @@ background-size: 100% 1.2em;
   }
 
   #scoreboard {
-    position: relative;
+    @include flexbox;
+    @include flex-grow(1);
+    @include align-items(center);
+    position: absolute;
     position: sticky;
-    display: block;
     top: 0;
     width: 100%;
     opacity: 0.95;
@@ -404,17 +406,20 @@ background-size: 100% 1.2em;
     z-index: 1001;
   }
 
-  #match-container #computer-stars, #match-container #computer {
-    display: none;
+  #timer, #correct, #incorrect {
+    font-family: $source-sans-pro;
+    @include flexbox;
+    @include flex-grow(1);
+    @include justify-content(center);
   }
 
   #match-board { 
     @include flexbox;
     @include flex-direction(column);
     @include justify-content(flex-end);
-    min-height: calc(60%);
+    min-height: 60vh;
     width: 100%;
-    margin: 1vh auto;
+    /* margin: 1vh auto; */
   }
 
   #term-container, #definition-container {
@@ -439,7 +444,7 @@ background-size: 100% 1.2em;
   @media (max-device-width: 960px) and (orientation: landscape) {
     
     #match-board { 
-       min-height: calc(92vh);
+      /*min-height: calc(92vh); */
        width: 100%;
        margin: 0 auto;
        @include justify-content(flex-start);
@@ -472,7 +477,7 @@ background-size: 100% 1.2em;
 
   @media (min-width: 768px) { 
     #scoreboard {
-      position: relative;
+      /*position: relative; */
       /* min-height: calc(10vh + 20px); */
     }
 
@@ -489,16 +494,18 @@ background-size: 100% 1.2em;
     }
 
     #scoreboard {
-      display: none;
+      position: absolute;
+      top: unset !important;
+      bottom: 7vh !important;
+      border: none;
     }
 
     #match-board { 
+      position: absolute;
       @include flex-direction(row);
       @include justify-content(flex-start);
       @include align-items(center);
-      min-height: calc(60%);
-      position: absolute;
-      top: 5vh;
+      top: 7vh;
    }
 
    #term-container, #definition-container {
@@ -545,46 +552,41 @@ background-size: 100% 1.2em;
       //transform: rotate(-180deg);
     }
 
-    .timer {
+    #timer, #correct, #incorrect {
+      @include flex-grow(0);
+    }
+
+    #incorrect, #correct {
       position: absolute;
-      bottom: 2vh !important;
+      width: 4rem;
+      z-index: 104;
+      font-size: 1.6rem;
+      line-height: 1.6;
+      font-weight: bold;
+    }
+
+    #incorrect {
+      left: calc(50vw - 9rem);
+      background-color: $red;
+      color: $white;
+    }
+
+    #correct {
+      left: calc(50vw + 5rem);
+      background-color: $bright-green;
+      color: $white;
+    }
+
+    #timer {
+      position: relative;
       left: calc(50vw - 5rem);
       width: 10rem;
-      z-index: 104;
-      background-color: $logo-black;
-      color: $white;
-      line-height: 1.2;
-      font-size: 3rem;
-      font-weight: bold;
-      text-align: center;
-    }
-
-    .correct {
-      position: absolute;
-      bottom: 2vh !important;
-      right: 5vw;
-      min-width: 4rem;
-      z-index: 104;
-      background-color: $logo-black;
-      color: $lime;
-      line-height: 1.2;
-      font-size: 3rem;
-      font-weight: bold;
-      text-align: center;
-    }
-
-    .incorrect {
-      position: absolute;
-      bottom: 2vh !important;
-      left: 5vw;
-      min-width: 4rem;
-      z-index: 104;
-      background-color: $logo-black;
-      color: $red;
-      line-height: 1.2;
-      font-size: 3rem;
-      font-weight: bold;
-      text-align: center;
+      /* z-index: 104; */
+      background-color: $logo-black; 
+      color: $logo-white;
+      line-height: 1.4;
+      font-size: 4rem;
+      font-weight: bold; 
     }
 
    .term, .definition {

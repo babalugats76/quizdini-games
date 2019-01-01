@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 
 import Timer from './Timer';
-import computer from './computer.svg';
-import stars from './computer-stars.svg';
 
 class Scoreboard extends Component {
 
@@ -26,24 +24,14 @@ class Scoreboard extends Component {
    render() {
        const { correct, incorrect, duration, onGameOver } = this.props;
        const { active } = this.state;
-       return(<React.Fragment>
-              <div id="scoreboard">
+       return(<div id="scoreboard">
+                <div id="correct">{correct}</div>
                 { active && (<Timer duration={duration} 
                                     interval={100} 
                                     scale={1} 
                                     onGameOver={onGameOver} />) } 
-                <span id="correct">{correct}</span>
-                <span id="incorrect">{incorrect}</span>
-             </div>
-             { active && (<Timer duration={duration} 
-                                    interval={100} 
-                                    scale={1} 
-                                    onGameOver={onGameOver} />) } 
-             <div className="correct">{correct}</div>
-             <img id="computer" alt="Computer" src={computer} />
-             <div className="incorrect">{incorrect}</div>
-             <img id="computer-stars" alt="Computer Accent Stars" src={stars} />
-             </React.Fragment>);
+                <div id="incorrect">{incorrect}</div>
+             </div>);
    }
 }
 

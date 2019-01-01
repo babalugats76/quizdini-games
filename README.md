@@ -3,9 +3,10 @@
 * Tryout flex shorthand syntax, e.g., 1 0 40px
 * Mock up Scoreboard and Timer on full bleed
    * Vectorize Computer and Stars
-   * Mock up Computer and starts of MatchGame using `position: fixed; left: calc(vw-1/2 width); bottom: 0px !important`
+   * Mock up Computer and stars of MatchGame using `position: fixed; left: calc(vw-1/2 width); bottom: 0px !important`
 * Vectorize parts of Splash screen and add to project
 * Determine media query that isolates iPads
+* Scoreboard refactoring
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
