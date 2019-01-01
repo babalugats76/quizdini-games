@@ -148,6 +148,32 @@
 
     font-family: $jolly-good-sans;
     font-size: 1.7rem;
+    clear: both;
+
+    * {
+      margin-top: .3rem;
+      margin-bottom: .3rem;
+      font-family: inherit;
+    }
+
+    *:not(:last-child) {
+      float: left;
+    }   
+    
+    *:last-child {
+      clear: both;
+    }
+
+    *:not(:first-child):not(:last-child)::before {
+      content: '\00a0\0000B7\00a0';
+    }
+
+  }
+
+  #match-results {
+
+    font-family: $jolly-good-sans;
+    font-size: 1.7rem;  
 
     * {
       float: left;
@@ -156,24 +182,10 @@
       font-family: inherit;
     }
 
-    *:not(:first-child):not(:last-child)::before {
+    *:not(:first-child)::before {
       content: '\00a0\0000B7\00a0';
     }
 
-    #instructions {
-      clear: both;
-    }
-
-  }
-
-  .game-title {
-    font-family: $blogger-sans-medium;
-
-
-  }
-
-  .game-author, .game-instructions {
-    font-family: 'Rubik';
   }
 
   .term, .definition {

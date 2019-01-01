@@ -30,18 +30,17 @@ class MatchGame extends Component {
       author: author,
       instructions: instructions,
       termsPerBoard: 9,
-      duration: 60,
+      duration: 10,
       playing: false,
       showSplash: true,
       showBoard: true,
-      showScore: true,
+      showResults: false,
       matchDeck: matchDeck,
       termCount: matchDeck.length,
       matches: [],
       termOrder: [],
       definitionOrder: [],
       unmatched: 0,
-      score: 0,
       correct: 0,
       incorrect: 0
     };
@@ -146,7 +145,14 @@ class MatchGame extends Component {
     });
   }
 
-  /* Shuffles the match deck, picks subset, calculates unmatched */
+  /**
+   * Shuffle the match deck
+   * Picks subset of matches
+   * Randomly assign color to each term
+   * Shuffle terms and definitions, i.e., generate array of random indices
+   * Calculates unmatched 
+   * Update related state items
+   */
   dealMatches = () => {
     this.setState((state, props) => {
       const matchDeck = shuffleArray(state.matchDeck);
@@ -159,27 +165,43 @@ class MatchGame extends Component {
     })
   }
 
-  /* Hides splash screen and shows the game board */
+  /**
+   * Reset game state
+   * Hides splash screen
+   * Show game board 
+   */
   handleGameStart = () => {
+    this.switch('correct', 0);
+    this.switch('incorrect', 0);
     this.switch('showSplash', false);
     this.switch('playing', true);
-    /*this.switch('showBoard', true); */
   }
 
-  /* When timer runs out */
+  /** 
+   * Stop the game
+   * Show splash
+   * Show results (on splash)
+   */
   handleGameOver = () => {
     this.switch('playing', false);
     this.switch('showSplash', true);
+    this.switch('showResults', true);
   }
 
-   /* Prepares new game round */
+   /**
+    * Prepares new game round
+    * Deal new set of matches
+    * Show matches (initiates transitions)
+    */
   handleRoundStart = () => {
     console.log('starting round..')
     this.dealMatches();
     this.showMatches(true);
   }
   
-  /* Starts a new round; after brief timeout */
+  /** 
+   * Hide game board then show after brief timeout
+   */
   nextRound = () => {
     this.switch('showBoard', false);
     setTimeout(() => this.switch('showBoard', true), 250);
@@ -187,8 +209,8 @@ class MatchGame extends Component {
 
   /**
    * When a Term component is dropped upon a Definition
-   * If dropResult.matched, increment score, correct; decrement unmatched
-   * Otherwise, decrement increment
+   * If dropResult.matched, incrementcorrect; decrement unmatched
+   * Otherwise, decrement incorrect
    * 
    * @param {object} dropResult - Results of drag-and-drop operation
    */
@@ -197,14 +219,14 @@ class MatchGame extends Component {
     let unmatched; // needed beyond state settings
 
     this.setState((state, props) => {
-      let { correct, incorrect, score } = state;
+      let { correct, incorrect } = state;
       unmatched = state.unmatched;
       if (dropResult.matched) {
-        correct += 1; unmatched -= 1; score += 1;
+        correct += 1; unmatched -= 1;
       } else {
         incorrect += 1;
       }
-      return { correct, incorrect, score, unmatched };
+      return { correct, incorrect, unmatched };
     });
 
     if (dropResult.matched) this.handleMatched(dropResult.id);
@@ -228,7 +250,7 @@ class MatchGame extends Component {
 
   /* Conditionally render splash, scoreboard, and game board */
   render() {
-    const { title, termCount, topic, author, instructions, playing, showSplash, showScore, showBoard, duration, score, correct, incorrect, matches, termOrder, definitionOrder } = this.state;
+    const { title, termCount, topic, author, instructions, playing, showSplash, showBoard, showResults, duration, correct, incorrect, matches, termOrder, definitionOrder } = this.state;
     return (
       showSplash
         ? (<div id="splash-container" className="page-container sandpaper purple">
@@ -239,15 +261,16 @@ class MatchGame extends Component {
                 author={author}
                 instructions={instructions}
                 wait={100} 
-                onGameStart={this.handleGameStart} />
+                onGameStart={this.handleGameStart} 
+                showResults={showResults}
+                correct={correct} 
+                incorrect={incorrect} />
            </div>)
         : (<div id="match-container" className="page-container sandpaper gray-light">
              <Preview generator={generatePreview} />
              {playing && (<Scoreboard 
                               wait={500}
-                              show={showScore}
                               duration={duration} 
-                              score={score} 
                               correct={correct} 
                               incorrect={incorrect}
                               onGameOver={this.handleGameOver} />)

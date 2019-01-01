@@ -101,7 +101,7 @@ class MatchBoard extends Component {
   render() {
 
     // eslint-disable-next-line
-    const { show, matches, termOrder, definitionOrder, onRoundStart } = this.props;
+    const { style, show, matches, termOrder, definitionOrder, onRoundStart } = this.props;
     const terms = this.renderTerms(termOrder, matches);
     const definitions = this.renderDefinitions(definitionOrder, matches);
 

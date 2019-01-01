@@ -24,7 +24,7 @@ class Scoreboard extends Component {
    }
 
    render() {
-       const { score, correct, incorrect, duration, onGameOver } = this.props;
+       const { correct, incorrect, duration, onGameOver } = this.props;
        const { active } = this.state;
        return(<React.Fragment>
               <div id="scoreboard">
@@ -32,7 +32,6 @@ class Scoreboard extends Component {
                                     interval={100} 
                                     scale={1} 
                                     onGameOver={onGameOver} />) } 
-                <span id="score">{score}</span>
                 <span id="correct">{correct}</span>
                 <span id="incorrect">{incorrect}</span>
              </div>

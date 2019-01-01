@@ -36,7 +36,7 @@ class MatchSplash extends Component {
 
   render() {
 
-    const { style, title, termCount, topic, author, instructions } = this.props;
+    const { style, title, termCount, topic, author, instructions, showResults, correct, incorrect } = this.props;
     const { show } = this.state;
 
     /* Transition timeouts */
@@ -58,6 +58,7 @@ class MatchSplash extends Component {
     return (<GameTransition
       mountOnEnter={false}
       unmountOnExit={true}
+      appear={true}
       in={show}
       timeout={timeout}
       transitionStyles={transitionStyles}
@@ -66,13 +67,18 @@ class MatchSplash extends Component {
           <div id="match-main">
             <div id="title">{title}</div>
           </div>
+          { showResults && 
+            <div id="match-results">
+              <div id="correct">{correct} correct</div>
+              <div id="incorrect">{incorrect} incorrect</div>
+            </div> }
           <div id="match-details">
-            <div id="term">{termCount} terms</div>
+            <div id="matches">{termCount} matches</div>
             <div id="topic">{topic}</div>
             <div id="author">{author}</div>
             <div id="instructions">{instructions}</div>
           </div>
-          <button id="play" onClick={(e) => this.handleClick(e)} style={style}>PLAY GAME</button>
+          <button id="play" onClick={(e) => this.handleClick(e)} style={style}>PLAY {((showResults) ? 'AGAIN' : 'GAME')}</button>
         </div>
     </GameTransition>);
   }
