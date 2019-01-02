@@ -22,16 +22,23 @@ class Scoreboard extends Component {
    }
 
    render() {
+      // eslint-disable-next-line
        const { correct, incorrect, duration, onGameOver } = this.props;
        const { active } = this.state;
-       return(<div id="scoreboard">
-                <div id="correct">{correct}</div>
+       return(<React.Fragment>
                 { active && (<Timer duration={duration} 
                                     interval={100} 
                                     scale={1} 
                                     onGameOver={onGameOver} />) } 
-                <div id="incorrect">{incorrect}</div>
-             </div>);
+              </React.Fragment>);
+       /*return(<div id="scoreboard">
+       <div id="correct">{correct}</div>
+       { active && (<Timer duration={duration} 
+                           interval={100} 
+                           scale={1} 
+                           onGameOver={onGameOver} />) } 
+       <div id="incorrect">{incorrect}</div>
+       </div>);  */     
    }
 }
 

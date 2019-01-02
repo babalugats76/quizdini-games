@@ -13,10 +13,5 @@
     {"term": "Unicode", "definition": "universal encoding standard"},
     {"term": "Sir Tim Berners-Lee", "definition": "invented WWW" },
     {"term": "protocol", "definition": "system of rules"},
-    {"term": "Sean Fanning", "definition": "created and released Napster"},
-    {"term": "00000000", "definition": "0"},
-    {"term": "00000001", "definition": "1"},
-    {"term": "10000000"},
-    {"term": "Cerf and Kahn"},
-    {"term": "Linus Torvalds"}
+    {"term": "Sean Fanning", "definition": "created and released Napster"}
    ]}
