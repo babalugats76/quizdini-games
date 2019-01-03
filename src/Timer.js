@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-
 import CircularProgressbar from 'react-circular-progressbar'; 
-import MatchGame from './MatchGame';
+
+import GameTransition from './GameTransition';
 
 class Timer extends Component {
 
@@ -10,6 +10,8 @@ class Timer extends Component {
     this.state = ({
       startTime: Date.now(),
       remaining: props.duration,
+      showTransition: false,
+      success: false
     })
   }
 
@@ -19,6 +21,19 @@ class Timer extends Component {
       return { id: id }
     });
 
+  }
+
+  componentWillUpdate(nextProps, nextState) {
+    if(nextProps.score !== this.props.score) {
+      console.log('Score change detected...');
+      const success = ((nextProps.score > this.props.score) ? true : false);
+      this.setState((state, props) => {
+        return { 
+          showTransition: true, 
+          success: success
+        };
+      });
+    }
   }
 
   tick = () => {
@@ -37,22 +52,25 @@ class Timer extends Component {
 
   }
 
-  render() {
-    const { remaining } = this.state;
-    const { scale, duration } = this.props; 
-    // eslint-disable-next-line
-    const percent = Math.ceil(((duration - remaining) / duration) * 100);
-    
-    // eslint-disable-next-line
-    const percentLeft = Math.max(100 - percent,0);
-    console.log(percentLeft);
-    console.log(remaining);
-    //console.log(percentLeft);
-    // eslint-disable-next-line
-    const timeLeft = Math.max(remaining, 0).toFixed(scale);
-    /*return (<div id="timer">{Math.max(remaining, 0).toFixed(scale)}</div>); */
+  endTransition = () => {
+    this.setState((state, props) => {
+      return { showTransition : false };
+    });
+  }
 
-    // eslint-disable-next-line
+  render() {
+    const { remaining, showTransition, success } = this.state;
+    const { timeout, duration, score } = this.props; 
+    const percent = Math.ceil(((duration - remaining) / duration) * 100);
+
+    const transitionStyles = {
+      default: { opacity: 1.0 },
+      entering: { transition: `transform cubic-bezier(1, 0, 0, 1)`, transform: 'scale(1, 1)' },
+      entered: { transform: 'scale(1, 1)', 'opacity': 1.0},
+      exiting: { transition: `transform cubic-bezier(1, 0, 0, 1)`, transform: 'scale(1.1, 1.1)', opacity: 1.0},
+      exited: { opacity: .95}
+    };
+
     const classes = {
       root: 'timer',
       path: 'timer-path',
@@ -63,17 +81,31 @@ class Timer extends Component {
 
     const progressColor = ((percent <= 70) ? '#1fe73f' : (percent <= 85 ? '#ffe119' : '#e6194b')) ;
 
-    return(<div id="timer">
-             <CircularProgressbar 
+    console.log(success);
+
+    return(
+      <GameTransition 
+          mountOnEnter={false}
+          unmountOnExit={false}
+          appear={true}
+          in={!showTransition} 
+          timeout={timeout} 
+          transitionStyles={transitionStyles}
+          onExited={this.endTransition}
+          >
+          <div id="timer">
+            <CircularProgressbar 
                 initialAnimation
                 background
                 classes={classes}
                 counterClockwise
                 percentage={percent} 
                 strokeWidth={4}
-                styles={{ 'trail': { stroke: progressColor } }}
-                text={percent} />
-           </div>);
+                styles={{ 'trail': { stroke: progressColor, visibility: ((showTransition) ? 'hidden' : 'visible') }, 
+                          'background': { fill: ((showTransition) ? ((success) ? '#1fe73f' : '#e6194b') : undefined) }
+                       }}
+                text={score.toString()} />
+           </div></GameTransition>);
   }
 
 }

@@ -304,7 +304,6 @@
     text-shadow: none !important;
   }
 
-
   .term.expand,
   .definition.expand,
   {
@@ -399,13 +398,15 @@
  }
 
  .timer .timer-text {
-   fill: $white;
+   fill: $white; 
    font-family: $helsinki;
    font-weight: bold;
    font-size: 1.2rem;
    baseline-shift: -31%;
    text-anchor: middle;
+   transition: width 1s ease-in-out;
  }
+
 
  .timer .timer-background {
    fill: $black-alpha4;

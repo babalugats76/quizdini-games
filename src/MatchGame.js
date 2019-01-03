@@ -42,7 +42,8 @@ class MatchGame extends Component {
       definitionOrder: [],
       unmatched: 0,
       correct: 0,
-      incorrect: 0
+      incorrect: 0,
+      score: 0
     };
   }
 
@@ -173,6 +174,7 @@ class MatchGame extends Component {
   handleGameStart = () => {
     this.switch('correct', 0);
     this.switch('incorrect', 0);
+    this.switch('score', 0);
     this.switch('showSplash', false);
     this.switch('playing', true);
   }
@@ -194,7 +196,7 @@ class MatchGame extends Component {
     * Show matches (initiates transitions)
     */
   handleRoundStart = () => {
-    console.log('starting round..')
+    console.log('starting round..');
     this.dealMatches();
     this.showMatches(true);
   }
@@ -219,14 +221,14 @@ class MatchGame extends Component {
     let unmatched; // needed beyond state settings
 
     this.setState((state, props) => {
-      let { correct, incorrect } = state;
+      let { correct, incorrect, score } = state;
       unmatched = state.unmatched;
       if (dropResult.matched) {
-        correct += 1; unmatched -= 1;
+        correct += 1; unmatched -= 1; score += 1;
       } else {
-        incorrect += 1;
+        incorrect += 1; score = Math.max(score - 1, 0);
       }
-      return { correct, incorrect, unmatched };
+      return { correct, incorrect, score, unmatched };
     });
 
     if (dropResult.matched) this.handleMatched(dropResult.id);
@@ -250,7 +252,7 @@ class MatchGame extends Component {
 
   /* Conditionally render splash, scoreboard, and game board */
   render() {
-    const { title, termCount, topic, author, instructions, playing, showSplash, showBoard, showResults, duration, correct, incorrect, matches, termOrder, definitionOrder } = this.state;
+    const { title, termCount, topic, author, instructions, playing, showSplash, showBoard, showResults, duration, correct, incorrect, score, matches, termOrder, definitionOrder } = this.state;
     return (
       showSplash
         ? (<div id="splash-container" className="page-container sandpaper purple">
@@ -271,8 +273,7 @@ class MatchGame extends Component {
              {playing && (<Scoreboard 
                               wait={500}
                               duration={duration} 
-                              correct={correct} 
-                              incorrect={incorrect}
+                              score={score}
                               onGameOver={this.handleGameOver} />)
              }
              {playing && (<MatchBoard
