@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-/*import badge from './badge.svg'; */
+import computer from './computer.svg';
 /* import logo from './logo.svg'; */
 import GameTransition from './GameTransition';
 
@@ -79,6 +79,7 @@ class MatchSplash extends Component {
             <div id="instructions">{instructions}</div>
           </div>
           <button id="play" onClick={(e) => this.handleClick(e)} style={style}>PLAY {((showResults) ? 'AGAIN' : 'GAME')}</button>
+          <img id="computer" src={computer} alt="Computer" />
         </div>
     </GameTransition>);
   }

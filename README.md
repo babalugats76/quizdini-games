@@ -7,7 +7,6 @@
 * Vectorize parts of Splash screen and add to project
 * Determine media query that isolates iPads
 * Scoreboard refactoring
-* Change Timer to flash based upon correct/incorrect
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 

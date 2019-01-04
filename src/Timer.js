@@ -24,9 +24,9 @@ class Timer extends Component {
   }
 
   componentWillUpdate(nextProps, nextState) {
-    if(nextProps.score !== this.props.score) {
+    if(nextProps.correct !== this.props.correct || nextProps.incorrect !== this.props.incorrect) {
       console.log('Score change detected...');
-      const success = ((nextProps.score > this.props.score) ? true : false);
+      const success = ((nextProps.correct > this.props.correct) ? true : false);
       this.setState((state, props) => {
         return { 
           showTransition: true, 

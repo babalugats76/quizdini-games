@@ -268,11 +268,13 @@ class MatchGame extends Component {
                 correct={correct} 
                 incorrect={incorrect} />
            </div>)
-        : (<div id="match-container" className="page-container sandpaper gray-light">
+        : (<div id="match-container" className="page-container sandpaper beige">
              <Preview generator={generatePreview} />
              {playing && (<Scoreboard 
                               wait={500}
                               duration={duration} 
+                              correct={correct}
+                              incorrect={incorrect}
                               score={score}
                               onGameOver={this.handleGameOver} />)
              }

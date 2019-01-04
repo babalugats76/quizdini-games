@@ -23,10 +23,13 @@ class Scoreboard extends Component {
 
    render() {
       // eslint-disable-next-line
-       const { score, wait, duration, onGameOver } = this.props;
+       const { correct, incorrect, score, wait, duration, onGameOver } = this.props;
        const { active } = this.state;
        return(<React.Fragment>
-                { active && (<Timer score={score}
+                { active && (<Timer 
+                                    correct={correct}
+                                    incorrect={incorrect}
+                                    score={score}
                                     duration={duration} 
                                     interval={100} 
                                     scale={1} 
