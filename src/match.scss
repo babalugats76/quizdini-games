@@ -48,7 +48,6 @@
 
   button {
     line-height: 1.2;
-    font-size: 1.3rem;
     border-radius: 5px;  
     padding: .8rem 1.6rem;
     background-color: $hot-pink;
@@ -58,6 +57,7 @@
     font-family: $helsinki;
     text-transform: uppercase;
     text-align: center;
+    opacity: .9;
     box-shadow: 0.2rem 0.2rem 0 rgba(238, 238, 238, 0.1), 0.4rem 0.4rem 0 rgba(128,127,126,.2);
   }
 
@@ -79,12 +79,17 @@
   }
 
   .sandpaper {
-    background-image: url("https://www.transparenttextures.com/patterns/sandpaper.png");
+    background-image: url("/img/triangle-question-mark.png"), url("https://www.transparenttextures.com/patterns/sandpaper.png");
+    background-repeat: repeat;
+  }
+
+  .solid {
+    background-image: url("/img/triangle-question-mark.png"), url("https://www.transparenttextures.com/patterns/solid.png");
     background-repeat: repeat;
   }
 
   .construction-paper {
-      background-image: url("/img/construction-paper.png");
+      background-image: url("/img/triangle-question-mark.png"), url("/img/Texture_Light_Small.png");
       background-repeat: repeat;
   }
 
@@ -97,7 +102,7 @@
   }
 
   .purple {
-    background-color: #e6beff;
+    background-color: $purple;
   }
   
   /*@include keyframes(spin-scale) {
@@ -122,11 +127,14 @@
 
 
   button#play {
-    z-index: 110;
-    width: 12rem;
     position: fixed;
-    bottom: 9vh !important;
-    left: calc(50% - 6rem);
+    bottom: 5vh !important;
+    height: 5rem;
+    min-width: 15rem;
+    width: 90%;
+    left: 5%;
+    font-size: 2rem;
+    z-index: 110;
   }
 
   #splash {
@@ -137,9 +145,27 @@
 
     * {
       color: $white;
-      line-height: 1.2;
+      /*line-height: 1.2; */
     } 
 
+  }
+
+  #computer {
+    position: absolute;
+    bottom: 0 !important;
+    width: 220px;
+    right: calc(50vw - 110px);
+    z-index: 101;
+  }
+
+
+  #computer-stars {
+    position: absolute;
+    bottom: 0 !important;
+    width: 600px;
+    right: calc(50vw - 300px);
+    z-index: 100;
+    opacity: .9;
   }
 
   #match-main {
@@ -147,8 +173,9 @@
     #title {
       //margin-top: 120px; /* = height of logo on small device */
      // margin-bottom: .3rem;
-      font-size: 2.4rem;
+      font-size: 3rem;
       font-family: $helsinki;
+      text-shadow: .3rem .3rem .1rem rgba(0, 0, 0, .3);
     }
 
   }
@@ -195,6 +222,11 @@
       content: '\00a0\0000B7\00a0';
     }
 
+  }
+
+  #match-main, #match-details {
+    margin-left: 24px;
+    margin-right: 24px;
   }
 
   .term, .definition {
@@ -421,39 +453,13 @@
    fill: $black-alpha4;
  }
 
- /*
-  * Sample background styles. Use these with e.g.:
-  *
-  *   <CircularProgressbar
-  *     className="CircularProgressbar-inverted"
-  *     background
-  *     percentage={50}
-  *   />
-  */
-  .timer.timer-inverted .timer-background {
-    fill: #3e98c7;
-  }
-
-  .timer.timer-inverted .timer-text {
-    fill: #fff;
-  }
-
-  .timer.timer-inverted .timer-path {
-    stroke: #fff;
-  }
-
-  .timer.timer-inverted .timer-trail {
-    stroke: transparent;
-  }
-
   @media (min-width: 360px) { 
+
+
   }
 
   @media screen and (max-width: 567px) {
-    #match-main, #match-details {
-      margin-left: 24px;
-      margin-right: 24px;
-    }
+
   }
 
   @media (max-device-width: 960px) and (orientation: landscape) {
@@ -496,9 +502,21 @@
       /* min-height: calc(10vh + 20px); */
     }
 
+
+    button#play {
+      width: 20rem;
+      left: calc(50vw - 10rem);
+    }
+    
     #splash {
       width: 1450px !important;
     } 
+
+    #computer {
+      width: 320px;
+      right: 0;
+      transform: translate(-480px, 0);
+    }
 
   }
 
@@ -509,11 +527,14 @@
     }
 
     #computer {
-      position: absolute;
-      bottom: 0 !important;
-      width: 320px;
       right: 0;
-      transform: translate(-120px, 0);
+      transform: translate(-60px, 0);
+    }
+ 
+    #computer-stars {
+      right: 0;
+      width: 830px;
+      transform: translate(180px, 12px);
     }
 
     /*#scoreboard {
@@ -549,30 +570,6 @@
 
     #definition-container {
       padding-right: 2vw;
-    }
-
-    #match-container #computer {
-      display: block;
-      z-index: 100;
-      display: block;
-      max-width: 230px;
-      width: 12%;
-      position: absolute;
-      bottom: 0 !important;
-      //left: calc(50% - 115px) !important; // Subtract half of logo's width
-      right: 6%;
-    }
-
-    #match-container #computer-stars {
-      display: block;
-      z-index: 99;
-      max-width: 500px;
-      width: 26%;
-      position: absolute;
-      bottom: 10px !important; 
-      //left: calc(50% - 225px) !important; // Subtract half of stars' width
-      right: -1%;
-      //transform: rotate(-180deg);
     }
 
     #timer {

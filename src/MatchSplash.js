@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import computer from './computer.svg';
-/* import logo from './logo.svg'; */
+import computerStars from './computer-stars.svg';
 import GameTransition from './GameTransition';
 
 class MatchSplash extends Component {
@@ -80,6 +80,7 @@ class MatchSplash extends Component {
           </div>
           <button id="play" onClick={(e) => this.handleClick(e)} style={style}>PLAY {((showResults) ? 'AGAIN' : 'GAME')}</button>
           <img id="computer" src={computer} alt="Computer" />
+          <img id="computer-stars" src={computerStars} alt="Computer Stars" /> 
         </div>
     </GameTransition>);
   }
