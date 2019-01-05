@@ -11,7 +11,7 @@ import data from './match2.json';
 import './match.scss';
 
 import MatchSplash from './MatchSplash';
-import Scoreboard from './Scoreboard';
+import Timer from './Timer';
 import MatchBoard from './MatchBoard';
 
 class MatchGame extends Component {
@@ -30,7 +30,7 @@ class MatchGame extends Component {
       author: author,
       instructions: instructions,
       termsPerBoard: 9,
-      duration: 150,
+      duration: 10,
       playing: false,
       showSplash: true,
       showBoard: true,
@@ -270,23 +270,23 @@ class MatchGame extends Component {
            </div>)
         : (<div id="match-container" className="page-container sandpaper beige">
              <Preview generator={generatePreview} />
-             {playing && (<Scoreboard 
-                              wait={500}
-                              duration={duration} 
-                              correct={correct}
-                              incorrect={incorrect}
-                              score={score}
-                              onGameOver={this.handleGameOver} />)
+             { playing && (<Timer
+                             correct={correct}
+                             duration={duration} 
+                             incorrect={incorrect}
+                             score={score}
+                             onGameOver={this.handleGameOver}
+                             wait={500} />)
              }
-             {playing && (<MatchBoard
-                              wait={500}
-                              show={showBoard}
-                              matches={matches}
-                              termOrder={termOrder}
-                              definitionOrder={definitionOrder}
-                              onDrop={(dropResult) => this.handleDrop(dropResult)}
-                              onExited={(id) => this.handleExited(id)}
-                              onRoundStart={this.handleRoundStart} />)
+             { playing && (<MatchBoard
+                             wait={500}
+                             show={showBoard}
+                             matches={matches}
+                             termOrder={termOrder}
+                             definitionOrder={definitionOrder}
+                             onDrop={(dropResult) => this.handleDrop(dropResult)}
+                             onExited={(id) => this.handleExited(id)}
+                             onRoundStart={this.handleRoundStart} />)
              }
            </div>)
     );

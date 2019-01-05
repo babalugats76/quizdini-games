@@ -1,646 +1,524 @@
-@import './variables';
-@import './mixins';
+@import "./variables";
+@import "./mixins";
 
-  @include font-face('bitstream_vera_sansroman', '/fonts/vera-webfont');
-  @include font-face('blogger_sansregular', '/fonts/blogger_sans-webfont');
-  @include font-face('blogger_sansmedium', '/fonts/blogger_sans-medium-webfont');
-  @include font-face('source_sans_prolight', '/fonts/sourcesanspro-light-webfont');
-  @include font-face('source_sans_proregular', '/fonts/sourcesanspro-regular-webfont');
-  @include font-face('jollygood_sansbasic', '/fonts/jollygoodsans-basic-webfont');
-  @include font-face('helsinkiregular', '/fonts/helsinki-webfont');
+@include font-face("bitstream_vera_sansroman", "/fonts/vera-webfont");
+@include font-face("blogger_sansregular", "/fonts/blogger_sans-webfont");
+@include font-face("blogger_sansmedium", "/fonts/blogger_sans-medium-webfont");
+@include font-face("source_sans_prolight", "/fonts/sourcesanspro-light-webfont");
+@include font-face("source_sans_proregular", "/fonts/sourcesanspro-regular-webfont");
+@include font-face("jollygood_sansbasic", "/fonts/jollygoodsans-basic-webfont");
+@include font-face("helsinkiregular", "/fonts/helsinki-webfont");
 
-  $margin: 14px;
-  $min_width: 320px;
-  $max_width: 1200px;
-  $min_font: 13px;
-  $max_font: 26px;
-  
-  :root {
-    @include fluid-type($min_width, $max_width, $min_font, $max_font);
-  }
+$min_width: 320px;
+$max_width: 1200px;
+$min_font: 13px;
+$max_font: 26px;
 
+:root {
+  @include fluid-type($min_width, $max_width, $min_font, $max_font);
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: $blogger-sans;
+  @include fluid-type($min_width, $max_width, $min_font, $max_font);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+html,
+body {
+  width: 100%;
+  height: 100%;
+  background-color: $white;
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+button {
+  line-height: 1.2;
+  border-radius: 5px;
+  padding: 0.8rem 1.6rem;
+  background-color: $hot-pink;
+  color: $white;
+  border-radius: 5px;
+  border: 3px solid $white-alpha9;
+  font-family: $helsinki;
+  text-transform: uppercase;
+  text-align: center;
+  opacity: 0.9;
+  @include box-shadow(
+    0.2rem 0.2rem 0 rgba(238, 238, 238, 0.1),
+    0.4rem 0.4rem 0 rgba(128, 127, 126, 0.2)
+  );
+}
+
+.quizdini-app {
+  @include flexbox;
+  @include flex-direction(column);
+  position: relative;
+  min-height: 100vh;
+}
+
+.page-container {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.sandpaper {
+  background-image: url("/img/triangle-question-mark.png"),
+    url("https://www.transparenttextures.com/patterns/sandpaper.png");
+  background-repeat: repeat;
+}
+
+.solid {
+  background-image: url("/img/triangle-question-mark.png"),
+    url("https://www.transparenttextures.com/patterns/solid.png");
+  background-repeat: repeat;
+}
+
+.construction-paper {
+  background-image: url("/img/triangle-question-mark.png"),
+    url("/img/Texture_Light_Small.png");
+  background-repeat: repeat;
+}
+
+.beige {
+  background-color: $beige;
+}
+
+.gray-light {
+  background-color: $gray-light;
+}
+
+.purple {
+  background-color: $purple;
+}
+
+button#play {
+  position: fixed;
+  bottom: 5vh !important;
+  height: 5rem;
+  min-width: 15rem;
+  width: 90%;
+  left: 5%;
+  font-size: 2rem;
+  z-index: 110;
+}
+
+#splash {
+  position: relative;
+  margin: 0 auto;
+  width: inherit;
+  height: inherit;
   * {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-    font-family: $blogger-sans;
-    @include fluid-type($min_width, $max_width, $min_font, $max_font);
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-  }
-
-  html, body {
-    width: 100%;
-    height: 100%;
-    background-color: $white;
-  }
-
-  table {
-    border-collapse: collapse;
-    border-spacing: 0;
-  }
-
-  /* Needs to be refined */
-  h1, h2, h3, h4, h5, h6 {
-    line-height: 1.1;
-    margin: .6rem;
-  }
-
-  button {
-    line-height: 1.2;
-    border-radius: 5px;  
-    padding: .8rem 1.6rem;
-    background-color: $hot-pink;
     color: $white;
-    border-radius: 5px;
-    border: 3px solid $white-alpha9;
+  }
+}
+
+#computer {
+  position: absolute;
+  bottom: 0 !important;
+  width: 220px;
+  right: calc(50vw - 110px);
+  z-index: 101;
+}
+
+#computer-stars {
+  position: absolute;
+  bottom: 0 !important;
+  width: 600px;
+  right: calc(50vw - 300px);
+  z-index: 100;
+  opacity: 0.9;
+}
+
+#match-main {
+  #title {
+    font-size: 3rem;
     font-family: $helsinki;
-    text-transform: uppercase;
-    text-align: center;
-    opacity: .9;
-    box-shadow: 0.2rem 0.2rem 0 rgba(238, 238, 238, 0.1), 0.4rem 0.4rem 0 rgba(128,127,126,.2);
+    text-shadow: 0.3rem 0.3rem 0.1rem rgba(0, 0, 0, 0.3);
   }
+}
 
-  .quizdini-app {
-    @include flexbox;
-    @include flex-direction(column);
-    position: relative;
-    min-height: 100vh;
+#match-details {
+  font-family: $jolly-good-sans;
+  font-size: 1.7rem;
+  clear: both;
+  * {
+    font-family: inherit;
   }
-
-  .page-container {
-    position: relative;
-    width: 100%;
-    height: 100vh;
-    overflow-y: hidden;
-    overflow-x: hidden;
-    max-width: 1200px;
-    margin: 0 auto;
+  *:not(:last-child) {
+    float: left;
   }
-
-  .sandpaper {
-    background-image: url("/img/triangle-question-mark.png"), url("https://www.transparenttextures.com/patterns/sandpaper.png");
-    background-repeat: repeat;
-  }
-
-  .solid {
-    background-image: url("/img/triangle-question-mark.png"), url("https://www.transparenttextures.com/patterns/solid.png");
-    background-repeat: repeat;
-  }
-
-  .construction-paper {
-      background-image: url("/img/triangle-question-mark.png"), url("/img/Texture_Light_Small.png");
-      background-repeat: repeat;
-  }
-
-  .beige {
-    background-color: $beige;
-  }
-
-  .gray-light {
-    background-color: $gray-light;
-  }
-
-  .purple {
-    background-color: $purple;
-  }
-  
-  /*@include keyframes(spin-scale) {
-    0% { transform: rotate(0deg) scale(1.0); } 
-    15% { transform: rotate(-360deg) scale(.99); }
-    30% { transform: rotate(0deg) scale(1.0); } 
-  }
-
-  .spin-scale {
-    @include animation('spin-scale 15s ease-in-out 1s infinite normal both running');
-  }
-
-  @include keyframes(scale) {
-    0% { transform: scale(1.0); } 
-    15% { transform: scale(.99); }
-    30% { transform: scale(1.0); }
-  }
-
-  .scale {
-    @include animation('scale 15s ease-in-out 1s infinite normal both running');
-  } */
-
-
-  button#play {
-    position: fixed;
-    bottom: 5vh !important;
-    height: 5rem;
-    min-width: 15rem;
-    width: 90%;
-    left: 5%;
-    font-size: 2rem;
-    z-index: 110;
-  }
-
-  #splash {
-    position: relative;
-    margin: 0 auto;
-    width: inherit;
-    height: inherit;
-
-    * {
-      color: $white;
-      /*line-height: 1.2; */
-    } 
-
-  }
-
-  #computer {
-    position: absolute;
-    bottom: 0 !important;
-    width: 220px;
-    right: calc(50vw - 110px);
-    z-index: 101;
-  }
-
-
-  #computer-stars {
-    position: absolute;
-    bottom: 0 !important;
-    width: 600px;
-    right: calc(50vw - 300px);
-    z-index: 100;
-    opacity: .9;
-  }
-
-  #match-main {
-
-    #title {
-      //margin-top: 120px; /* = height of logo on small device */
-     // margin-bottom: .3rem;
-      font-size: 3rem;
-      font-family: $helsinki;
-      text-shadow: .3rem .3rem .1rem rgba(0, 0, 0, .3);
-    }
-
-  }
-
-  #match-details {
-
-    font-family: $jolly-good-sans;
-    font-size: 1.7rem;
+  *:last-child {
     clear: both;
-
-    * {
-      //margin-top: .3rem;
-      //margin-bottom: .3rem;
-      font-family: inherit;
-    }
-
-    *:not(:last-child) {
-      float: left;
-    }   
-    
-    *:last-child {
-      clear: both;
-    }
-
-    *:not(:first-child):not(:last-child)::before {
-      content: '\00a0\0000B7\00a0';
-    }
-
   }
+  *:not(:first-child):not(:last-child)::before {
+    content: "\00a0\0000B7\00a0";
+  }
+}
 
-  #match-results {
+#match-results {
+  font-family: $jolly-good-sans;
+  font-size: 1.7rem;
+  * {
+    float: left;
+    margin-top: 0.3rem;
+    margin-bottom: 0.3rem;
+    font-family: inherit;
+  }
+  *:not(:first-child)::before {
+    content: "\00a0\0000B7\00a0";
+  }
+}
 
-    font-family: $jolly-good-sans;
-    font-size: 1.7rem;  
+#match-main,
+#match-details {
+  margin-left: 24px;
+  margin-right: 24px;
+}
 
-    * {
-      float: left;
-      margin-top: .3rem;
-      margin-bottom: .3rem;
-      font-family: inherit;
+.term,
+.definition {
+  @include flexbox;
+  @include justify-content(center);
+  @include align-items(center);
+  min-width: 0;
+  width: 80%;
+  margin: 0.3rem;
+  margin: calc(100vmax / 320);
+  @include user-select(none);
+  z-index: 102;
+}
+
+.term {
+  border-radius: 3px;
+  padding: 3px;
+  background-image: url("https://www.transparenttextures.com/patterns/brilliant.png");
+  background-repeat: repeat;
+  @include box-shadow(
+    0.2rem 0.2rem 0 rgba(238, 238, 238, 0.1),
+    0.4rem 0.4rem 0 rgba(128, 127, 126, 0.2)
+  );
+  /* Colors for tiles */
+  $tileColors: (
+    ("red", $red, $white, $white-alpha9),
+    ("orange", $orange, $white, $white-alpha9),
+    ("yellow", $yellow, $logo-gray, $black-alpha4),
+    ("lime", $lime, $logo-gray, $black-alpha4),
+    ("green", $green, $white, $white-alpha9),
+    ("cyan", $cyan, $logo-gray, $black-alpha4),
+    ("blue", $blue, $white, $white-alpha9),
+    ("purple", $purple, $white, $white-alpha9),
+    ("magenta", $magenta, $white, $white-alpha9),
+    ("gray", $gray, $white, $white-alpha9),
+    ("navy", $navy, $white, $white-alpha9),
+    ("teal", $teal, $white, $white-alpha9)
+  );
+  /* Dynamically generate tile color classes */
+  @each $color, $background, $textColor, $borderColor in $tileColors {
+    &.#{$color} {
+      background-color: #{$background};
+      color: #{$textColor};
     }
-
-    *:not(:first-child)::before {
-      content: '\00a0\0000B7\00a0';
+    &.#{$color}:hover,
+    &.#{$color}.dragging {
+      border: 3px solid $borderColor;
+      transform: scale(1.06, 1.06);
+      transition: transform 0.1s cubic-bezier(0.25, 0.8, 0.25, 1) !important;
     }
-
-  }
-
-  #match-main, #match-details {
-    margin-left: 24px;
-    margin-right: 24px;
-  }
-
-  .term, .definition {
-    @include flexbox;
-    @include justify-content(center);
-    @include align-items(center);
-    min-width: 0;
-    width: 80%;
-    margin: #{$margin / 8}; 
-    margin: calc(100vmax / 320);
-    @include user-select(none);
-    z-index: 102;
-  }
-  
-  .term {
-
-    border-radius: 3px;
-    padding: 3px;
-    background-image: url("https://www.transparenttextures.com/patterns/brilliant.png"); 
-    background-repeat: repeat; 
-    box-shadow: 0.2rem 0.2rem 0 rgba(238, 238, 238, 0.1), 0.4rem 0.4rem 0 rgba(128,127,126,.2);
-
-    /* Colors for tiles */
-    $tileColors: (('red', $red, $white, $white-alpha9),
-                  ('orange', $orange, $white, $white-alpha9),
-                  ('yellow', $yellow, $logo-gray, $black-alpha4),
-                  ('lime', $lime, $logo-gray, $black-alpha4),
-                  ('green', $green, $white, $white-alpha9),
-                  ('cyan', $cyan, $logo-gray, $black-alpha4),
-                  ('blue', $blue, $white, $white-alpha9),
-                  ('purple', $purple, $white, $white-alpha9),
-                  ('magenta', $magenta, $white, $white-alpha9),
-                  ('gray', $gray, $white, $white-alpha9),
-                  ('navy', $navy, $white, $white-alpha9),
-                  ('teal', $teal, $white, $white-alpha9)
-                 );
-    
-    /* Dynamically generate tile color classes */            
-    @each $color, $background, $textColor, $borderColor in $tileColors {
-      &.#{$color} {
-        background-color: #{$background};
-        color: #{$textColor};
-      }
-
-      &.#{$color}:hover, &.#{$color}.dragging {
-        border: 3px solid $borderColor;
-        transform: scale(1.06, 1.06);
-        transition: transform .1s cubic-bezier(.25,.8,.25,1) !important;
-      }
-
-      &.#{$color}.dragging {
-        text-transform: uppercase;
-      }
-
+    &.#{$color}.dragging {
+      text-transform: uppercase;
     }
   }
+}
 
-  .term:hover {
-    -webkit-box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
-  -moz-box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
-  -ms-box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
-  -o-box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
-  }
+.term:hover {
+  @include box-shadow(
+    0 0.6rem 1.2rem rgba(0, 0, 0, 0.19),
+    0 0.3rem 0.3rem rgba(0, 0, 0, 0.23)
+  );
+}
 
-  .definition {
-    border-radius: 2px;
-    padding: 3px;
-    background-color: $gray-light-light;
-    touch-action: none;
-    background-color: $logo-white;
-    background-image: linear-gradient(90deg, transparent 23px, #abced4 23px, #abced4 25px, transparent 25px), linear-gradient(#eee .1em, transparent .1em);
-    background-size: 100% 1.2em;
-    -webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
-    -moz-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
-    -ms-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
-    -o-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24); 
-  }
+.definition {
+  border-radius: 2px;
+  padding: 3px;
+  background-color: $gray-light-light;
+  touch-action: none;
+  background-color: $logo-white;
+  background-image: linear-gradient(90deg, transparent 23px, #abced4 23px, #abced4 25px, transparent 25px), linear-gradient(#eee 0.1em, transparent 0.1em);
+  background-size: 100% 1.2em;
+  @include box-shadow(
+    0 0.1rem 0.3rem rgba(0, 0, 0, 0.12),
+    0 0.1rem 0.3rem rgba(0, 0, 0, 0.24)
+  );
+}
 
-  .term-text, .definition-text {
-    margin: auto;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-  }
-  
-  .term-text {
-    background: inherit;
-    min-height: 1.1rem;
-    padding: .15rem .35rem;
-    font-family: 'Rubik';
-    line-height: 1.1;
-    font-weight: bold;
-    font-size: .95rem;
-  }
+.term-text,
+.definition-text {
+  margin: auto;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
 
-  .definition-text {
-    min-height: 1.3rem;
-    padding: .15rem .35rem;
-    font-family: $jolly-good-sans;
-    line-height: 1.3;
-    color: $graphite;
-    font-weight: bold;
-    font-size: 0.8rem;
-  }
+.term-text {
+  background: inherit;
+  min-height: 1.1rem;
+  padding: 0.15rem 0.35rem;
+  font-family: "Rubik";
+  line-height: 1.1;
+  font-weight: bold;
+  font-size: 0.95rem;
+}
 
-  .term.matched, .definition.matched {
-    background-color: $white !important;
-    border-color: $bright-green !important;
-  } 
+.definition-text {
+  min-height: 1.3rem;
+  padding: 0.15rem 0.35rem;
+  font-family: $jolly-good-sans;
+  line-height: 1.3;
+  color: $graphite;
+  font-weight: bold;
+  font-size: 0.8rem;
+}
 
-  .term.matched > .term-text, 
-  .definition.matched > .definition-text {
-    color: $bright-green !important;
-    text-shadow: none !important;
-  }
+.term.matched,
+.definition.matched {
+  background-color: $white !important;
+  border-color: $bright-green !important;
+}
 
-  .term.expand,
-  .definition.expand,
-  {
-    z-index: 103;
-    overflow: visible; 
-    max-height: none !important;
-    border: none;
-  }
+.term.matched > .term-text,
+.definition.matched > .definition-text {
+  color: $bright-green !important;
+  text-shadow: none !important;
+}
 
-  .term.expand { 
-    border: 3px solid $white;
-  }
+.term.expand,
+.definition.expand {
+  z-index: 103;
+  overflow: visible;
+  max-height: none !important;
+  border: none;
+}
 
-  .definition.expand {
-    border: 3px solid $graphite;
-  }
+.term.expand {
+  border: 3px solid $white;
+}
 
-  .term.expand > .term-text,
-  .definition.expand > .definition-text,
-   {
-    max-height: none !important;
-    background-color: inherit;
-    overflow: visible;
-  }  
+.definition.expand {
+  border: 3px solid $graphite;
+}
 
-  .dragging {
-    opacity: .9 !important;
-    text-transform: uppercase;
-  }
-  
-  .is-over {
-    border-color: $yellow;
-  }
+.term.expand > .term-text,
+.definition.expand > .definition-text {
+  max-height: none !important;
+  background-color: inherit;
+  overflow: visible;
+}
 
-  #match-topic::after {
-    content: '\00A0\00B7\00A0'
-  }
+.dragging {
+  opacity: 0.9 !important;
+  text-transform: uppercase;
+}
 
-  /*#scoreboard {
-    @include flexbox;
-    @include flex-grow(1);
-    @include align-items(center);
-    position: absolute;
-    position: sticky;
-    top: 0;
-    width: 100%;
-    opacity: 0.95;
-    background-color: $blue;
-    color: $white;
-    border-bottom: 1px solid rgba(0,0,0,.1);
-    z-index: 1001;
-  }*/
+.is-over {
+  border-color: $yellow;
+}
 
-  /*#timer, #correct, #incorrect {
-    font-family: $source-sans-pro;
-    @include flexbox;
-    @include flex-grow(1);
-    @include justify-content(center);
-  }*/
+#match-topic::after {
+  content: "\00A0\00B7\00A0";
+}
 
-  #match-board { 
-    @include flexbox;
-    @include flex-direction(column);
-    @include justify-content(flex-end);
-    min-height: 60vh;
-    width: 100%;
-    /* margin: 1vh auto; */
-  }
+#match-board {
+  @include flexbox;
+  @include flex-direction(column);
+  @include justify-content(flex-end);
+  min-height: 60vh;
+  width: 100%;
+  /* margin: 1vh auto; */
+}
 
-  #term-container, #definition-container {
-    @include flexbox;
-    @include flex-direction(column);
-    @include justify-content(center);
-    @include align-items(center);
-    min-height: 45vh;
-    overflow-y: visible;
-  }
+#term-container,
+#definition-container {
+  @include flexbox;
+  @include flex-direction(column);
+  @include justify-content(center);
+  @include align-items(center);
+  min-height: 45vh;
+  overflow-y: visible;
+}
 
-
-.timer { 
+.timer {
   width: 100%;
 }
 
 .timer .timer-path {
   stroke: $white;
   stroke-linecap: square;
-  /*transition: stroke-dashoffset 0.5s ease-in-out 0s;*/
- }
+}
 
- .timer .timer-trail {
+.timer .timer-trail {
   transition: stroke 1s ease-in-out;
- }
+}
 
- .timer .timer-text {
-   fill: $white; 
-   font-family: $helsinki;
-   font-weight: bold;
-   font-size: 1.2rem;
-   baseline-shift: -31%;
-   text-anchor: middle;
-   transition: width 1s ease-in-out;
- }
+.timer .timer-text {
+  fill: $white;
+  font-family: $helsinki;
+  font-weight: bold;
+  font-size: 1.2rem;
+  baseline-shift: -31%;
+  text-anchor: middle;
+  transition: width 1s ease-in-out;
+}
 
+.timer .timer-background {
+  fill: $black-alpha4;
+}
 
- .timer .timer-background {
-   fill: $black-alpha4;
- }
+@media (min-width: 360px) {}
+@media screen and (max-width: 567px) {}
+@media (max-device-width: 960px) and (orientation: landscape) {
 
-  @media (min-width: 360px) { 
-
-
+  #match-board {
+    /* min-height: calc(92vh); */
+    width: 100%;
+    margin: 0 auto;
+    @include justify-content(flex-start);
+    @include align-items(center);
   }
 
-  @media screen and (max-width: 567px) {
-
+  #term-container,
+  #definition-container {
+    min-height: 40vh;
+    width: 96%;
+    margin: 2vh 0 1vh;
+    @include align-items(flex-start);
+    @include justify-content(center);
+    @include flex-direction(row);
+    @include flex-wrap(wrap);
+    @include align-content(center);
   }
 
-  @media (max-device-width: 960px) and (orientation: landscape) {
-    
-    #match-board { 
-      /*min-height: calc(92vh); */
-       width: 100%;
-       margin: 0 auto;
-       @include justify-content(flex-start);
-       @include align-items(center);
-    }
-
-    #term-container, #definition-container {
-      min-height: 40vh;
-      width: 96%;
-      margin: 2vh 0 1vh;
-      @include align-items(flex-start);
-      @include justify-content(center);
-      @include flex-direction(row);
-      @include flex-wrap(wrap);
-      @include align-content(center);
-    }
-
-    .term, .definition {
-      max-width: 30vw;
-      min-height: 6vw;
-      @include flex-basis(30vw);
-      @include flex-grow(0);
-    }
-
+  .term,
+  .definition {
+    max-width: 30vw;
+    min-height: 6vw;
+    @include flex-basis(30vw);
+    @include flex-grow(0);
   }
+}
 
-  @media (min-width: 576px) {
-     
+@media (min-width: 576px) {}
+
+@media (min-width: 768px) {
+  
+  button#play {
+    width: 16rem;
+    left: calc(50vw - 8rem);
   }
-
-  @media (min-width: 768px) { 
-    #scoreboard {
-      /*position: relative; */
-      /* min-height: calc(10vh + 20px); */
-    }
-
-
-    button#play {
-      width: 20rem;
-      left: calc(50vw - 10rem);
-    }
-    
-    #splash {
-      width: 1450px !important;
-    } 
-
-    #computer {
-      width: 320px;
-      right: 0;
-      transform: translate(-480px, 0);
-    }
-
+  
+  #splash {
+    width: 1450px !important;
   }
-
-  @media (min-width: 1200px) {
-    
-    .page-container {
-      max-width: none;
-    }
-
-    #computer {
-      right: 0;
-      transform: translate(-60px, 0);
-    }
- 
-    #computer-stars {
-      right: 0;
-      width: 830px;
-      transform: translate(180px, 12px);
-    }
-
-    /*#scoreboard {
-      position: absolute;
-      top: unset !important;
-      bottom: 7vh !important;
-      border: none;
-    }*/
-
-    #match-board { 
-      position: absolute;
-      @include flex-direction(row);
-      @include justify-content(flex-start);
-      @include align-items(center);
-      top: 7vh;
-   }
-
-   #term-container, #definition-container {
-     min-height: 0;
-     width: 50%;
-     margin: 2vh 0;
-     @include align-items(flex-start);
-     @include justify-content(center);
-     @include flex-direction(row);
-     @include flex-wrap(wrap);
-     @include justify-content(center);
-     @include align-content(center);
-   }
-
-    #term-container {
-      padding-left: 2vw;
-    }
-
-    #definition-container {
-      padding-right: 2vw;
-    }
-
-    #timer {
-      width: 11vw;
-      z-index: 105;
-      position: absolute;
-      bottom: 6vh !important;
-      right: 4vw !important;
-    }
-
-    #timer, #correct, #incorrect {
-      @include flex-grow(0);
-    }
-
-    #incorrect, #correct {
-      position: absolute;
-      width: 4rem;
-      z-index: 104;
-      font-size: 1.6rem;
-      line-height: 1.6;
-      font-weight: bold;
-    }
-
-    #incorrect {
-      left: calc(50vw - 9rem);
-      background-color: $red;
-      color: $white;
-    }
-
-    #correct {
-      left: calc(50vw + 5rem);
-      background-color: $bright-green;
-      color: $white;
-    }
-
-    /*
-    #timer {
-      position: relative;
-      left: calc(50vw - 5rem);
-      width: 10rem;
-      z-index: 104; 
-      background-color: $logo-black; 
-      color: $logo-white;
-      line-height: 1.4;
-      font-size: 4rem;
-      font-weight: bold; 
-    }
-    */
-
-   .term, .definition {
-     width: 14vw;
-     height: 8vw;
-     min-height: 3.6rem;
-     margin: .3rem;
-     @include flex-basis(14vw);
-     @include flex-grow(0);
-     overflow: hidden;
-   }
-
-   .term-text, .definition-text {
-     white-space: normal;
-   }
-
-  .term-text {
-    min-height: 1.3rem ;
-    max-height: 4.1rem ;
+  
+  #computer {
+    right: 0;
+    width: 320px;
+    transform: translate(-480px, 0);
   }
+  
+  #computer-stars {
+    right: 0;
+    width: 830px;
+    transform: translate(-240px, 12px);
+  }
+}
 
+@media (min-width: 1200px) {
+  
+  .page-container {
+    max-width: none;
+  }
+  
+  #computer {
+    transform: translate(-60px, 0);
+  }
+  
+  #computer-stars {
+    transform: translate(180px, 12px);
+  }
+  
+  #match-board {
+    position: absolute;
+    @include flex-direction(row);
+    @include justify-content(flex-start);
+    @include align-items(center);
+    top: 7vh;
+  }
+  
+  #term-container,
+  #definition-container {
+    min-height: 0;
+    width: 50%;
+    margin: 2vh 0;
+    @include align-items(flex-start);
+    @include justify-content(center);
+    @include flex-direction(row);
+    @include flex-wrap(wrap);
+    @include justify-content(center);
+    @include align-content(center);
+  }
+  
+  #term-container {
+    padding-left: 2vw;
+  }
+  
+  #definition-container {
+    padding-right: 2vw;
+  }
+  
+  #timer {
+    width: 11vw;
+    z-index: 105;
+    position: absolute;
+    bottom: 6vh !important;
+    right: 4vw !important;
+  }
+  
+  .term,
+  .definition {
+    width: 14vw;
+    height: 8vw;
+    min-height: 3.6rem;
+    margin: 0.3rem;
+    @include flex-basis(14vw);
+    @include flex-grow(0);
+    overflow: hidden;
+  }
+  
+  .term-text,
   .definition-text {
-     min-height: 1.3rem ;
-     max-height: 3.7rem ;
-   }
-
+    white-space: normal;
   }
+  
+  .term-text {
+    min-height: 1.3rem;
+    max-height: 4.1rem;
+  }
+  
+  .definition-text {
+    min-height: 1.3rem;
+    max-height: 3.7rem;
+  }
+}

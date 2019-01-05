@@ -56,34 +56,6 @@
   }
 }
 
-@mixin fluid-logo($min-vw, $max-vw, $min-logo-size, $max-logo-size) {
-  $u1: unit($min-vw);
-  $u2: unit($max-vw);
-  $u3: unit($min-logo-size);
-  $u4: unit($max-logo-size);
-  
-  @if $u1 == $u2 and $u1 == $u3 and $u1 == $u4 {
-    & {
-      width: $min-logo-size;
-      height: $min-logo-size;
-
-      @media screen and (min-width: $min-vw) {
-        width: calc(#{$min-logo-size} + #{strip-unit($max-logo-size - $min-logo-size)} * ((100vw - #{$min-vw}) / #{strip-unit($max-vw - $min-vw)}));
-        height: calc(#{$min-logo-size} + #{strip-unit($max-logo-size - $min-logo-size)} * ((100vw - #{$min-vw}) / #{strip-unit($max-vw - $min-vw)}));
-      }
-      @media screen and (orientation: landscape) {
-        width: calc(#{$min-logo-size} + #{strip-unit($max-logo-size - $min-logo-size)} * ((100vh - #{$min-vw}) / #{strip-unit($max-vw - $min-vw)}));
-        height: calc(#{$min-logo-size} + #{strip-unit($max-logo-size - $min-logo-size)} * ((100vh - #{$min-vw}) / #{strip-unit($max-vw - $min-vw)}));          
-      }
-      @media screen and (min-width: $max-vw) {
-        width: $max-logo-size;
-        height: $max-logo-size;
-      }
-    }
-  }
-}
-
-
 @mixin border-radius($radius: 5px) {
   -webkit-background-clip: padding-box;
   -webkit-border-radius: $radius;

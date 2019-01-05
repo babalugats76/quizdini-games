@@ -8,19 +8,16 @@ class Timer extends Component {
   constructor(props) {
     super(props);
     this.state = ({
-      startTime: Date.now(),
+      active: false,
       remaining: props.duration,
       showTransition: false,
+      startTime: Date.now(),
       success: false
     })
   }
 
   componentDidMount() {
-    this.setState((state, props) => {
-      const id = setInterval(this.tick, props.interval);
-      return { id: id }
-    });
-
+    setTimeout(() => this.startTimer(), this.props.wait);
   }
 
   componentWillUpdate(nextProps, nextState) {
@@ -52,6 +49,13 @@ class Timer extends Component {
 
   }
 
+  startTimer = () => {
+    this.setState((state, props) => {
+      const id = setInterval(this.tick, props.interval);
+      return { active: true, id: id }
+    });
+  }
+
   endTransition = () => {
     this.setState((state, props) => {
       return { showTransition : false };
@@ -59,8 +63,8 @@ class Timer extends Component {
   }
 
   render() {
-    const { remaining, showTransition, success } = this.state;
-    const { timeout, duration, score } = this.props; 
+    const { remaining, showTransition, success, active } = this.state;
+    const { wait, duration, score } = this.props; 
     const percent = Math.ceil(((duration - remaining) / duration) * 100);
 
     const transitionStyles = {
@@ -81,31 +85,32 @@ class Timer extends Component {
 
     const progressColor = ((percent <= 70) ? '#1fe73f' : (percent <= 85 ? '#ffe119' : '#e6194b')) ;
 
-    console.log(success);
-
-    return(
-      <GameTransition 
-          mountOnEnter={false}
-          unmountOnExit={false}
-          appear={true}
-          in={!showTransition} 
-          timeout={timeout} 
-          transitionStyles={transitionStyles}
-          onExited={this.endTransition}
-          >
-          <div id="timer">
-            <CircularProgressbar 
-                initialAnimation
-                background
-                classes={classes}
-                counterClockwise
-                percentage={percent} 
-                strokeWidth={4}
-                styles={{ 'trail': { stroke: progressColor, visibility: ((showTransition) ? 'hidden' : 'visible') }, 
-                          'background': { fill: ((showTransition) ? ((success) ? '#1fe73f' : '#e6194b') : undefined) }
-                       }}
-                text={score.toString()} />
-           </div></GameTransition>);
+    return(<React.Fragment>
+             { active && 
+               (<GameTransition 
+                  mountOnEnter={false}
+                  unmountOnExit={false}
+                  appear={true}
+                  in={!showTransition} 
+                  timeout={wait} 
+                  transitionStyles={transitionStyles}
+                  onExited={this.endTransition}>
+                    <div id="timer">
+                      <CircularProgressbar 
+                        initialAnimation
+                        background
+                        classes={classes}
+                        counterClockwise
+                        percentage={percent} 
+                        strokeWidth={4}
+                        styles={{ 'trail': { stroke: progressColor, visibility: ((showTransition) ? 'hidden' : 'visible') }, 
+                                 'background': { fill: ((showTransition) ? ((success) ? '#1fe73f' : '#e6194b') : undefined) }
+                               }}
+                        text={score.toString()} />
+                    </div>
+                </GameTransition>)
+             }
+          </React.Fragment>);
   }
 
 }
