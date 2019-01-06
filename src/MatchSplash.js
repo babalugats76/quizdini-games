@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import computer from './computer.svg';
 import computerStars from './computer-stars.svg';
+import logo from './logo.svg';
 import GameTransition from './GameTransition';
 
 class MatchSplash extends Component {
@@ -65,6 +66,7 @@ class MatchSplash extends Component {
       onExited={this.handleExited}>
         <div id="splash" style={style}>
           <div id="match-main">
+            <img id="logo" src={logo} alt="Quizdini logo" />
             <div id="title">{title}</div>
           </div>
           { showResults && 
