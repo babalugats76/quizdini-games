@@ -265,8 +265,7 @@ class MatchGame extends Component {
                 wait={100} 
                 onGameStart={this.handleGameStart} 
                 showResults={showResults}
-                correct={correct} 
-                incorrect={incorrect} />
+                score={score} />
            </div>)
         : (<div id="match-container" className="page-container sandpaper beige">
              <Preview generator={generatePreview} />

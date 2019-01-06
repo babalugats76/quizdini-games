@@ -22,7 +22,6 @@ $max_font: 26px;
   box-sizing: border-box;
   margin: 0;
   padding: 0;
-  font-family: $blogger-sans;
   @include fluid-type($min_width, $max_width, $min_font, $max_font);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -66,31 +65,28 @@ button {
 }
 
 .page-container {
+  
   position: relative;
   width: 100%;
   height: 100vh;
   overflow: hidden;
   max-width: 1200px;
   margin: 0 auto;
+  
+  &.sandpaper {
+    background-image: url("/img/triangle-question-mark.png"),
+      url("https://www.transparenttextures.com/patterns/sandpaper.png");
+    background-repeat: repeat;
+  }
+  
+  &.solid {
+    background-image: url("/img/triangle-question-mark.png"),
+      url("https://www.transparenttextures.com/patterns/solid.png");
+    background-repeat: repeat;
+  }
+
 }
 
-.sandpaper {
-  background-image: url("/img/triangle-question-mark.png"),
-    url("https://www.transparenttextures.com/patterns/sandpaper.png");
-  background-repeat: repeat;
-}
-
-.solid {
-  background-image: url("/img/triangle-question-mark.png"),
-    url("https://www.transparenttextures.com/patterns/solid.png");
-  background-repeat: repeat;
-}
-
-.construction-paper {
-  background-image: url("/img/triangle-question-mark.png"),
-    url("/img/Texture_Light_Small.png");
-  background-repeat: repeat;
-}
 
 .beige {
   background-color: $beige;
@@ -104,71 +100,92 @@ button {
   background-color: $purple;
 }
 
-button#play {
-  position: fixed;
-  bottom: 5vh !important;
-  height: 5rem;
-  min-width: 15rem;
-  width: 90%;
-  left: 5%;
-  font-size: 2rem;
-  z-index: 110;
-}
-
 #splash {
+
   position: relative;
   margin: 0 auto;
-  width: inherit;
-  height: inherit;
-  * {
-    color: $white;
+  height: 100%;
+
+  #logo {
+    position: relative;
+    width: 100%;
+    padding: .5rem 1rem;
+    z-index: 100;
   }
-}
 
-#computer {
-  position: absolute;
-  bottom: 0 !important;
-  width: 220px;
-  right: calc(50vw - 110px);
-  z-index: 101;
-}
-
-#computer-stars {
-  position: absolute;
-  bottom: 0 !important;
-  width: 600px;
-  right: calc(50vw - 300px);
-  z-index: 100;
-  opacity: 0.9;
-}
-
-#match-main {
   #title {
-    font-size: 3rem;
-    font-family: $helsinki;
-    text-shadow: 0.3rem 0.3rem 0.1rem rgba(0, 0, 0, 0.3);
+    position: relative;
+    padding: .5rem 1rem;
+    line-height: 1.1;
+    font-size: 2rem;
+    font-family: 'Rubik';
+    color: $white;
+    font-weight: bold;
+    text-shadow: 0.3rem 0.3rem 0.1rem rgba(.1rem, .1rem, .1rem, 0.05);
   }
-}
 
-#match-details {
-  font-family: $jolly-good-sans;
-  font-size: 1.7rem;
-  clear: both;
-  * {
-    font-family: inherit;
-  }
-  *:not(:last-child) {
-    float: left;
-  }
-  *:last-child {
+  #splash-details {
+
     clear: both;
+    padding: .1rem 1rem;
+
+    * {
+      position: relative;
+      line-height: 1.2;
+      font-family: 'Rubik';
+      color: $white;
+      z-index: 109;
+    }
+  
+    #matches, #author, #topic {
+      float: left;
+      font-size: 1.1rem;
+    }
+
+    #author::before, #topic::before { 
+      content: "\00a0\0000B7\00a0";
+    }
+  
+    #instructions {
+      clear: both;
+      padding: .5rem 0;
+      font-size: 1rem;
+    }
+
   }
-  *:not(:first-child):not(:last-child)::before {
-    content: "\00a0\0000B7\00a0";
+
+  #computer {
+    position: absolute;
+    bottom: 0 !important;
+    width: 220px;
+    right: calc(50vw - 110px);
+    z-index: 101;
   }
+  
+  #computer-stars {
+    position: absolute;
+    bottom: 0 !important;
+    width: 600px;
+    right: calc(50vw - 300px);
+    z-index: 100;
+    opacity: 0.9;
+  }
+
+  button#play {
+    position: fixed;
+    bottom: 5vh !important;
+    height: 5rem;
+    min-width: 15rem;
+    width: 90%;
+    left: 5%;
+    font-size: 2rem;
+    z-index: 110;
+  }
+
 }
 
-#match-results {
+
+#splash-results {
   font-family: $jolly-good-sans;
   font-size: 1.7rem;
   * {
@@ -180,12 +197,6 @@ button#play {
   *:not(:first-child)::before {
     content: "\00a0\0000B7\00a0";
   }
-}
-
-#match-main,
-#match-details {
-  margin-left: 24px;
-  margin-right: 24px;
 }
 
 .term,
@@ -336,7 +347,7 @@ button#play {
   border-color: $yellow;
 }
 
-#match-topic::after {
+#splash-topic::after {
   content: "\00A0\00B7\00A0";
 }
 
@@ -386,7 +397,14 @@ button#play {
   fill: $black-alpha4;
 }
 
-@media (min-width: 360px) {}
+@media (min-width: 360px) {
+  #splash-main {
+    #logo {
+      left: calc(50vw - 140px);
+    }
+  }
+
+}
 @media screen and (max-width: 567px) {}
 @media (max-device-width: 960px) and (orientation: landscape) {
 
@@ -449,6 +467,14 @@ button#play {
   
   .page-container {
     max-width: none;
+  }
+
+  #splash-main {
+   
+    #logo {
+      max-width: 550px;
+    }
+  
   }
   
   #computer {

@@ -37,7 +37,7 @@ class MatchSplash extends Component {
 
   render() {
 
-    const { style, title, termCount, topic, author, instructions, showResults, correct, incorrect } = this.props;
+    const { style, title, termCount, topic, author, instructions, showResults, score } = this.props;
     const { show } = this.state;
 
     /* Transition timeouts */
@@ -65,16 +65,9 @@ class MatchSplash extends Component {
       transitionStyles={transitionStyles}
       onExited={this.handleExited}>
         <div id="splash" style={style}>
-          <div id="match-main">
-            <img id="logo" src={logo} alt="Quizdini logo" />
-            <div id="title">{title}</div>
-          </div>
-          { showResults && 
-            <div id="match-results">
-              <div id="correct">{correct} correct</div>
-              <div id="incorrect">{incorrect} incorrect</div>
-            </div> }
-          <div id="match-details">
+          <img id="logo" src={logo} alt="Quizdini logo" />
+          <div id="title">{title}</div>
+          <div id="splash-details">
             <div id="matches">{termCount} matches</div>
             <div id="topic">{topic}</div>
             <div id="author">{author}</div>
@@ -83,6 +76,10 @@ class MatchSplash extends Component {
           <button id="play" onClick={(e) => this.handleClick(e)} style={style}>PLAY {((showResults) ? 'AGAIN' : 'GAME')}</button>
           <img id="computer" src={computer} alt="Computer" />
           <img id="computer-stars" src={computerStars} alt="Computer Stars" /> 
+          { showResults && 
+            <div id="splash-results">
+              <div id="score">{score}</div>
+            </div> }
         </div>
     </GameTransition>);
   }
