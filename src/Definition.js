@@ -47,7 +47,7 @@ class Definition extends Component {
     // eslint-disable-next-line
     const { isOver, canDrop, connectDropTarget, id, term, definition, show, matched, style } = this.props;
     const { expand } = this.state;
-    let parentClasses = ['definition', 'text-center'];
+    let parentClasses = ['definition'];
     const parentClassString = parentClasses.concat(...((isOver && canDrop) ? ['is-over'] : []), ((expand) ? ['expand']: []), ((!show) ? ['exiting'] : []), ((matched) ? ['matched'] : [])).join(' ');
     let childClasses = ['definition-text'];
     const childClassString = childClasses.join(' ');

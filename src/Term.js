@@ -25,7 +25,7 @@ function collect(connect, monitor) {
 }
 
 export function generatePreview (type, item, style) {
-  const classes = ['term', 'text-center', 'dragging'];
+  const classes = ['term', 'dragging'];
   const classesString = classes.concat(...(item.color ? [item.color] : [])).join(' ');
   return (<div style={style} className={classesString}>
             <div className="term-text">{item.term}</div>

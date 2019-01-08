@@ -1,18 +1,22 @@
 @import "./variables";
 @import "./mixins";
 
-@include font-face("bitstream_vera_sansroman", "/fonts/vera-webfont");
-@include font-face("blogger_sansregular", "/fonts/blogger_sans-webfont");
-@include font-face("blogger_sansmedium", "/fonts/blogger_sans-medium-webfont");
-@include font-face("source_sans_prolight", "/fonts/sourcesanspro-light-webfont");
-@include font-face("source_sans_proregular", "/fonts/sourcesanspro-regular-webfont");
-@include font-face("jollygood_sansbasic", "/fonts/jollygoodsans-basic-webfont");
-@include font-face("helsinkiregular", "/fonts/helsinki-webfont");
+@include font-face($bitstream-vera-sans, "/fonts/vera-webfont");
+@include font-face($blogger-sans, "/fonts/blogger_sans-webfont");
+@include font-face($blogger-sans-medium, "/fonts/blogger_sans-medium-webfont");
+@include font-face($source-sans-pro-light, "/fonts/sourcesanspro-light-webfont");
+@include font-face($source-sans-pro, "/fonts/sourcesanspro-regular-webfont");
+@include font-face($jolly-good-sans, "/fonts/jollygoodsans-basic-webfont");
+@include font-face($helsinki, "/fonts/helsinki-webfont");
+@include font-face($jaywalker, "/fonts/jaywalker-regular-webfont");
+@include font-face($rubik, "/fonts/rubik-regular-webfont");
+@include font-face($rubikmedium, "/fonts/rubik-medium-webfont");
+@include font-face($rubikbold, "/fonts/rubik-bold-webfont");
 
 $min_width: 320px;
 $max_width: 1200px;
 $min_font: 13px;
-$max_font: 26px;
+$max_font: 28px;
 
 :root {
   @include fluid-type($min_width, $max_width, $min_font, $max_font);
@@ -107,18 +111,22 @@ button {
 
   #logo {
     position: relative;
-    margin: 1.6rem 0 .2rem;
+    margin: 1.3rem 0 0;
     z-index: 102;
     width: 70%;
     align-self: center;
   }
 
   #title {
+    @include flexbox();
+    @include flex-direction(column);
+    @include justify-content(center);
     position: relative;
-    padding: .5rem 1rem;
-    line-height: 1.2;
+    min-height: 6rem;
+    padding: .7rem 1rem;
+    line-height: 1.1;
     font-size: 2.3rem;
-    font-family: 'Jaywalker';
+    font-family: $jaywalker;
     color: $white;
     font-weight: bold;
     text-align: center;
@@ -134,7 +142,7 @@ button {
     * {
       position: relative;
       line-height: 1.2;
-      font-family: $jolly-good-sans;
+      font-family: $jaywalker;
       color: $white;
       z-index: 109;
     }
@@ -177,7 +185,7 @@ button {
   button#play {
     position: fixed;
     bottom: 5vh !important;
-    height: 4rem;
+    min-height: 3.6rem;
     min-width: 15rem;
     width: 90%;
     left: 5%;
@@ -187,7 +195,6 @@ button {
   }
 
 }
-
 
 #splash-results {
   font-family: $jolly-good-sans;
@@ -208,7 +215,8 @@ button {
   @include flexbox;
   @include justify-content(center);
   @include align-items(center);
-  min-width: 0;
+  text-align: center;
+  min-width: 0; /* Necessary for broadest flex support */
   width: 80%;
   margin: 0.3rem;
   margin: calc(100vmax / 320);
@@ -291,7 +299,7 @@ button {
   background: inherit;
   min-height: 1.1rem;
   padding: 0.15rem 0.35rem;
-  font-family: "Rubik";
+  font-family: $rubik;
   line-height: 1.1;
   font-weight: bold;
   font-size: 0.95rem;
@@ -409,6 +417,11 @@ button {
 
   #splash {
 
+    #title {
+      padding-left: 2rem;
+      padding-right: 2rem;
+    }
+
     #computer {
       left: calc(50vw - 175px);
       width: 350px;
@@ -434,11 +447,6 @@ button {
     #logo {
       @include align-self(center);
       width: 280px;
-    }
-
-    #title {
-      padding: .1rem 2rem;
-      text-align: center;
     }
 
     #computer {
@@ -500,11 +508,6 @@ button {
     
     width: 1450px !important;
   
-    #splash-details {
-
-
-    }  
-
     #computer {
       right: 0;
       width: 320px;
