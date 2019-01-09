@@ -67,11 +67,11 @@ class MatchSplash extends Component {
         <div id="splash" style={style}>
           <img id="logo" src="/img/quizdini-logo-complete.png" alt="Quizdini logo" />
           <div id="title">{title}</div>
+          <div id="instructions">{instructions}</div>
           <div id="splash-details">
             <div id="matches">{termCount} matches</div>
             <div id="topic">{topic}</div>
             <div id="author">{author}</div>
-            <div id="instructions">{instructions}</div>
           </div>
           <button id="play" onClick={(e) => this.handleClick(e)} style={style}>PLAY {((showResults) ? 'AGAIN' : 'GAME')}</button>
           <img id="computer" src={computer} alt="Computer" />

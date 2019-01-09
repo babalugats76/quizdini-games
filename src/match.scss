@@ -12,6 +12,7 @@
 @include font-face($rubik, "/fonts/rubik-regular-webfont");
 @include font-face($rubikmedium, "/fonts/rubik-medium-webfont");
 @include font-face($rubikbold, "/fonts/rubik-bold-webfont");
+@include font-face($rubiklight, "/fonts/rubik-light-webfont");
 
 $min_width: 320px;
 $max_width: 1200px;
@@ -122,10 +123,10 @@ button {
     @include flex-direction(column);
     @include justify-content(center);
     position: relative;
-    min-height: 6rem;
-    padding: .7rem 1rem;
-    line-height: 1.1;
-    font-size: 2.3rem;
+    min-height: 7rem;
+    padding: .7rem 2.3rem;
+    line-height: 1;
+    font-size: 2.8rem;
     font-family: $jaywalker;
     color: $white;
     font-weight: bold;
@@ -134,32 +135,37 @@ button {
     z-index: 109;
   }
 
+  #instructions {
+    @include flexbox();
+    @include flex-direction(column);
+    @include justify-content(center);
+    position: relative;
+    min-height: 1.6rem;
+    padding: .3rem 2.3rem;
+    font-size: 1.1rem;
+    line-height: 1.3;
+    font-family: $rubiklight;
+    color: $white;
+    text-shadow: 0.1rem 0.1rem 0.1rem rgba(50, 50, 50, 0.25);
+    z-index: 109;
+  }
+
   #splash-details {
 
-    clear: both;
-    padding: .3rem 1rem;
+    padding: .3rem 2.3rem;
 
     * {
       position: relative;
-      line-height: 1.2;
-      font-family: $jaywalker;
+      font-size: 1.1rem;
+      line-height: 1.3;
+      font-family: $rubiklight;
       color: $white;
+      text-shadow: 0.1rem 0.1rem 0.1rem rgba(50, 50, 50, 0.25);
       z-index: 109;
     }
 
-    #matches, #author, #topic {
-      float: left;
-      font-size: 1.6rem;
-    }
-  
-    #author::before, #topic::before { 
-      content: "\00a0\0000B7\00a0";
-    }
-
-    #instructions {
-      clear: both;
-      padding: .5rem 0;
-      font-size: 1rem;
+    *::before {
+      content: "\00a0\0000BB\00a0";
     }
 
   }
@@ -170,7 +176,7 @@ button {
     width: 200px;
     left: calc(50vw - 100px);
     z-index: 101;
-    opacity: 0.8;
+    opacity: 0.6;
   }
   
   #computer-stars {
@@ -179,7 +185,7 @@ button {
     width: 600px;
     left: calc(50vw - 300px);
     z-index: 100;
-    opacity: 0.8;
+    opacity: 0.4;
   }
 
   button#play {
@@ -359,10 +365,6 @@ button {
   border-color: $yellow;
 }
 
-#splash-topic::after {
-  content: "\00A0\00B7\00A0";
-}
-
 #match-board {
   @include flexbox;
   @include flex-direction(column);
@@ -418,8 +420,8 @@ button {
   #splash {
 
     #title {
-      padding-left: 2rem;
-      padding-right: 2rem;
+      padding-left: 2.3rem;
+      padding-right: 2.3rem;
     }
 
     #computer {
@@ -446,7 +448,7 @@ button {
 
     #logo {
       @include align-self(center);
-      width: 280px;
+      width: 250px;
     }
 
     #computer {
@@ -464,7 +466,7 @@ button {
       left: calc(50vw - 7.5rem);
     }
 
-    #splash-details {
+    #instructions, #splash-details {
       display: none;
     };
 
@@ -501,13 +503,34 @@ button {
 
 @media (min-width: 768px) {
     
-  /*.page-container {
+  .page-container {
     background-color: pink !important;
-  } */
+  } 
   #splash {
-    
-    width: 1450px !important;
   
+    #instructions {
+      text-align: center;
+    }
+
+    #splash-details {
+
+      @include flexbox();
+      @include flex-flow(wrap);
+      justify-content: center;
+      min-height: 1.6rem;
+      
+
+      /* Need to have something that removes the double-arrow added earlier */
+      #matches::before {
+        content: "";
+      }
+
+      #author::before, #topic::before { 
+        content: "\00a0\0000B7\00a0";
+      } 
+    }
+    
+
     #computer {
       right: 0;
       width: 320px;
@@ -538,6 +561,8 @@ button {
   }
 
   #splash {
+
+    width: 1450px !important;
 
     #computer {
       width: 500px;
