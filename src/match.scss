@@ -17,7 +17,7 @@
 $min_width: 320px;
 $max_width: 1200px;
 $min_font: 13px;
-$max_font: 28px;
+$max_font: 26px;
 
 :root {
   @include fluid-type($min_width, $max_width, $min_font, $max_font);
@@ -47,7 +47,7 @@ table {
 button {
   line-height: 1.2;
   border-radius: 5px;
-  padding: 0.8rem 1.6rem;
+  padding: .6rem;
   background-color: $hot-pink;
   color: $white;
   border-radius: 5px;
@@ -55,7 +55,6 @@ button {
   font-family: $helsinki;
   text-transform: uppercase;
   text-align: center;
-  opacity: 0.9;
   @include box-shadow(
     0.2rem 0.2rem 0 rgba(238, 238, 238, 0.1),
     0.4rem 0.4rem 0 rgba(128, 127, 126, 0.2)
@@ -100,6 +99,7 @@ button {
 
 .purple {
   background-color: $purple;
+  background-color: #8b008b;
 }
 
 #splash {
@@ -111,11 +111,11 @@ button {
   height: 100%;
 
   #logo {
-    position: relative;
-    margin: 1.3rem 0 0;
-    z-index: 102;
-    width: 70%;
     align-self: center;
+    position: relative;
+    margin: 5vh 0 0;
+    z-index: 102;
+    height: 16vmax;
   }
 
   #title {
@@ -123,15 +123,14 @@ button {
     @include flex-direction(column);
     @include justify-content(center);
     position: relative;
-    min-height: 7rem;
-    padding: .7rem 2.3rem;
-    line-height: 1;
+    min-height: 20vmax;
+    padding: 2vmax 5vw 2vmax;
     font-size: 2.8rem;
-    font-family: $jaywalker;
+    line-height: 1;
+    font-family: $helsinki;
     color: $white;
-    font-weight: bold;
     text-align: center;
-    text-shadow: 0.3rem 0.3rem 0.3rem rgba(50, 50, 50, 0.25);
+    text-shadow: 0 0 1.6rem rgba(0, 0, 0, 0.1), 0 0 2rem rgba(238, 238, 238, .2);
     z-index: 109;
   }
 
@@ -140,10 +139,9 @@ button {
     @include flex-direction(column);
     @include justify-content(center);
     position: relative;
-    min-height: 1.6rem;
-    padding: .3rem 2.3rem;
-    font-size: 1.1rem;
+    padding: 1vh 5vw;
     line-height: 1.3;
+    font-size: 1.1rem;
     font-family: $rubiklight;
     color: $white;
     text-shadow: 0.1rem 0.1rem 0.1rem rgba(50, 50, 50, 0.25);
@@ -152,12 +150,12 @@ button {
 
   #splash-details {
 
-    padding: .3rem 2.3rem;
+    padding: 0 5vw;
 
     * {
       position: relative;
-      font-size: 1.1rem;
       line-height: 1.3;
+      font-size: 1.1rem;
       font-family: $rubiklight;
       color: $white;
       text-shadow: 0.1rem 0.1rem 0.1rem rgba(50, 50, 50, 0.25);
@@ -173,10 +171,10 @@ button {
   #computer {
     position: absolute;
     bottom: 0 !important;
-    width: 200px;
-    left: calc(50vw - 100px);
+    width: 240px;
+    left: calc(50vw - 120px);
     z-index: 101;
-    opacity: 0.6;
+    opacity: 0.8;
   }
   
   #computer-stars {
@@ -191,12 +189,10 @@ button {
   button#play {
     position: fixed;
     bottom: 5vh !important;
-    min-height: 3.6rem;
-    min-width: 15rem;
+    min-width: 16rem;
     width: 90%;
     left: 5%;
-    font-size: 2rem;
-    line-height: 1;
+    font-size: 1.3rem;
     z-index: 110;
   }
 
@@ -270,6 +266,10 @@ button {
       text-transform: uppercase;
     }
   }
+}
+
+.term.preview {
+  z-index: 111;
 }
 
 .term:hover {
@@ -417,11 +417,16 @@ button {
      /*background-color: blue !important;*/
   }
 
+  #instructions {
+    padding-left: 6vw;
+    padding-right: 6vw;
+  }
+   
   #splash {
 
-    #title {
-      padding-left: 2.3rem;
-      padding-right: 2.3rem;
+    #title, #splash-details {
+      padding-left: 6vw;
+      padding-right: 6vw;
     }
 
     #computer {
@@ -446,14 +451,38 @@ button {
 
   #splash {
 
-    #logo {
-      @include align-self(center);
-      width: 250px;
-    }
+    /*#logo {
+      width: 70vmin;
+    } */
+
+    #instructions {
+      display: none;
+    };
+
+    #splash-details {
+      @include flexbox();
+      @include flex-flow(wrap);
+      justify-content: center;
+      min-height: 1.6rem;
+    
+      * {
+        line-height: 1;
+      }
+
+
+      #matches::before {
+        content: "";
+      }
+
+      #author::before, #topic::before { 
+        content: "\00a0\0000B7\00a0";
+      } 
+  
+    }  
 
     #computer {
-      width: 200px;
-      left: calc(50vw - 100px);
+      width: 240px;
+      left: calc(50vw - 120px);
     }
     
     #computer-stars {
@@ -462,13 +491,9 @@ button {
     }
 
     button#play {
-      width: 15rem;
-      left: calc(50vw - 7.5rem);
+      width: 16rem;
+      left: calc(50vw - 8rem);
     }
-
-    #instructions, #splash-details {
-      display: none;
-    };
 
   }
 
@@ -503,12 +528,18 @@ button {
 
 @media (min-width: 768px) {
     
-  .page-container {
+ /* .page-container {
     background-color: pink !important;
-  } 
+  } */
+
   #splash {
   
+    /*#logo {
+      width: 70vmin;
+    } */
+
     #instructions {
+      @include flexbox();
       text-align: center;
     }
 
@@ -519,6 +550,9 @@ button {
       justify-content: center;
       min-height: 1.6rem;
       
+      * {
+        line-height: 1;
+      }
 
       /* Need to have something that removes the double-arrow added earlier */
       #matches::before {
@@ -530,17 +564,14 @@ button {
       } 
     }
     
-
     #computer {
-      right: 0;
       width: 320px;
-      transform: translate(-480px, 0);
+      left: calc(50vw - 160px);
     }
     
     #computer-stars {
-      right: 0;
       width: 830px;
-      transform: translate(-240px, 12px);
+      left: calc(50vw - 415px);
     }
   
     button#play {
@@ -562,16 +593,22 @@ button {
 
   #splash {
 
-    width: 1450px !important;
+    max-width: 1450px !important;
+
+    #logo {
+      height: 15vmax;
+    }
 
     #computer {
-      width: 500px;
-      transform: translate(250px, 0);
+      left: 100% !important;
+      width: 400px;
+      transform: translate(-240px, 0);
     }
     
     #computer-stars {
-      width: 1200px;
-      transform: translate(600px, 12px);
+      left: 100% !important;
+      width: 1024px;
+      transform: translate(-520px, -120px);
     }
   
   }
