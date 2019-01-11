@@ -64,23 +64,25 @@ class MatchSplash extends Component {
       timeout={timeout}
       transitionStyles={transitionStyles}
       onExited={this.handleExited}>
-        <div id="splash" style={style}>
-          <img id="logo" src="/img/quizdini-logo-complete.png" alt="Quizdini logo" />
-          <div id="title">{title}</div>
-          <div id="instructions">{instructions}</div>
-          <div id="splash-details">
-            <div id="matches">{termCount} matches</div>
-            <div id="topic">{topic}</div>
-            <div id="author">{author}</div>
-          </div>
+        <div id="splash-outer" style={style}>
           <button id="play" onClick={(e) => this.handleClick(e)} style={style}>PLAY {((showResults) ? 'AGAIN' : 'GAME')}</button>
           <img id="computer" src={computer} alt="Computer" />
           <img id="computer-stars" src={computerStars} alt="Computer Stars" /> 
-          { showResults && 
+          <div id="splash-inner">
+            <img id="logo" src="/img/quizdini-logo-complete.png" alt="Quizdini logo" />
+            <div id="title">{title}</div>
+            <div id="instructions">{instructions}</div>
+            <div id="splash-details">
+              <div id="matches">{termCount} matches</div>
+              <div id="topic">{topic}</div>
+              <div id="author">{author}</div>
+            </div>
+            { showResults && 
             <div id="splash-results">
               <div id="score">{score}</div>
             </div> }
-        </div>
+          </div>
+      </div>
     </GameTransition>);
   }
 }

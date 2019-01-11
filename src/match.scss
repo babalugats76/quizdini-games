@@ -102,71 +102,16 @@ button {
   background-color: #8b008b;
 }
 
-#splash {
+#splash-outer {
 
   @include flexbox();
   @include flex-direction(column);
+  @include justify-content(flex-end);
+  @include align-items(center);
   position: relative;
   margin: 0 auto;
   height: 100%;
-
-  #logo {
-    align-self: center;
-    position: relative;
-    margin: 5vh 0 0;
-    z-index: 102;
-    height: 16vmax;
-  }
-
-  #title {
-    @include flexbox();
-    @include flex-direction(column);
-    @include justify-content(center);
-    position: relative;
-    min-height: 20vmax;
-    padding: 2vmax 5vw 2vmax;
-    font-size: 2.8rem;
-    line-height: 1;
-    font-family: $helsinki;
-    color: $white;
-    text-align: center;
-    text-shadow: 0 0 1.6rem rgba(0, 0, 0, 0.1), 0 0 2rem rgba(238, 238, 238, .2);
-    z-index: 109;
-  }
-
-  #instructions {
-    @include flexbox();
-    @include flex-direction(column);
-    @include justify-content(center);
-    position: relative;
-    padding: 1vh 5vw;
-    line-height: 1.3;
-    font-size: 1.1rem;
-    font-family: $rubiklight;
-    color: $white;
-    text-shadow: 0.1rem 0.1rem 0.1rem rgba(50, 50, 50, 0.25);
-    z-index: 109;
-  }
-
-  #splash-details {
-
-    padding: 0 5vw;
-
-    * {
-      position: relative;
-      line-height: 1.3;
-      font-size: 1.1rem;
-      font-family: $rubiklight;
-      color: $white;
-      text-shadow: 0.1rem 0.1rem 0.1rem rgba(50, 50, 50, 0.25);
-      z-index: 109;
-    }
-
-    *::before {
-      content: "\00a0\0000BB\00a0";
-    }
-
-  }
+  padding-bottom: 22vh;
 
   #computer {
     position: absolute;
@@ -185,7 +130,7 @@ button {
     z-index: 100;
     opacity: 0.4;
   }
-
+  
   button#play {
     position: fixed;
     bottom: 5vh !important;
@@ -198,18 +143,72 @@ button {
 
 }
 
-#splash-results {
-  font-family: $jolly-good-sans;
-  font-size: 1.7rem;
-  * {
-    float: left;
-    margin-top: 0.3rem;
-    margin-bottom: 0.3rem;
-    font-family: inherit;
+#splash-inner {
+
+  @include flexbox();
+  @include flex-direction(column);
+  @include justify-content(flex-end);
+  position: relative;
+  min-height: 65vh;
+  
+  #logo {
+    position: absolute;
+    top: -16vmax;
+    height: 16vmax;
+    left: calc(50% - ((16vmax * 2.25) / 2));
+    z-index: 102;
   }
-  *:not(:first-child)::before {
-    content: "\00a0\0000B7\00a0";
+
+  #title {
+    @include flexbox();
+    @include flex-direction(column);
+    @include justify-content(flex-start);
+    position: relative;
+    margin: 0 5vw .5rem;
+    padding: 0;
+    overflow: hidden;
+    max-height: calc(2rem * 3);
+    font-size: 2rem;
+    line-height: 1;
+    font-family: $helsinki;
+    color: $white;
+    text-align: center;
+    text-shadow: 0 0 1.6rem rgba(0, 0, 0, 0.1), 0 0 2rem rgba(238, 238, 238, .2);
+    z-index: 109;
   }
+
+  #instructions {
+    @include flexbox();
+    position: relative;
+    padding: .25rem 5vw;
+    line-height: 1.3;
+    font-size: 1rem;
+    font-family: $rubiklight;
+    color: $white;
+    text-shadow: 0.1rem 0.1rem 0.1rem rgba(50, 50, 50, 0.25);
+    z-index: 109;
+  }
+
+  #splash-details {
+
+    padding: .25rem 5vw;
+
+    * {
+      position: relative;
+      line-height: 1.3;
+      font-size: 1rem;
+      font-family: $rubiklight;
+      color: $white;
+      text-shadow: 0.1rem 0.1rem 0.1rem rgba(50, 50, 50, 0.25);
+      z-index: 109;
+    }
+
+    *::before {
+      content: "\00a0\0000BB\00a0";
+    }
+
+  }
+
 }
 
 .term,
@@ -414,26 +413,34 @@ button {
 @media (min-width: 576px) {
 
   .page-container {
-     /*background-color: blue !important;*/
+     background-color: blue !important;
   }
 
-  #instructions {
-    padding-left: 6vw;
-    padding-right: 6vw;
-  }
-   
-  #splash {
+  #splash-inner {
 
-    #title, #splash-details {
-      padding-left: 6vw;
-      padding-right: 6vw;
+    #title {
+      max-height: calc(2.5rem * 3);
+      font-size: 2.5rem;
     }
+
+    #splash-details * {
+      font-size: 1.1rem;
+    }
+
+    #instructions {
+      text-align: center;
+      font-size: 1.1rem;
+    }
+
+  }
+
+  #splash-outer {
 
     #computer {
       left: calc(50vw - 175px);
       width: 350px;
     }
-
+  
     #computer-stars {
       left: calc(50vw - 480px);
       width: 960px;
@@ -445,19 +452,30 @@ button {
 
 @media (max-device-width: 960px) and (orientation: landscape) {
 
-  /*.page-container {
-    background-color: red !important;
-  }*/
+  .page-container {
+    /* background-color: red !important; */
+  }
 
-  #splash {
+  #splash-outer {
 
-    /*#logo {
-      width: 70vmin;
-    } */
+    #computer {
+      width: 240px;
+      left: calc(50vw - 120px);
+    }
+    
+    #computer-stars {
+      width: 550px;
+      left: calc(50vw - 275px);
+    }
+  
+    button#play {
+      width: 16rem;
+      left: calc(50vw - 8rem);
+    }
 
-    #instructions {
-      display: none;
-    };
+  }
+
+  #splash-inner {
 
     #splash-details {
       @include flexbox();
@@ -469,7 +487,6 @@ button {
         line-height: 1;
       }
 
-
       #matches::before {
         content: "";
       }
@@ -479,21 +496,6 @@ button {
       } 
   
     }  
-
-    #computer {
-      width: 240px;
-      left: calc(50vw - 120px);
-    }
-    
-    #computer-stars {
-      width: 550px;
-      left: calc(50vw - 275px);
-    }
-
-    button#play {
-      width: 16rem;
-      left: calc(50vw - 8rem);
-    }
 
   }
 
@@ -524,65 +526,74 @@ button {
     @include flex-basis(30vw);
     @include flex-grow(0);
   }
-}
+} 
 
 @media (min-width: 768px) {
-    
- /* .page-container {
-    background-color: pink !important;
-  } */
-
-  #splash {
-  
-    /*#logo {
-      width: 70vmin;
-    } */
-
-    #instructions {
-      @include flexbox();
-      text-align: center;
-    }
-
-    #splash-details {
-
-      @include flexbox();
-      @include flex-flow(wrap);
-      justify-content: center;
-      min-height: 1.6rem;
-      
-      * {
-        line-height: 1;
-      }
-
-      /* Need to have something that removes the double-arrow added earlier */
-      #matches::before {
-        content: "";
-      }
-
-      #author::before, #topic::before { 
-        content: "\00a0\0000B7\00a0";
-      } 
-    }
-    
-    #computer {
-      width: 320px;
-      left: calc(50vw - 160px);
-    }
-    
-    #computer-stars {
-      width: 830px;
-      left: calc(50vw - 415px);
-    }
-  
-    button#play {
-      width: 20rem;
-      left: calc(50vw - 10rem);
-    }
-
+ 
+   #splash-outer {
+     
+     #computer {
+       width: 320px;
+       left: calc(50vw - 160px);
+     }
+     
+     #computer-stars {
+       width: 830px;
+       left: calc(50vw - 415px);
+     }
+   
+     button#play {
+       width: 20rem;
+       left: calc(50vw - 10rem);
+     }
+   
   }
-  
-  
+ 
+   #splash-inner {
+   
+     /*@include justify-content(center); */
+ 
+     #title, #instructions, #splash-details {
+      padding-left: 8vw;
+      padding-right: 8vw;
+     }
+ 
+     #instructions {
+       @include justify-content(center);
+       font-size: 1.2rem;
+     }
+
+     #splash-details {
+ 
+       @include flexbox();
+       @include flex-flow(wrap);
+       @include justify-content(center);
+       min-height: 1.6rem;
+       
+       * {
+         font-size: 1.2rem;
+         line-height: 1;
+       }
+       
+       #matches::before {
+         content: "";
+       }
+ 
+       #author::before, #topic::before { 
+         content: "\00a0\0000B7\00a0";
+       } 
+     }
+ 
+   }
+   
 }
+
+@media screen and (min-device-width: 768px) and (max-device-height: 1366px) and (orientation: portrait) {
+  .page-container {
+    background-color: palegreen;
+  }
+}
+
 
 @media (min-width: 1200px) {
   
@@ -591,13 +602,18 @@ button {
       /*background-color: gray !important; */
   }
 
-  #splash {
+  #splash-inner {
+
+    #title {
+      max-height: calc(3rem * 3);
+      font-size: 3rem;
+    }
+
+  }
+
+  #splash-outer {
 
     max-width: 1450px !important;
-
-    #logo {
-      height: 15vmax;
-    }
 
     #computer {
       left: 100% !important;
@@ -612,7 +628,6 @@ button {
     }
   
   }
-  
   
   #match-board {
     position: absolute;
@@ -676,4 +691,33 @@ button {
     min-height: 1.3rem;
     max-height: 3.7rem;
   }
+}
+
+@media screen and (orientation: portrait) {
+  
+  #splash-inner {
+    @include justify-content(center);
+  }
+
+}
+
+@media screen and (max-height: 599px) and (orientation: landscape) {
+
+  .page-container {
+    background-color: pink !important;
+  } 
+
+  #splash-inner {
+    
+    #title {
+      max-height: calc(2.2rem * 3);
+      font-size: 2.2rem;
+    } 
+
+    #instructions {
+      display: none;
+    }
+
+  }
+
 }
