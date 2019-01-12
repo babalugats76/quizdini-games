@@ -87,6 +87,11 @@ button {
     background-repeat: repeat;
   }
 
+  &.triangle {
+    background-image: url("/img/triangle-question-mark.png");
+    background-repeat: repeat;
+  }
+
 }
 
 .beige {
@@ -111,6 +116,8 @@ button {
   position: relative;
   margin: 0 auto;
   height: 100%;
+  padding-top: 1vh;
+  padding-top: .6rem;
   padding-bottom: 22vh;
   padding-bottom: calc(5vh + (1.3rem * 1.2) + 1.8rem);
 
@@ -120,7 +127,7 @@ button {
     width: 240px;
     left: calc(50vw - 120px);
     z-index: 101;
-    opacity: 0.8;
+    opacity: 0.4;
   }
   
   #computer-stars {
@@ -148,40 +155,47 @@ button {
 
   @include flexbox();
   @include flex-direction(column);
-  @include justify-content(flex-end);
+  @include justify-content(space-around);
   position: relative;
-  /*min-height: 65vh; */
+  height: calc(100vh - (5vh + (1.3rem * 1.2) + 2.4rem));
 
   #logo {
     @include justify-content(center);
+    @include flex-grow(0);
+    @include flex-shrink(1);
     position: relative;
-    flex-basis: 240px;
+    max-width: 100%;
+    height: auto;
+    margin: 0 5vw;
+    overflow: auto;
     z-index: 102;
   }
 
   #title {
     @include flexbox();
     @include flex-direction(column);
-    @include justify-content(flex-start);
+    @include justify-content(center);
+    @include flex-grow(5);
+    @include flex-shrink(0);
     position: relative;
-    margin: 0 5vw .5rem;
+    margin: 0 5vw;
     padding: 0;
-    overflow: hidden;
-    max-height: calc(2rem * 3);
     font-size: 2rem;
-    line-height: 1;
-    font-family: $rubikbold;
+    line-height: 1.4;
+    font-family: $jolly-good-sans;
     color: $white;
     text-align: center;
-    text-shadow: 0 0 1.6rem rgba(0, 0, 0, 0.1), 0 0 2rem rgba(238, 238, 238, .2);
+    text-shadow: 0.1rem 0.1rem 0rem rgba(0, 0, 0, 0.1), 0.1rem 0.1rem 0rem rgba(238, 238, 238, 0.1);
     z-index: 109;
   }
 
   #instructions {
     @include flexbox();
+    @include flex-grow(0);
+    @include flex-shrink(0);
     position: relative;
     padding: .25rem 5vw;
-    line-height: 1.3;
+    line-height: .9rem;
     font-size: 1rem;
     font-family: $rubiklight;
     color: $white;
@@ -191,12 +205,14 @@ button {
 
   #splash-details {
 
+    @include flex-grow(0);
+    @include flex-shrink(0);
     padding: .25rem 5vw;
 
     * {
       position: relative;
       line-height: 1.3;
-      font-size: 1rem;
+      font-size: .9rem;
       font-family: $rubiklight;
       color: $white;
       text-shadow: 0.1rem 0.1rem 0.1rem rgba(50, 50, 50, 0.25);
@@ -413,33 +429,18 @@ button {
 @media (min-width: 576px) {
 
   .page-container {
-     background-color: blue !important;
+    /* background-color: blue !important; */
   }
 
   #splash-inner {
 
-    #title {
-      max-height: calc(2.5rem * 3);
-      font-size: 2.5rem;
-    }
-
-    #splash-details * {
-      font-size: 1.1rem;
-    }
-
     #instructions {
       text-align: center;
-      font-size: 1.1rem;
     }
 
   }
 
   #splash-outer {
-
-    #logo {
-      width: 300px;
-      left: calc(50vw - 150px);
-    }
 
     #computer {
       left: calc(50vw - 175px);
@@ -458,15 +459,10 @@ button {
 @media (max-device-width: 960px) and (orientation: landscape) {
 
   .page-container {
-    background-color: red !important;
+    /* background-color: red !important; */
   }
 
   #splash-outer {
-
-    #logo {
-      width: 30%;
-      left: 35%;
-    }
 
     #computer {
       width: 240px;
@@ -570,7 +566,6 @@ button {
  
      #instructions {
        @include justify-content(center);
-       font-size: 1.2rem;
      }
 
      #splash-details {
@@ -581,7 +576,6 @@ button {
        min-height: 1.6rem;
        
        * {
-         font-size: 1.2rem;
          line-height: 1;
        }
        
@@ -600,13 +594,13 @@ button {
 
 @media screen and (min-device-width: 768px) and (max-device-height: 1366px)  {
   .page-container {
-    background-color: orange;
+    /* background-color: orange; */
   }
 }
 
 @media screen and (min-device-width: 768px) and (max-device-height: 1366px) and (orientation: portrait) {
   .page-container {
-    background-color: palegreen;
+    /* background-color: palegreen; */
   }
 }
 
@@ -618,23 +612,14 @@ button {
       /*background-color: gray !important; */
   }
 
-  #splash-inner {
-
-    #title {
-      max-height: calc(3rem * 3);
-      font-size: 3rem;
-    }
-
-  }
-
   #splash-outer {
 
     max-width: 1450px !important;
 
-    #logo {
+    /*#logo {
       width: 40%;
       left: 30%;
-    }
+    }*/
   
     #computer {
       left: 100% !important;
@@ -717,34 +702,28 @@ button {
 @media screen and (orientation: portrait) {
   
   #splash-inner {
-    @include justify-content(center);
+   /* @include justify-content(center); */
   }
 
 }
 
-@media screen and (max-height: 599px) and (orientation: landscape),
-       screen and (max-device-width: 1024px) and (orientation: landscape) {
+/*screen and (max-device-width: 1024px) and (orientation: landscape) { */
+
+@media screen and (max-height: 599px) and (orientation: landscape) {
 
   .page-container {
-    background-color: pink !important;
+     /* background-color: pink !important; */
   } 
 
   #splash-outer {
     
-    #logo {
-      left: unset;
-      width: 175px;
-      right: 1vw;
-    }
+    #computer {
+      display: none;
+    } 
 
   }
 
   #splash-inner {
-    
-    #title {
-      max-height: calc(2.2rem * 3);
-      font-size: 2.2rem;
-    } 
 
     #instructions {
       display: none;
