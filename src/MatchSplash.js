@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import computer from './computer.svg';
 import computerStars from './computer-stars.svg';
-/*import logo from './logo.svg';*/
+import logo from './logo.svg';
 import GameTransition from './GameTransition';
 
 class MatchSplash extends Component {
@@ -65,11 +65,8 @@ class MatchSplash extends Component {
       transitionStyles={transitionStyles}
       onExited={this.handleExited}>
         <div id="splash-outer" style={style}>
-          <button id="play" onClick={(e) => this.handleClick(e)} style={style}>PLAY {((showResults) ? 'AGAIN' : 'GAME')}</button>
-          <img id="computer" src={computer} alt="Computer" />
-          <img id="computer-stars" src={computerStars} alt="Computer Stars" /> 
           <div id="splash-inner">
-            <img id="logo" src="/img/quizdini-logo-complete.png" alt="Quizdini logo" />
+            <img id="logo" src={logo} alt="Quizdini logo" />
             <div id="title">{title}</div>
             <div id="instructions">{instructions}</div>
             <div id="splash-details">
@@ -82,6 +79,9 @@ class MatchSplash extends Component {
               <div id="score">{score}</div>
             </div> }
           </div>
+          <button id="play" onClick={(e) => this.handleClick(e)} style={style}>PLAY {((showResults) ? 'AGAIN' : 'GAME')}</button>
+          <img id="computer" src={computer} alt="Computer" />
+          <img id="computer-stars" src={computerStars} alt="Computer Stars" /> 
       </div>
     </GameTransition>);
   }

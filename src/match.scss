@@ -106,12 +106,13 @@ button {
 
   @include flexbox();
   @include flex-direction(column);
-  @include justify-content(flex-end);
+  @include justify-content(center);
   @include align-items(center);
   position: relative;
   margin: 0 auto;
   height: 100%;
   padding-bottom: 22vh;
+  padding-bottom: calc(5vh + (1.3rem * 1.2) + 1.8rem);
 
   #computer {
     position: absolute;
@@ -149,13 +150,12 @@ button {
   @include flex-direction(column);
   @include justify-content(flex-end);
   position: relative;
-  min-height: 65vh;
-  
+  /*min-height: 65vh; */
+
   #logo {
-    position: absolute;
-    top: -16vmax;
-    height: 16vmax;
-    left: calc(50% - ((16vmax * 2.25) / 2));
+    @include justify-content(center);
+    position: relative;
+    flex-basis: 240px;
     z-index: 102;
   }
 
@@ -170,7 +170,7 @@ button {
     max-height: calc(2rem * 3);
     font-size: 2rem;
     line-height: 1;
-    font-family: $helsinki;
+    font-family: $rubikbold;
     color: $white;
     text-align: center;
     text-shadow: 0 0 1.6rem rgba(0, 0, 0, 0.1), 0 0 2rem rgba(238, 238, 238, .2);
@@ -436,6 +436,11 @@ button {
 
   #splash-outer {
 
+    #logo {
+      width: 300px;
+      left: calc(50vw - 150px);
+    }
+
     #computer {
       left: calc(50vw - 175px);
       width: 350px;
@@ -453,10 +458,15 @@ button {
 @media (max-device-width: 960px) and (orientation: landscape) {
 
   .page-container {
-    /* background-color: red !important; */
+    background-color: red !important;
   }
 
   #splash-outer {
+
+    #logo {
+      width: 30%;
+      left: 35%;
+    }
 
     #computer {
       width: 240px;
@@ -588,6 +598,12 @@ button {
    
 }
 
+@media screen and (min-device-width: 768px) and (max-device-height: 1366px)  {
+  .page-container {
+    background-color: orange;
+  }
+}
+
 @media screen and (min-device-width: 768px) and (max-device-height: 1366px) and (orientation: portrait) {
   .page-container {
     background-color: palegreen;
@@ -615,6 +631,11 @@ button {
 
     max-width: 1450px !important;
 
+    #logo {
+      width: 40%;
+      left: 30%;
+    }
+  
     #computer {
       left: 100% !important;
       width: 400px;
@@ -701,11 +722,22 @@ button {
 
 }
 
-@media screen and (max-height: 599px) and (orientation: landscape) {
+@media screen and (max-height: 599px) and (orientation: landscape),
+       screen and (max-device-width: 1024px) and (orientation: landscape) {
 
   .page-container {
     background-color: pink !important;
   } 
+
+  #splash-outer {
+    
+    #logo {
+      left: unset;
+      width: 175px;
+      right: 1vw;
+    }
+
+  }
 
   #splash-inner {
     
