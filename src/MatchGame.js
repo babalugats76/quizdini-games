@@ -14,6 +14,8 @@ import MatchSplash from './MatchSplash';
 import Timer from './Timer';
 import MatchBoard from './MatchBoard';
 
+import logo from './logo.svg';
+
 class MatchGame extends Component {
 
   /**
@@ -30,7 +32,7 @@ class MatchGame extends Component {
       author: author,
       instructions: instructions,
       termsPerBoard: 9,
-      duration: 100,
+      duration: 1000,
       playing: false,
       showSplash: true,
       showBoard: true,
@@ -269,6 +271,7 @@ class MatchGame extends Component {
            </div>)
         : (<div id="match-container" className="page-container sandpaper beige">
              <Preview generator={generatePreview} />
+             <img id="game-logo" src={logo} alt="Quizdini Logo" />
              { playing && (<Timer
                              correct={correct}
                              duration={duration} 

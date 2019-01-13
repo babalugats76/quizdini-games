@@ -1,15 +1,9 @@
 import React, { Component } from 'react';
-
 import GameTransition from './GameTransition';
-
 import Definition from './Definition';
 import Term from './Term';
 
 class MatchBoard extends Component {
-
-  /*componentDidMount() {
-    setTimeout(() => this.props.onRoundStart(), this.props.wait);
-  } */
 
   renderTerms(termOrder, matches) {
     
@@ -94,7 +88,8 @@ class MatchBoard extends Component {
               show={match.show}
               matched={match.matched}>
             </Definition>
-        </GameTransition>);
+        </GameTransition>
+        );
     });
   }
 

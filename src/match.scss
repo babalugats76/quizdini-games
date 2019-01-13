@@ -11,8 +11,8 @@
 
 $min_width: 320px;
 $max_width: 1200px;
-$min_font: 13px;
-$max_font: 26px;
+$min_font: 16px;
+$max_font: 24px;
 
 :root {
   @include fluid-type($min_width, $max_width, $min_font, $max_font);
@@ -131,7 +131,7 @@ button {
   height: calc(100vh - (5vh + (1.3rem * 1.2) + 2.4rem));
 }
 
-#logo {
+#splash-logo {
   @include justify-content(center);
   @include flex-grow(0);
   @include flex-shrink(1);
@@ -152,12 +152,12 @@ button {
   position: relative;
   margin: 0 5vw;
   padding: 0;
-  font-size: 2rem;
-  line-height: 1.4;
+  font-size: 2.3rem;
+  line-height: 1.2;
   font-family: $jolly-good-sans;
   color: $white;
   text-align: center;
-  text-shadow: 0.1rem 0.15rem 0rem rgba(0, 0, 0, 0.1), 0.1rem 0.15rem 0rem rgba(238, 238, 238, 0.1);
+  text-shadow: 2px 4px 3px rgba(0,0,0,0.1);
   z-index: 109;
 }
 
@@ -397,6 +397,23 @@ button#play {
   overflow-y: visible;
 }
 
+#game-logo {
+  display: none;
+  position: absolute;
+  width: 8rem;
+  bottom: calc(3vw *.67);
+  left: calc(3vw);
+}
+
+#timer {
+  position: fixed;
+  width: calc(4.2rem + 2vw);
+  max-width: 12rem;
+  bottom: calc(3vw *.67);
+  right: calc(3vw);
+  z-index: 112;
+}
+
 .timer {
   width: 100%;
 }
@@ -414,7 +431,8 @@ button#play {
   fill: $white;
   font-family: $helsinki;
   font-weight: bold;
-  font-size: 1.2rem;
+  font-size: 2.1rem;
+  letter-spacing: .05rem;
   baseline-shift: -31%;
   text-anchor: middle;
   transition: width 1s ease-in-out;
@@ -627,14 +645,6 @@ button#play {
     padding-right: 2vw;
   }
   
-  #timer {
-    width: 11vw;
-    z-index: 105;
-    position: absolute;
-    bottom: 6vh !important;
-    right: 4vw !important;
-  }
-  
   .term,
   .definition {
     width: 14vw;
@@ -660,6 +670,11 @@ button#play {
     min-height: 1.3rem;
     max-height: 3.7rem;
   }
+
+  #game-logo {
+    display: block;
+    background-color: $purple;
+  }
 }
 
 @media screen and (orientation: portrait) {
@@ -675,7 +690,7 @@ button#play {
 @media screen and (max-height: 599px) and (orientation: landscape) {
 
   .page-container {
-     /* background-color: pink !important; */
+     background-color: pink !important;
   } 
   
   #computer {

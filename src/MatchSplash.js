@@ -56,17 +56,18 @@ class MatchSplash extends Component {
     };
 
     /* Render splash screen, wrapped in a transition */
-    return (<GameTransition
-      mountOnEnter={false}
-      unmountOnExit={true}
-      appear={true}
-      in={show}
-      timeout={timeout}
-      transitionStyles={transitionStyles}
-      onExited={this.handleExited}>
+    return (
+      <GameTransition
+        mountOnEnter={false}
+        unmountOnExit={true}
+        appear={true}
+        in={show}
+        timeout={timeout}
+        transitionStyles={transitionStyles}
+        onExited={this.handleExited}>
         <div id="splash-outer" style={style}>
           <div id="splash-inner">
-            <img id="logo" src={logo} alt="Quizdini logo" />
+            <img id="splash-logo" src={logo} alt="Quizdini logo" />
             <div id="title">{title}</div>
             <div id="instructions">{instructions}</div>
             <div id="splash-details">
@@ -74,16 +75,17 @@ class MatchSplash extends Component {
               <div id="topic">{topic}</div>
               <div id="author">{author}</div>
             </div>
-            { showResults && 
-            <div id="splash-results">
-              <div id="score">{score}</div>
-            </div> }
+            {showResults &&
+              <div id="splash-results">
+                <div id="score">{score}</div>
+              </div>}
           </div>
           <button id="play" onClick={(e) => this.handleClick(e)} style={style}>PLAY {((showResults) ? 'AGAIN' : 'GAME')}</button>
           <img id="computer" src={computer} alt="Computer" />
-          <img id="computer-stars" src={computerStars} alt="Computer Stars" /> 
-      </div>
-    </GameTransition>);
+          <img id="computer-stars" src={computerStars} alt="Computer Stars" />
+        </div>
+      </GameTransition>
+    );
   }
 }
 
