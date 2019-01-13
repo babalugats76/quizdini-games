@@ -24,32 +24,15 @@ body {
   background-color: $white;
 }
 
-button {
-  line-height: 1.2;
-  border-radius: 5px;
-  padding: .6rem;
-  background-color: $hot-pink;
-  color: $white;
-  border-radius: 5px;
-  border: 3px solid $white-alpha9;
-  font-family: $helsinki;
-  text-transform: uppercase;
-  text-align: center;
-  @include box-shadow(
-    0.2rem 0.2rem 0 rgba(238, 238, 238, 0.1),
-    0.4rem 0.4rem 0 rgba(128, 127, 126, 0.2)
-  );
-}
-
 .quizdini-app {
   @include flexbox;
   @include flex-direction(column);
   position: relative;
   min-height: 100vh;
+  font-size: 1.5rem;
 }
 
 .page-container {
-  
   position: relative;
   width: 100%;
   height: 100vh;
@@ -102,10 +85,8 @@ button {
   position: relative;
   margin: 0 auto;
   height: 100%;
-  padding-top: 1vh;
-  padding-top: .6rem;
-  padding-bottom: 22vh; /* Fallback for 1980s browsers */
-  padding-bottom: calc(5vh + (1.3rem * 1.2) + 1.8rem);
+  padding-top: .5em;
+  padding-bottom: calc(5vh + (1.25em * 1.2) + 1.75em);
 }
 
 #splash-inner {
@@ -114,14 +95,14 @@ button {
   @include justify-content(space-around);
   @include align-items(center);
   position: relative;
-  height: calc(100vh - (5vh + (1.3rem * 1.2) + 2.4rem));
+  height: calc(100vh - (5vh + (1.25em * 1.2) + 2.25em));
 }
 
 #splash-logo {
   @include justify-content(center);
   @include flex-grow(2);
   @include flex-shrink(1);
-  @include flex-basis(5rem);
+  @include flex-basis(6em);
   position: relative;
   max-width: 100%;
   height: auto;
@@ -139,14 +120,14 @@ button {
   position: relative;
   margin: 0 5vw;
   padding: 0;
-  font-size: 1.6rem;
+  font-size: 1.75em;
   line-height: 1.2;
-  min-height: calc(1.6rem * 1.2 * 3);
-  max-width: 21ch;
+  min-height: calc(1.75em * 1.2 * 2);
+  max-width: 16ch;
   font-family: $jolly-good-sans;
   color: $white;
   text-align: center;
-  text-shadow: 2px 4px 3px rgba(0,0,0,0.1);
+  text-shadow: .125em .125em .125em rgba(0,0,0,0.1);
   z-index: 109;
 }
 
@@ -155,12 +136,12 @@ button {
   @include flex-grow(1);
   @include flex-shrink(0);
   position: relative;
-  padding: .25rem 5vw;
+  padding: .25em 5vw;
   line-height: 1.3;
-  font-size: .9rem;
+  font-size: 1em;
   font-family: $rubik;
   color: $white;
-  text-shadow: 0.1rem 0.05rem 0rem rgba(0, 0, 0, .1);
+  text-shadow: 0.125em 0.125em 0 rgba(0, 0, 0, .1);
   z-index: 109;
 }
 
@@ -170,15 +151,15 @@ button {
   @include flex-grow(1);
   @include flex-shrink(0);
 
-  padding: .5rem 5vw;
+  padding: .5em 5vw;
+  font-size: .875em;
 
   * {
     position: relative;
     line-height: 1.3;
-    font-size: .9rem;
     font-family: $rubik;
     color: $white;
-    text-shadow: 0.1rem 0.1rem 0.1rem rgba(50, 50, 50, 0.25);
+    text-shadow: 0.125em 0.125em 0 rgba(0, 0, 0, 0.1);
     z-index: 109;
   }
 
@@ -206,12 +187,25 @@ button {
   opacity: 0.4;
 }
 
-button#play {
+#play {
   position: fixed;
   bottom: 5vh !important;
-  min-width: 16rem;
-  font-size: 1.3rem;
+  min-width: 14em;
+  font-size: 1.25em;
+  padding: .5em;
+  line-height: 1.2;
+  border-radius: 2px;
+  background-color: $hot-pink;
+  color: $white;
+  border: 2px solid $white-alpha9;
+  font-family: $helsinki;
+  text-transform: uppercase;
+  text-align: center;
   z-index: 110;
+  @include box-shadow(
+    0.125em 0.125em 0 rgba(238, 238, 238, 0.1),
+    0.25em 0.25em 0 rgba(128, 127, 126, 0.2)
+  );
 }
 
 .term,
@@ -222,21 +216,22 @@ button#play {
   text-align: center;
   min-width: 0; /* Necessary for broadest flex support */
   width: 80%;
-  margin: 0.3rem;
+  margin: .3125em;
   margin: calc(100vmax / 320);
   @include user-select(none);
   z-index: 102;
 }
 
 .term {
-  border-radius: 3px;
-  padding: 3px;
+  border-radius: 2px;
+  padding: .25em;
   background-image: url("https://www.transparenttextures.com/patterns/brilliant.png");
   background-repeat: repeat;
   @include box-shadow(
-    0.2rem 0.2rem 0 rgba(238, 238, 238, 0.1),
-    0.4rem 0.4rem 0 rgba(128, 127, 126, 0.2)
+    0.125em 0.25em 0 rgba(238, 238, 238, 0.1),
+    0.25em 0.25em 0 rgba(128, 127, 126, 0.2)
   );
+
   /* Colors for tiles */
   $tileColors: (
     ("red", $red, $white, $white-alpha9),
@@ -260,7 +255,7 @@ button#play {
     }
     &.#{$color}:hover,
     &.#{$color}.dragging {
-      border: 3px solid $borderColor;
+      border: 2px solid $borderColor;
       transform: scale(1.06, 1.06);
       transition: transform 0.1s cubic-bezier(0.25, 0.8, 0.25, 1) !important;
     }
@@ -276,22 +271,22 @@ button#play {
 
 .term:hover {
   @include box-shadow(
-    0 0.6rem 1.2rem rgba(0, 0, 0, 0.19),
-    0 0.3rem 0.3rem rgba(0, 0, 0, 0.23)
+    0 .5em 1em rgba(0, 0, 0, 0.19),
+    0 .375em 0.375em rgba(0, 0, 0, 0.23)
   );
 }
 
 .definition {
   border-radius: 2px;
-  padding: 3px;
+  padding: .25em;
   background-color: $gray-light-light;
   touch-action: none;
   background-color: $logo-white;
   background-image: linear-gradient(90deg, transparent 23px, #abced4 23px, #abced4 25px, transparent 25px), linear-gradient(#eee 0.1em, transparent 0.1em);
   background-size: 100% 1.2em;
   @include box-shadow(
-    0 0.1rem 0.3rem rgba(0, 0, 0, 0.12),
-    0 0.1rem 0.3rem rgba(0, 0, 0, 0.24)
+    0 0.125em 0.25em rgba(0, 0, 0, 0.12),
+    0 0.125em 0.25em rgba(0, 0, 0, 0.24)
   );
 }
 
@@ -305,22 +300,22 @@ button#play {
 
 .term-text {
   background: inherit;
-  min-height: 1.1rem;
-  padding: 0.15rem 0.35rem;
+  min-height: 1.1em;
+  padding: 0.125em 0.375em;
   font-family: $rubik;
   line-height: 1.1;
   font-weight: bold;
-  font-size: 0.95rem;
+  font-size: 1em;
 }
 
 .definition-text {
-  min-height: 1.3rem;
-  padding: 0.15rem 0.35rem;
+  min-height: 1.3em;
+  padding: 0.125em 0.375em;
   font-family: $jolly-good-sans;
   line-height: 1.3;
   color: $graphite;
   font-weight: bold;
-  font-size: 0.8rem;
+  font-size: 0.875em;
 }
 
 .term.matched,
@@ -344,11 +339,11 @@ button#play {
 }
 
 .term.expand {
-  border: 3px solid $white;
+  border: 2px solid $white;
 }
 
 .definition.expand {
-  border: 3px solid $graphite;
+  border: 2px solid $graphite;
 }
 
 .term.expand > .term-text,
@@ -389,15 +384,15 @@ button#play {
 #game-logo {
   display: none;
   position: absolute;
-  width: 8rem;
+  width: 8em;
   bottom: calc(3vw *.67);
   left: calc(3vw);
 }
 
 #timer {
   position: fixed;
-  width: calc(4.2rem + 2vw);
-  max-width: 12rem;
+  width: calc(4.2em + 2vw);
+  max-width: 12em;
   bottom: calc(3vw *.67);
   right: calc(3vw);
   z-index: 112;
@@ -420,8 +415,8 @@ button#play {
   fill: $white;
   font-family: $helsinki;
   font-weight: bold;
-  font-size: 2.1rem;
-  letter-spacing: .05rem;
+  font-size: 2em;
+  letter-spacing: .05em;
   baseline-shift: -31%;
   text-anchor: middle;
   transition: width 1s ease-in-out;
@@ -433,8 +428,8 @@ button#play {
 
 @media (min-width: 600px) {
 
-  html {
-    font-size: 1.375em;
+  .quizdini-app {
+    font-size: 2.4em;
   }
 
   .page-container {
@@ -455,23 +450,18 @@ button#play {
     width: 960px;
   }
 
-  /*button#play {
-    width: 16rem;
-    left: calc(50vw - 8rem);
-  }*/
-
 }
 
 /* Small, low-height landscape */
 /* To, do: Show computer and move computer and stars to the right */
-@media (min-width: 600px) and (max-height: 600px) and (max-width: 900px) and (orientation: landscape) {
+@media (min-width: 480px) and (max-height: 600px) and (max-width: 900px) and (orientation: landscape) {
 
-  html {
-    font-size: 1.250em;
-  }
+  .quizdini-app {
+    font-size: 1.4rem;
+  } 
 
   .page-container {
-     background-color: pink !important;
+    background-color: pink !important;
   } 
   
   #computer {
@@ -496,7 +486,7 @@ button#play {
     @include flex-flow(wrap);
     @include align-self(center);
     @include justify-content(center);
-    min-height: 1.6rem;
+    /*min-height: 1.6rem;*/
   
     * {
       line-height: 1;
@@ -513,9 +503,9 @@ button#play {
 }
 
 @media (min-width: 900px) {
- 
-  html {
-    font-size: 2em;
+
+  .quizdini-app {
+    font-size: 2.6rem;
   }
 
   #computer {
@@ -528,21 +518,16 @@ button#play {
     left: calc(50vw - 415px);
   }
 
-  /*button#play {
-    width: 20rem;
-    left: calc(50vw - 10rem);
-  } */
-
 }
 
 @media (min-width: 900px) and (orientation: landscape) {
 
-  html {
-    font-size: 1.625em;
+  .quizdini-app {
+    font-size: 2.4rem;
   }
 
   .page-container {
-    background-color: red !important;
+    background-color: brown !important;
   }
 
   #computer {
@@ -584,29 +569,28 @@ button#play {
   }
 } 
 
-
-@media screen and (min-width: 768px) and (max-height: 1366px)  {
+/* Large mobile/tablets in portrait, e.g., Nexus 10, iPads, etc. */
+@media screen and (min-width: 768px) and (max-height: 1367px) and (orientation: portrait) {
   .page-container {
-    background-color: orange; 
+    background-color: palegreen !important;
   }
-}
 
-@media screen and (min-width: 768px) and (max-height: 1366px) and (orientation: portrait) {
-  .page-container {
-    background-color: palegreen;
+  .quizdini-app {
+    font-size: 3.2rem;
   }
+
 }
 
 
 @media (min-width: 1200px) {
   
-   html {
-     font-size: 2.25em;
-   }
+  .quizdini-app {
+    font-size: 3rem;
+  }
 
   .page-container {
     max-width: none;
-    background-color: red;
+    background-color: red !important;
   }
 
   #splash-outer {
@@ -658,8 +642,8 @@ button#play {
   .definition {
     width: 14vw;
     height: 8vw;
-    min-height: 3.6rem;
-    margin: 0.3rem;
+    min-height: 3.25em;
+    margin: 0.1875em;
     @include flex-basis(14vw);
     @include flex-grow(0);
     overflow: hidden;
@@ -671,13 +655,13 @@ button#play {
   }
   
   .term-text {
-    min-height: 1.3rem;
-    max-height: 4.1rem;
+    min-height: 1.25em;
+    max-height: 4em;
   }
   
   .definition-text {
-    min-height: 1.3rem;
-    max-height: 3.7rem;
+    min-height: 1.125em;
+    max-height: 3.625em;
   }
 
   #game-logo {
@@ -685,14 +669,3 @@ button#play {
     background-color: $purple;
   }
 }
-
-@media screen and (orientation: portrait) {
-  
-  #splash-inner {
-   /* @include justify-content(center); */
-  }
-
-}
-
-/*screen and (max-device-width: 1024px) and (orientation: landscape) { */
-
