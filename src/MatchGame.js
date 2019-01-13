@@ -8,6 +8,7 @@ import shortid from 'shortid';
 
 import { shuffleArray } from './utilities.js';
 import data from './match2.json';
+import './normalize.css';
 import './match.scss';
 
 import MatchSplash from './MatchSplash';

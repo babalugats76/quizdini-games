@@ -9,20 +9,10 @@
 @include font-face($rubikbold, "/fonts/rubik-bold-webfont");
 @include font-face($rubiklight, "/fonts/rubik-light-webfont");
 
-$min_width: 320px;
-$max_width: 1200px;
-$min_font: 16px;
-$max_font: 24px;
-
-:root {
-  @include fluid-type($min_width, $max_width, $min_font, $max_font);
-}
-
 * {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
-  @include fluid-type($min_width, $max_width, $min_font, $max_font);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -32,11 +22,6 @@ body {
   width: 100%;
   height: 100%;
   background-color: $white;
-}
-
-table {
-  border-collapse: collapse;
-  border-spacing: 0;
 }
 
 button {
@@ -127,14 +112,16 @@ button {
   @include flexbox();
   @include flex-direction(column);
   @include justify-content(space-around);
+  @include align-items(center);
   position: relative;
   height: calc(100vh - (5vh + (1.3rem * 1.2) + 2.4rem));
 }
 
 #splash-logo {
   @include justify-content(center);
-  @include flex-grow(0);
+  @include flex-grow(2);
   @include flex-shrink(1);
+  @include flex-basis(5rem);
   position: relative;
   max-width: 100%;
   height: auto;
@@ -147,13 +134,15 @@ button {
   @include flexbox();
   @include flex-direction(column);
   @include justify-content(center);
-  @include flex-grow(5);
+  @include flex-grow(3);
   @include flex-shrink(0);
   position: relative;
   margin: 0 5vw;
   padding: 0;
-  font-size: 2.3rem;
+  font-size: 1.6rem;
   line-height: 1.2;
+  min-height: calc(1.6rem * 1.2 * 3);
+  max-width: 21ch;
   font-family: $jolly-good-sans;
   color: $white;
   text-align: center;
@@ -163,7 +152,7 @@ button {
 
 #instructions {
   @include flexbox();
-  @include flex-grow(0);
+  @include flex-grow(1);
   @include flex-shrink(0);
   position: relative;
   padding: .25rem 5vw;
@@ -177,9 +166,11 @@ button {
 
 #splash-details {
 
-  @include flex-grow(0);
+  @include align-self(flex-start);
+  @include flex-grow(1);
   @include flex-shrink(0);
-  padding: .25rem 5vw;
+
+  padding: .5rem 5vw;
 
   * {
     position: relative;
@@ -219,8 +210,6 @@ button#play {
   position: fixed;
   bottom: 5vh !important;
   min-width: 16rem;
-  width: 90%;
-  left: 5%;
   font-size: 1.3rem;
   z-index: 110;
 }
@@ -442,10 +431,14 @@ button#play {
   fill: $black-alpha4;
 }
 
-@media (min-width: 576px) {
+@media (min-width: 600px) {
+
+  html {
+    font-size: 1.375em;
+  }
 
   .page-container {
-    /* background-color: blue !important; */
+    background-color: blue !important; 
   }
 
   #instructions {
@@ -462,33 +455,47 @@ button#play {
     width: 960px;
   }
 
-}
-
-@media (max-device-width: 960px) and (orientation: landscape) {
-
-  .page-container {
-    /* background-color: red !important; */
-  }
-
-  #computer {
-    width: 240px;
-    left: calc(50vw - 120px);
-  }
-  
-  #computer-stars {
-    width: 550px;
-    left: calc(50vw - 275px);
-  }
-
-  button#play {
+  /*button#play {
     width: 16rem;
     left: calc(50vw - 8rem);
+  }*/
+
+}
+
+/* Small, low-height landscape */
+/* To, do: Show computer and move computer and stars to the right */
+@media (min-width: 600px) and (max-height: 600px) and (max-width: 900px) and (orientation: landscape) {
+
+  html {
+    font-size: 1.250em;
+  }
+
+  .page-container {
+     background-color: pink !important;
+  } 
+  
+  #computer {
+    display: none;
+  } 
+
+  #instructions {
+    display: none;
+  }
+
+}
+
+/* Medium mobile and up, including small, low-height landscape */ 
+@media (min-width: 600px), (max-height: 600px) and (max-width: 900px) and (orientation: landscape) {
+
+  #instructions {
+    @include justify-content(center);
   }
 
   #splash-details {
     @include flexbox();
     @include flex-flow(wrap);
-    justify-content: center;
+    @include align-self(center);
+    @include justify-content(center);
     min-height: 1.6rem;
   
     * {
@@ -502,6 +509,50 @@ button#play {
     #author::before, #topic::before { 
       content: "\00a0\0000B7\00a0";
     } 
+  }
+}
+
+@media (min-width: 900px) {
+ 
+  html {
+    font-size: 1.75em;
+  }
+
+  #computer {
+    width: 320px;
+    left: calc(50vw - 160px);
+  }
+  
+  #computer-stars {
+    width: 830px;
+    left: calc(50vw - 415px);
+  }
+
+  /*button#play {
+    width: 20rem;
+    left: calc(50vw - 10rem);
+  } */
+
+}
+
+@media (min-width: 900px) and (orientation: landscape) {
+
+  html {
+    font-size: 1.625em;
+  }
+
+  .page-container {
+    background-color: red !important;
+  }
+
+  #computer {
+    width: 240px;
+    left: calc(50vw - 120px);
+  }
+  
+  #computer-stars {
+    width: 550px;
+    left: calc(50vw - 275px);
   }
 
   #match-board {
@@ -533,75 +584,33 @@ button#play {
   }
 } 
 
-@media (min-width: 768px) {
- 
-  #computer {
-    width: 320px;
-    left: calc(50vw - 160px);
-  }
-  
-  #computer-stars {
-    width: 830px;
-    left: calc(50vw - 415px);
-  }
 
-  button#play {
-    width: 20rem;
-    left: calc(50vw - 10rem);
-  }
- 
-  #title, #instructions, #splash-details {
-    padding-left: 8vw;
-    padding-right: 8vw;
-   }
-
-   #instructions {
-     @include justify-content(center);
-   }
-
-   #splash-details {
-
-     @include flexbox();
-     @include flex-flow(wrap);
-     @include justify-content(center);
-     min-height: 1.6rem;
-     
-     * {
-       line-height: 1;
-     }
-     
-     #matches::before {
-       content: "";
-     }
-
-     #author::before, #topic::before { 
-       content: "\00a0\0000B7\00a0";
-     } 
-   }
-
- }
-
-@media screen and (min-device-width: 768px) and (max-device-height: 1366px)  {
+@media screen and (min-width: 768px) and (max-height: 1366px)  {
   .page-container {
-    /* background-color: orange; */
+    background-color: orange; 
   }
 }
 
-@media screen and (min-device-width: 768px) and (max-device-height: 1366px) and (orientation: portrait) {
+@media screen and (min-width: 768px) and (max-height: 1366px) and (orientation: portrait) {
   .page-container {
-    /* background-color: palegreen; */
+    background-color: palegreen;
   }
 }
 
 
 @media (min-width: 1200px) {
   
+   html {
+     font-size: 2em;
+   }
+
   .page-container {
     max-width: none;
+    background-color: red;
   }
 
   #splash-outer {
-    max-width: 1450px !important;
+    max-width: 1440px !important;
   }
 
   #computer {
@@ -687,18 +696,3 @@ button#play {
 
 /*screen and (max-device-width: 1024px) and (orientation: landscape) { */
 
-@media screen and (max-height: 599px) and (orientation: landscape) {
-
-  .page-container {
-     background-color: pink !important;
-  } 
-  
-  #computer {
-    display: none;
-  } 
-
-  #instructions {
-    display: none;
-  }
-
-}
