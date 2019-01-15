@@ -270,7 +270,7 @@ class MatchGame extends Component {
                 showResults={showResults}
                 score={score} />
            </div>)
-        : (<div id="match-container" className="page-container sandpaper beige">
+        : (<div id="match-container" className="page-container sandpaper banana">
              <Preview generator={generatePreview} />
              <img id="game-logo" src={logo} alt="Quizdini Logo" />
              { playing && (<Timer
