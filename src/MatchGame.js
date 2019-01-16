@@ -258,7 +258,7 @@ class MatchGame extends Component {
     const { title, termCount, topic, author, instructions, playing, showSplash, showBoard, showResults, duration, correct, incorrect, score, matches, termOrder, definitionOrder } = this.state;
     return (
       showSplash
-        ? (<div id="splash-container" className="page-container sandpaper purple">
+        ? (<div id="splash-container" className="page-container cardboard silver">
               <MatchSplash 
                 title={title}
                 termCount={termCount}

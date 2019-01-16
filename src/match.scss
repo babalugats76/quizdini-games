@@ -67,6 +67,11 @@ body {
     background-repeat: repeat;
   }
 
+  &.cardboard {
+    background-image: url("/img/triangle-question-mark.png"), url("https://www.transparenttextures.com/patterns/cardboard-flat.png");
+    background-repeat: repeat;
+  }
+
   &.purple {
     background-color: $purple !important;
   }
@@ -93,6 +98,10 @@ body {
 
   &.seashell {
     background-color: $seashell !important;
+  }
+
+  &.silver {
+    background-color: $silver !important;
   }
 
 }
