@@ -1,17 +1,15 @@
 @import "./variables";
 @import "./mixins";
 
-@include font-face($jolly-good-sans, "/fonts/jollygoodsans-basic-webfont");
 @include font-face($helsinki, "/fonts/helsinki-webfont");
 @include font-face($jaywalker, "/fonts/jaywalker-regular-webfont");
 @include font-face($rubik, "/fonts/rubik-regular-webfont");
 @include font-face($rubikmedium, "/fonts/rubik-medium-webfont");
 @include font-face($rubikbold, "/fonts/rubik-bold-webfont");
 @include font-face($rubiklight, "/fonts/rubik-light-webfont");
-@include font-face($jollygoodsans, "/fonts/fontspring-demo-jollygoodsans-regular");
-@include font-face($jollygoodsans-black, "/fonts/fontspring-demo-jollygoodsans-black");
-@include font-face($piersans, "/fonts/piersans-regular-webfont");
-@include font-face($jollygoodsans-bold, "/fonts/fontspring-demo-jollygoodsans-bold");
+@include font-face($jollygoodsans, "/fonts/jollygoodsans-regular-webfont");
+@include font-face($jollygoodsansbold, "/fonts/jollygoodsans-bold-webfont");
+@include font-face($jollygoodsanslight, "/fonts/jollygoodsans-light-webfont");
 
 * {
   box-sizing: border-box;
@@ -44,6 +42,11 @@ body {
   max-width: 1200px;
   margin: 0 auto;
   
+  &.assault {
+    background-image: url("/img/triangle-question-mark.png"), url("https://www.transparenttextures.com/patterns/assault.png");
+    background-repeat: repeat;
+  }
+
   &.sandpaper {
     background-image: url("/img/triangle-question-mark.png"), url("https://www.transparenttextures.com/patterns/sandpaper.png");
     background-repeat: repeat;
@@ -88,6 +91,10 @@ body {
     background-color: $gray-light !important; 
   }
 
+  &.seashell {
+    background-color: $seashell !important;
+  }
+
 }
 
 .brilliant {
@@ -96,7 +103,7 @@ body {
 }
 
 .triangle-brilliant {
-  background-image: url("/img/triangle-question-mark.png"), url('/img/brilliant.png'),  ;
+  background-image: url("/img/triangle-question-mark.png"), url('/img/brilliant.png') ;
   background-repeat: repeat;
 }
 
@@ -119,17 +126,18 @@ body {
   @include align-items(center);
   position: relative;
   height: calc(100vh - (5vh + (1.25em * 1.2) + 2.25em));
+  margin: 0 1em;
 }
 
 #splash-logo {
   @include justify-content(center);
-  @include flex-grow(2);
-  @include flex-shrink(2);
-  @include flex-basis(8em);
+  @include flex-grow(1);
+  @include flex-shrink(1);
+  @include flex-basis(auto);
   position: relative;
   max-width: 100%;
+  max-height: 35vh;
   height: auto;
-  margin: 0 5vw;
   overflow: auto;
   z-index: 102;
 }
@@ -138,55 +146,53 @@ body {
   @include flexbox();
   @include flex-direction(column);
   @include justify-content(center);
-  @include flex-grow(2);
-  @include flex-shrink(0);
+  @include flex-grow(1);
+  @include flex-shrink(1);
   position: relative;
-  margin: 0 5vw;
+  margin: 0 0 .5em;
   padding: 0;
   font-size: 1.8em;
   line-height: 1.3;
-  min-height: calc(1.8em * 1.3 * 2);
   max-width: 21ch;
   letter-spacing: 1px;
-  font-family: $jolly-good-sans;
-  font-family: $jollygoodsans;
-  font-family: $jollygoodsans-black;
-  font-family: $jollygoodsans-bold;
-  color: $white;
+  font-family: $jollygoodsansbold;
+  color: $cadet-grey;
   text-align: center;
-  text-shadow: .125em .125em .125em rgba(0,0,0,0.1);
+  /*text-shadow: .125em .125em .125em rgba(0,0,0,0.1);*/
   z-index: 109;
 }
 
 #instructions {
   @include flexbox();
   @include flex-grow(1);
-  @include flex-shrink(0);
+  @include flex-shrink(1);
+  @include align-items(center);
   position: relative;
-  padding: .25em 5vw;
+  margin: .25em 0;
   line-height: 1.3;
   font-size: 1em;
-  font-family: $rubik;
-  color: $white;
-  text-shadow: 0.125em 0.125em 0 rgba(0, 0, 0, .1);
+  font-family: 'Nunito Sans';
+  color: $cadet-grey;
+  /*text-shadow: 0.125em 0.125em 0 rgba(0, 0, 0, .1);*/
   z-index: 109;
 }
 
 #splash-details {
 
-  @include align-self(flex-start);
   @include flex-grow(1);
-  @include flex-shrink(0);
+  @include flex-shrink(1);
+  @include align-items(center);
+  @include align-self(flex-start);
 
-  padding: .5em 5vw;
+  margin: .25em 0 1em;
   font-size: .875em;
 
   * {
     position: relative;
     line-height: 1.3;
-    font-family: $rubik;
-    color: $white;
-    text-shadow: 0.125em 0.125em 0 rgba(0, 0, 0, 0.1);
+    font-family: 'Nunito Sans';
+    color: $cadet-grey;
+    /*text-shadow: 0.125em 0.125em 0 rgba(0, 0, 0, 0.1);*/
     z-index: 109;
   }
 
@@ -202,7 +208,7 @@ body {
   width: 240px;
   left: calc(50vw - 120px);
   z-index: 101;
-  opacity: 0.5;
+  opacity: 1;
 }
 
 #computer-stars {
@@ -222,17 +228,17 @@ body {
   padding: .5em;
   line-height: 1.2;
   border-radius: 2px;
-  background-color: $hot-pink;
-  color: $white;
-  border: 2px solid $white-alpha9;
+  background-color: $chinese-violet;
+  color: $seashell;
+  border: 2px solid $seashell;
   font-family: $helsinki;
   text-transform: uppercase;
   text-align: center;
   z-index: 110;
-  @include box-shadow(
+  /*@include box-shadow(
     0.125em 0.125em 0 rgba(238, 238, 238, 0.1),
     0.25em 0.25em 0 rgba(128, 127, 126, 0.2)
-  );
+  );*/
 }
 
 .term,
@@ -305,12 +311,12 @@ body {
 
 .definition {
   border-radius: 2px;
-  padding: .25em;
+  /*padding: .25em;*/
   background-color: $gray-light-light;
   touch-action: none;
   background-color: $logo-white;
   background-image: linear-gradient(90deg, transparent 23px, #abced4 23px, #abced4 25px, transparent 25px), linear-gradient(#eee 0.1em, transparent 0.1em);
-  background-size: 100% 1.2em;
+  background-size: 100% calc(.75em * 1.5);
   @include box-shadow(
     0 0.125em 0.25em rgba(0, 0, 0, 0.12),
     0 0.125em 0.25em rgba(0, 0, 0, 0.24)
@@ -327,8 +333,6 @@ body {
 
 .term-text {
   background: inherit;
-  /*min-height: calc((1em * 1.1 * 1) + (.25em * 2)); */
-  padding: 0 .5em;
   font-family: $rubik;
   line-height: 1.1;
   font-weight: bold;
@@ -336,11 +340,8 @@ body {
 }
 
 .definition-text {
-  /*min-height: calc((.875em * 1.2 * 1) + (.25em * 2)); */
-  padding: 0 .5em;
-  font-family: $jolly-good-sans;
   font-family: $jollygoodsans;
-  line-height: 1.2;
+  line-height: 1.5;
   color: $graphite;
   font-weight: bold;
   font-size: 0.75em;
@@ -578,22 +579,22 @@ body {
 
   #term-container,
   #definition-container {
-    min-height: 40vh;
-    width: 96%;
-    margin: 2vh 0 1vh;
     @include align-items(flex-start);
     @include justify-content(center);
     @include flex-direction(row);
     @include flex-wrap(wrap);
     @include align-content(center);
+    min-height: 40vh;
+    width: 96%;
+    margin: 2vh 0 1vh;
   }
 
   .term,
   .definition {
-    max-width: 30vw;
-    min-height: 6vw;
     @include flex-basis(30vw);
     @include flex-grow(0);
+    max-width: 30vw;
+    min-height: 6vw;
   }
 } 
 
@@ -639,24 +640,23 @@ body {
   }
   
   #match-board {
-    position: absolute;
     @include flex-direction(row);
     @include justify-content(flex-start);
     @include align-items(center);
+    position: absolute;
     top: 7vh;
   }
   
   #term-container,
   #definition-container {
-    min-height: 0;
-    width: 50%;
-    margin: 2vh 0;
-    @include align-items(flex-start);
-    @include justify-content(center);
     @include flex-direction(row);
     @include flex-wrap(wrap);
     @include justify-content(center);
     @include align-content(center);
+    @include align-items(flex-start);
+    width: 50%;
+    min-height: 0; /* Needed for flexbox support */
+    margin: 2vh 0;
   }
   
   #term-container {
@@ -669,26 +669,32 @@ body {
   
   .term,
   .definition {
-    width: 14vw;
-    height: 8vw;
-    min-height: 3.25em;
-    margin: 0.1875em;
     @include flex-basis(14vw);
     @include flex-grow(0);
+    width: 14vw;
+    height: 8vw;
+    margin: 5px;
+    min-height: 3.25em;
     overflow: hidden;
   }
   
   .term-text,
   .definition-text {
+    max-height: 100%;
+    max-width: 15ch;
     white-space: normal;
   }
   
   .term-text {
-    max-height: 4em;
+    /*max-height: 4em; */
+    margin: 2px;
+    padding: 2px;
   }
   
   .definition-text {
-    max-height: 4.2em;
+    /* max-height: 4.2em; */
+    margin: 2px;
+    padding: 2px 2px 3px;
   }
 
   #game-logo {
