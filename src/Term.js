@@ -13,7 +13,14 @@ const termSource = {
     if (monitor.didDrop()) { 
       return props.onDrop(monitor.getDropResult());
     }
+  },
+
+  canDrag(props, monitor) {
+    console.log('calling canDrag');
+    console.log(props.canDrag);
+    return props.canDrag;
   }
+
 }
 
 function collect(connect, monitor) {
@@ -25,6 +32,7 @@ function collect(connect, monitor) {
 }
 
 export function generatePreview (type, item, style) {
+  console.log(item);
   const classes = ['term', 'preview', 'dragging'];
   const classesString = classes.concat(...(item.color ? [item.color] : [])).join(' ');
   return (<div style={style} className={classesString}>

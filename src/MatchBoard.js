@@ -5,7 +5,7 @@ import Term from './Term';
 
 class MatchBoard extends Component {
 
-  renderTerms(termOrder, matches) {
+  renderTerms(termOrder, canDrag, matches) {
     
     return termOrder.map((matchIdx, idx) => {
 
@@ -40,6 +40,7 @@ class MatchBoard extends Component {
         >
           <Term 
             id={match.id} 
+            canDrag={canDrag}
             color={match.color}
             term={match.term} 
             show={match.show}
@@ -96,8 +97,8 @@ class MatchBoard extends Component {
   render() {
 
     // eslint-disable-next-line
-    const { style, show, matches, termOrder, definitionOrder, onRoundStart } = this.props;
-    const terms = this.renderTerms(termOrder, matches);
+    const { style, canDrag, show, matches, termOrder, definitionOrder, onRoundStart } = this.props;
+    const terms = this.renderTerms(termOrder, canDrag, matches);
     const definitions = this.renderDefinitions(definitionOrder, matches);
 
     /* Transition timeouts */

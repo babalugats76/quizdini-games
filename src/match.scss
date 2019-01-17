@@ -72,6 +72,11 @@ body {
     background-repeat: repeat;
   }
 
+
+  &.imperial {
+    background-color: $imperial !important;
+  }
+
   &.purple {
     background-color: $purple !important;
   }
@@ -104,6 +109,10 @@ body {
     background-color: $silver !important;
   }
 
+  &.platinum {
+    background-color: $platinum !important;
+  }
+
 }
 
 .brilliant {
@@ -124,7 +133,7 @@ body {
   position: relative;
   margin: 0 auto;
   height: 100%;
-  padding-top: .5em;
+  padding-top: 1em;
   padding-bottom: calc(5vh + (1.25em * 1.2) + 1.75em);
 }
 
@@ -134,7 +143,7 @@ body {
   @include justify-content(space-around);
   @include align-items(center);
   position: relative;
-  height: calc(100vh - (5vh + (1.25em * 1.2) + 2.25em));
+  height: calc(100vh - (5vh + (1.25em * 1.2) + 2.75em));
   margin: 0 1em;
 }
 
@@ -144,8 +153,7 @@ body {
   @include flex-shrink(1);
   @include flex-basis(auto);
   position: relative;
-  max-width: 100%;
-  max-height: 35vh;
+  max-height: 30vh;
   height: auto;
   overflow: auto;
   z-index: 102;
@@ -158,16 +166,16 @@ body {
   @include flex-grow(1);
   @include flex-shrink(1);
   position: relative;
-  margin: 0 0 .5em;
   padding: 0;
   font-size: 1.8em;
-  line-height: 1.3;
+  line-height: 1.2;
   max-width: 21ch;
   letter-spacing: 1px;
-  font-family: $jollygoodsansbold;
-  color: $cadet-grey;
+  font-family: 'martel';
+  font-weight: 900;
+  color: $baby-powder;
   text-align: center;
-  /*text-shadow: .125em .125em .125em rgba(0,0,0,0.1);*/
+  text-shadow: 2px 3px 4px rgba(0,0,0,0.1);
   z-index: 109;
 }
 
@@ -181,7 +189,7 @@ body {
   line-height: 1.3;
   font-size: 1em;
   font-family: 'Nunito Sans';
-  color: $cadet-grey;
+  color: $baby-powder;
   /*text-shadow: 0.125em 0.125em 0 rgba(0, 0, 0, .1);*/
   z-index: 109;
 }
@@ -200,7 +208,7 @@ body {
     position: relative;
     line-height: 1.3;
     font-family: 'Nunito Sans';
-    color: $cadet-grey;
+    color: $baby-powder;
     /*text-shadow: 0.125em 0.125em 0 rgba(0, 0, 0, 0.1);*/
     z-index: 109;
   }
@@ -212,42 +220,38 @@ body {
 }
 
 #computer {
+  display: none;
   position: absolute;
   bottom: 0 !important;
-  width: 240px;
-  left: calc(50vw - 120px);
+  width: 350px;
   z-index: 101;
-  opacity: 1;
+  opacity: .4;
 }
 
 #computer-stars {
   position: absolute;
   bottom: 0 !important;
   width: 600px;
-  left: calc(50vw - 300px);
+  top: 0;
   z-index: 100;
-  opacity: 0.5;
+  opacity: .5;
 }
 
 #play {
   position: fixed;
   bottom: 5vh !important;
-  min-width: 14em;
+  min-width: 90%;
   font-size: 1.25em;
   padding: .5em;
   line-height: 1.2;
   border-radius: 2px;
-  background-color: $chinese-violet;
+  background-color: $hot-pink;
   color: $seashell;
-  border: 2px solid $seashell;
+  border: 2px solid $baby-powder;
   font-family: $helsinki;
   text-transform: uppercase;
   text-align: center;
   z-index: 110;
-  /*@include box-shadow(
-    0.125em 0.125em 0 rgba(238, 238, 238, 0.1),
-    0.25em 0.25em 0 rgba(128, 127, 126, 0.2)
-  );*/
 }
 
 .term,
@@ -269,10 +273,12 @@ body {
   padding: .25em;
   background-image: url("/img/brilliant.png");
   background-repeat: repeat;
-  @include box-shadow(
+  /*@include box-shadow(
     0.125em 0.25em 0 rgba(238, 238, 238, 0.1),
     0.25em 0.25em 0 rgba(128, 127, 126, 0.2)
-  );
+  );*/
+
+  @include box-shadow(0 0.125em 0.25em rgba(0, 0, 0, 0.12), 0 0.125em 0.25em rgba(0, 0, 0, 0.24));
 
   /* Colors for tiles */
   $tileColors: (
@@ -326,10 +332,7 @@ body {
   background-color: $logo-white;
   background-image: linear-gradient(90deg, transparent 23px, #abced4 23px, #abced4 25px, transparent 25px), linear-gradient(#eee 0.1em, transparent 0.1em);
   background-size: 100% calc(.75em * 1.5);
-  @include box-shadow(
-    0 0.125em 0.25em rgba(0, 0, 0, 0.12),
-    0 0.125em 0.25em rgba(0, 0, 0, 0.24)
-  );
+  @include box-shadow(0 0.125em 0.25em rgba(0, 0, 0, 0.12), 0 0.125em 0.25em rgba(0, 0, 0, 0.24));
 }
 
 .term-text,
@@ -422,9 +425,10 @@ body {
 #game-logo {
   display: none;
   position: absolute;
-  width: 8em;
+  width: 10em;
   bottom: calc(3vw *.67);
   left: calc(3vw);
+  opacity: .4;
 }
 
 #timer {
@@ -478,14 +482,12 @@ body {
     text-align: center;
   }
 
-  #computer {
-    left: calc(50vw - 175px);
-    width: 350px;
+  #play {
+    min-width: 14em;
   }
 
-  #computer-stars {
-    left: calc(50vw - 480px);
-    width: 960px;
+  #computer {
+    display: block;
   }
 
 }
@@ -544,12 +546,7 @@ body {
 
   .quizdini-app {
     font-size: 2.6rem;
-  }
-
-  #computer {
-    width: 320px;
-    left: calc(50vw - 160px);
-  }
+  }  
   
   #computer-stars {
     width: 830px;
@@ -561,22 +558,12 @@ body {
 @media (min-width: 900px) and (orientation: landscape) {
 
   .quizdini-app {
-    font-size: 2.4rem;
+    font-size: 2.2rem;
   }
 
   .page-container {
     background-color: brown;
-  }
-
-  #computer {
-    width: 240px;
-    left: calc(50vw - 120px);
-  }
-  
-  #computer-stars {
-    width: 550px;
-    left: calc(50vw - 275px);
-  }
+  }  
 
   #match-board {
     /* min-height: calc(92vh); */
@@ -640,12 +627,14 @@ body {
     left: 100% !important;
     width: 400px;
     transform: translate(-240px, 0);
+    opacity: 1.0;
   }
   
   #computer-stars {
     left: 100% !important;
     width: 1024px;
-    transform: translate(-520px, -120px);
+    transform: translate(-552px, 240px);
+    opacity: .5;
   }
   
   #match-board {
@@ -708,6 +697,5 @@ body {
 
   #game-logo {
     display: block;
-    background-color: $purple;
   }
 }

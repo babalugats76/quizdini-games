@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import computer from './computer.svg';
 import computerStars from './computer-stars.svg';
-import logo from './logo.svg';
 import GameTransition from './GameTransition';
+
+import logo from './logo.svg';
 
 class MatchSplash extends Component {
 

@@ -2,8 +2,11 @@ import React, { Component } from 'react';
 import { DragDropContext } from 'react-dnd';
 import MultiBackend from 'react-dnd-multi-backend';
 import HTML5toTouch from 'react-dnd-multi-backend/lib/HTML5toTouch'; // or any other pipeline
+
+// eslint-disable-next-line 
 import {generatePreview} from './Term';
 import {Preview} from 'react-dnd-multi-backend';
+
 import shortid from 'shortid';
 
 import { shuffleArray } from './utilities.js';
@@ -33,7 +36,7 @@ class MatchGame extends Component {
       author: author,
       instructions: instructions,
       termsPerBoard: 9,
-      duration: 1000,
+      duration: 45,
       playing: false,
       showSplash: true,
       showBoard: true,
@@ -257,8 +260,10 @@ class MatchGame extends Component {
   render() {
     const { title, termCount, topic, author, instructions, playing, showSplash, showBoard, showResults, duration, correct, incorrect, score, matches, termOrder, definitionOrder } = this.state;
     return (
-      showSplash
-        ? (<div id="splash-container" className="page-container cardboard silver">
+        <React.Fragment>
+        <Preview generator={generatePreview} />
+        { showSplash
+        ? (<div id="splash-container" className="page-container imperial">
               <MatchSplash 
                 title={title}
                 termCount={termCount}
@@ -270,8 +275,7 @@ class MatchGame extends Component {
                 showResults={showResults}
                 score={score} />
            </div>)
-        : (<div id="match-container" className="page-container sandpaper banana">
-             <Preview generator={generatePreview} />
+        : (<div id="match-container" className="page-container triangle imperial">
              <img id="game-logo" src={logo} alt="Quizdini Logo" />
              { playing && (<Timer
                              correct={correct}
@@ -282,6 +286,7 @@ class MatchGame extends Component {
                              wait={500} />)
              }
              { playing && (<MatchBoard
+                             canDrag={false}
                              wait={500}
                              show={showBoard}
                              matches={matches}
@@ -291,7 +296,8 @@ class MatchGame extends Component {
                              onExited={(id) => this.handleExited(id)}
                              onRoundStart={this.handleRoundStart} />)
              }
-           </div>)
+           </div>) }
+           </React.Fragment>
     );
   }
 }
