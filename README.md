@@ -1,12 +1,25 @@
 ## To-Do List
 
-* Tryout flex shorthand syntax, e.g., 1 0 40px
-* Mock up Scoreboard and Timer on full bleed
-   * Vectorize Computer and Stars
-   * Mock up Computer and stars of MatchGame using `position: fixed; left: calc(vw-1/2 width); bottom: 0px !important`
-* Vectorize parts of Splash screen and add to project
-* Determine media query that isolates iPads
-* Scoreboard refactoring
+* Add score to Splash screen; consider hiding instructions and splash-details
+* Change splash-outer's top margin to .5em and recalculate height of splash-inner
+* Add margin of .25em 0 to title 
+* Role the following fonts
+   * Nunito Sans
+   * JollyGoodSans Regular (use FontSpring)
+   * JollyGoodSans Bold (use FontSpring)
+* Find ideal font for front page, e.g., Martel
+* Add back min-height for definition-text and term-text; tweak for it looks nice in single line
+* Another pass at term and definition elements and text children
+   * Vertical centering
+   * Line-height
+   * Truncate
+   * Overflow on hover, click, touch, over, etc.
+* Code canDrag functionality and reshuffle end of game to deal with Preview bug, etc.
+* Find and remove text-center classes as appropriate
+* Find places in code where hardcode style is used and augment with browser-specific prefixes, etc. 
+* Figure out a cross browser-compatible way to vertically center the scoreboard text
+* Add title to game somewhere
+* Adjust game tiles in each form factor; experiment with % vs. using viewport width, etc.
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
