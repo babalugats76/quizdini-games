@@ -21,7 +21,8 @@
 * Add title to game somewhere
 * Adjust game tiles in each form factor; experiment with % vs. using viewport width, etc.
 * Change hover over border color to white for all term tiles; now that we have a dark (purple background)
-* Reduce opacity of triangle repeating background; retry colors with new triangle repeating background; try dark grays and use of subtle texture like https://www.transparenttextures.com/patterns/binding-dark.png
+* Reduce opacity of triangle repeating background; retry colors with new triangle repeating background; try dark grays and use of subtle texture like https://www.transparenttextures.com/patterns/binding-dark.
+* Make another star constellation based upon the computer stars, but with no gaps; add to full bleed on bottom left
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
