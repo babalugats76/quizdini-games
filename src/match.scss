@@ -9,14 +9,16 @@
 @include font-face($rubiklight, "/fonts/rubik-light-webfont");
 @include font-face($jollygoodsans, "/fonts/jollygoodsans-regular-webfont");
 @include font-face($jollygoodsansbold, "/fonts/jollygoodsans-bold-webfont");
-@include font-face($jollygoodsanslight, "/fonts/jollygoodsans-light-webfont");
+@include font-face($poppins, "/fonts/poppins-semibold-webfont");
+@include font-face($merriweathersans, "/fonts/merriweathersans-regular-webfont");
+@include font-face($merriweather, "/fonts/merriweather-bold-webfont");
 
 * {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
   -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+	-moz-osx-font-smoothing: grayscale;
 }
 
 html,
@@ -42,6 +44,11 @@ body {
   max-width: 1200px;
   margin: 0 auto;
   
+  &.binding-dark {
+    background-image: url("/img/triangle-question-mark.png"), url("/img/binding-dark.png");
+    background-repeat: repeat;
+  }
+
   &.assault {
     background-image: url("/img/triangle-question-mark.png"), url("https://www.transparenttextures.com/patterns/assault.png");
     background-repeat: repeat;
@@ -133,8 +140,8 @@ body {
   position: relative;
   margin: 0 auto;
   height: 100%;
-  padding-top: 1em;
-  padding-bottom: calc(5vh + (1.25em * 1.2) + 1.75em);
+  padding-top: .5em;
+  padding-bottom: calc(5vh + (1.25em * 1.2) + 1.25em);
 }
 
 #splash-inner {
@@ -143,7 +150,7 @@ body {
   @include justify-content(space-around);
   @include align-items(center);
   position: relative;
-  height: calc(100vh - (5vh + (1.25em * 1.2) + 2.75em));
+  height: calc(100vh - (5vh + (1.25em * 1.2) + 1.75em));
   margin: 0 1em;
 }
 
@@ -167,12 +174,12 @@ body {
   @include flex-shrink(1);
   position: relative;
   padding: 0;
-  font-size: 1.8em;
-  line-height: 1.2;
-  max-width: 23ch;
-  letter-spacing: 1px;
-  font-family: 'martel';
-  font-weight: 900;
+  margin: .25em 0;
+  font-size: 2.5em;
+  line-height: 1.1;
+  max-width: 25ch;
+  letter-spacing: 0px;
+  font-family: $jaywalker;
   color: $baby-powder;
   text-align: center;
   text-shadow: 2px 3px 4px rgba(0,0,0,0.1);
@@ -187,8 +194,8 @@ body {
   position: relative;
   margin: .25em 0;
   line-height: 1.3;
-  font-size: 1em;
-  font-family: 'Nunito Sans';
+  font-size: .9em;
+  font-family: $merriweathersans;
   color: $baby-powder;
   /*text-shadow: 0.125em 0.125em 0 rgba(0, 0, 0, .1);*/
   z-index: 109;
@@ -201,13 +208,13 @@ body {
   @include align-items(center);
   @include align-self(flex-start);
 
-  margin: .25em 0 1em;
-  font-size: .875em;
+  margin: .25em 0 .5em;
+  font-size: .9em;
 
   * {
     position: relative;
     line-height: 1.3;
-    font-family: 'Nunito Sans';
+    font-family: $merriweathersans;
     color: $baby-powder;
     /*text-shadow: 0.125em 0.125em 0 rgba(0, 0, 0, 0.1);*/
     z-index: 109;
@@ -234,7 +241,7 @@ body {
   width: 600px;
   top: 0;
   z-index: 100;
-  opacity: .5;
+  opacity: .4;
 }
 
 #play {
@@ -282,18 +289,18 @@ body {
 
   /* Colors for tiles */
   $tileColors: (
-    ("red", $red, $white, $white-alpha9),
-    ("orange", $orange, $white, $white-alpha9),
-    ("yellow", $yellow, $graphite, $black-alpha4),
-    ("lime", $lime, $graphite, $black-alpha4),
-    ("green", $green, $white, $white-alpha9),
-    ("cyan", $cyan, $graphite, $black-alpha4),
-    ("blue", $blue, $white, $white-alpha9),
-    ("purple", $purple, $white, $white-alpha9),
-    ("magenta", $magenta, $white, $white-alpha9),
-    ("gray", $gray, $white, $white-alpha9),
-    ("navy", $navy, $white, $white-alpha9),
-    ("teal", $teal, $white, $white-alpha9)
+    ("red", $red, $white, $white),
+    ("orange", $orange, $white, $white),
+    ("yellow", $yellow, $graphite, $white),
+    ("lime", $lime, $graphite, $white),
+    ("green", $green, $white, $white),
+    ("cyan", $cyan, $graphite, $white),
+    ("blue", $blue, $white, $white),
+    ("purple", $purple, $white, $white),
+    ("magenta", $magenta, $white, $white),
+    ("gray", $gray, $white, $white),
+    ("navy", $navy, $white, $white),
+    ("teal", $teal, $white, $white)
   );
   /* Dynamically generate tile color classes */
   @each $color, $background, $textColor, $borderColor in $tileColors {
@@ -345,18 +352,17 @@ body {
 
 .term-text {
   background: inherit;
-  font-family: $rubik;
-  line-height: 1.1;
-  font-weight: bold;
-  font-size: .9em;
+  font-family: $poppins;
+  line-height: 1.3;
+  font-weight: 600;
+  font-size: .8em;
 }
 
 .definition-text {
-  font-family: $jollygoodsans;
-  line-height: 1.5;
+  font-family: $jollygoodsansbold;
+  line-height: 1.6;
   color: $graphite;
-  font-weight: bold;
-  font-size: 0.75em;
+  font-size: 0.8em;
 }
 
 .term.matched,

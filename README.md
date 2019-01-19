@@ -1,13 +1,6 @@
 ## To-Do List
 
 * Add score to Splash screen; consider hiding instructions and splash-details
-* Change splash-outer's top margin to .5em and recalculate height of splash-inner
-* Add margin of .25em 0 to title 
-* Role the following fonts
-   * Nunito Sans
-   * JollyGoodSans Regular (use FontSpring)
-   * JollyGoodSans Bold (use FontSpring)
-* Find ideal font for front page, e.g., Martel, Merriweather
 * Add back min-height for definition-text and term-text; tweak for it looks nice in single line
 * Another pass at term and definition elements and text children
    * Vertical centering
@@ -20,8 +13,6 @@
 * Figure out a cross browser-compatible way to vertically center the scoreboard text
 * Add title to game somewhere
 * Adjust game tiles in each form factor; experiment with % vs. using viewport width, etc.
-* Change hover over border color to white for all term tiles; now that we have a dark (purple background)
-* Reduce opacity of triangle repeating background; retry colors with new triangle repeating background; try dark grays and use of subtle texture like https://www.transparenttextures.com/patterns/binding-dark.
 * Make another star constellation based upon the computer stars, but with no gaps; add to full bleed on bottom left
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).

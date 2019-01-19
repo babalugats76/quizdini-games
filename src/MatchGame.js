@@ -263,7 +263,7 @@ class MatchGame extends Component {
         <React.Fragment>
         <Preview generator={generatePreview} />
         { showSplash
-        ? (<div id="splash-container" className="page-container imperial">
+        ? (<div id="splash-container" className="page-container binding-dark imperial">
               <MatchSplash 
                 title={title}
                 termCount={termCount}
@@ -275,7 +275,7 @@ class MatchGame extends Component {
                 showResults={showResults}
                 score={score} />
            </div>)
-        : (<div id="match-container" className="page-container triangle imperial">
+        : (<div id="match-container" className="page-container binding-dark imperial">
              <img id="game-logo" src={logo} alt="Quizdini Logo" />
              { playing && (<Timer
                              correct={correct}
