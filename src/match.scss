@@ -12,6 +12,12 @@
 @include font-face($poppins, "/fonts/poppins-semibold-webfont");
 @include font-face($merriweathersans, "/fonts/merriweathersans-regular-webfont");
 @include font-face($merriweather, "/fonts/merriweather-bold-webfont");
+@include font-face($bitterbold, "/fonts/bitter-bold-webfont");
+@include font-face($bitterbold, "/fonts/bitter-regular-webfont");
+@include font-face($museosans, "/fonts/fontspring-demo-museosans_700-webfont");
+@include font-face($jollygoodsanscondensed, "/fonts/fontspring-demo-jollygoodsanscondensed-bold");
+@include font-face($playtime, "/fonts/playtime-webfont");
+@include font-face($shortstack, "/fonts/shortstack-regular-webfont");
 
 * {
   box-sizing: border-box;
@@ -175,10 +181,10 @@ body {
   position: relative;
   padding: 0;
   margin: .25em 0;
-  font-size: 2.5em;
+  font-size: 2.3em;
   line-height: 1.1;
   max-width: 25ch;
-  letter-spacing: 0px;
+  letter-spacing: 1px;
   font-family: $jaywalker;
   color: $baby-powder;
   text-align: center;
@@ -205,7 +211,7 @@ body {
 
   @include flex-grow(1);
   @include flex-shrink(1);
-  @include align-items(center);
+  @include align-items(flex-start);
   @include align-self(flex-start);
 
   margin: .25em 0 .5em;
@@ -337,7 +343,7 @@ body {
   background-color: $gray-light-light;
   touch-action: none;
   background-color: $logo-white;
-  background-image: linear-gradient(90deg, transparent 23px, #abced4 23px, #abced4 25px, transparent 25px), linear-gradient(#eee 0.1em, transparent 0.1em);
+  background-image: linear-gradient(90deg, transparent 23px, $lined-paper-red 23px, $lined-paper-red 25px, transparent 25px), linear-gradient($lined-paper-blue 2px, transparent 2px);
   background-size: 100% calc(.75em * 1.5);
   @include box-shadow(0 0.125em 0.25em rgba(0, 0, 0, 0.12), 0 0.125em 0.25em rgba(0, 0, 0, 0.24));
 }
@@ -352,17 +358,26 @@ body {
 
 .term-text {
   background: inherit;
-  font-family: $poppins;
+  font-family: 'Poppinssemibold';
+  font-family: 'Noto Sans';
+  font-family: $museosans;
+  font-family: 'Barlow';
+  padding: 3px 7px 5px;
+  margin: 2px;
   line-height: 1.3;
   font-weight: 600;
-  font-size: .8em;
+  /*font-weight: 700; */
+  font-size: 1em;
 }
 
 .definition-text {
   font-family: $jollygoodsansbold;
-  line-height: 1.6;
+  padding: 3px 7px 5px;
+  margin: 2px;
+  font-size: 0.85em;
+  line-height: 1.3;
   color: $graphite;
-  font-size: 0.8em;
+  letter-spacing: -1px;
 }
 
 .term.matched,
@@ -564,7 +579,7 @@ body {
 @media (min-width: 900px) and (orientation: landscape) {
 
   .quizdini-app {
-    font-size: 2.2rem;
+    font-size: 2.6rem;
   }
 
   .page-container {
@@ -617,7 +632,7 @@ body {
 @media (min-width: 1200px) {
   
   .quizdini-app {
-    font-size: 3rem;
+    font-size: 2.8rem;
   }
 
   .page-container {
@@ -697,8 +712,8 @@ body {
   
   .definition-text {
     /* max-height: 4.2em; */
-    margin: 2px;
-    padding: 2px 2px 3px;
+   /* margin: 2px; */
+    /*padding: 2px 3px 4px;*/
   }
 
   #game-logo {
