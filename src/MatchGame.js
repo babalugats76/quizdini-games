@@ -277,6 +277,7 @@ class MatchGame extends Component {
            </div>)
         : (<div id="match-container" className="page-container binding-dark dark-lavender">
              <img id="game-logo" src={logo} alt="Quizdini Logo" />
+             <div id="game-title">{title}</div>
              { playing && (<Timer
                              correct={correct}
                              duration={duration} 

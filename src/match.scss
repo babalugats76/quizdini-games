@@ -18,6 +18,9 @@
 @include font-face($jollygoodsanscondensed, "/fonts/fontspring-demo-jollygoodsanscondensed-bold");
 @include font-face($playtime, "/fonts/playtime-webfont");
 @include font-face($shortstack, "/fonts/shortstack-regular-webfont");
+@include font-face($signika, "/fonts/signika-semibold-webfont");
+@include font-face($hkgroteskbold, "/fonts/hkgrotesk-bold-webfont");
+@include font-face($hkgroteskmedium, "/fonts/hkgrotesk-medium-webfont");
 
 * {
   box-sizing: border-box;
@@ -137,6 +140,11 @@ body {
   background-repeat: repeat;
 }
 
+.solid {
+  background-image: url("https://www.transparenttextures.com/patterns/solid.png");
+  background-repeat: repeat;
+}
+
 .triangle-brilliant {
   background-image: url("/img/triangle-question-mark.png"), url('/img/brilliant.png') ;
   background-repeat: repeat;
@@ -204,8 +212,8 @@ body {
   position: relative;
   margin: .25em 0;
   line-height: 1.3;
-  font-size: .9em;
-  font-family: $merriweathersans;
+  font-size: 1em;
+  font-family: $hkgroteskbold;
   color: $baby-powder;
   /*text-shadow: 0.125em 0.125em 0 rgba(0, 0, 0, .1);*/
   z-index: 109;
@@ -224,7 +232,7 @@ body {
   * {
     position: relative;
     line-height: 1.3;
-    font-family: $merriweathersans;
+    font-family: $hkgroteskbold;
     color: $baby-powder;
     /*text-shadow: 0.125em 0.125em 0 rgba(0, 0, 0, 0.1);*/
     z-index: 109;
@@ -366,6 +374,7 @@ body {
   font-family: 'Noto Sans';
   font-family: $museosans;
   font-family: 'Barlow';
+  font-family: $hkgroteskbold;
   padding: 3px 7px 5px;
   margin: 2px;
   line-height: 1.3;
@@ -454,6 +463,28 @@ body {
   bottom: calc(3vw *.67);
   left: calc(3vw);
   opacity: .4;
+}
+
+#game-title {
+  font-family: $jaywalker;
+  color: $baby-powder;
+  line-height: 1.1;
+  justify-content: center;
+  font-size: 2em;
+  /* top: 3vh; */
+  display: flex;
+  flex-direction: column;
+  margin-top: .5em;
+  /* margin-bottom: .5em; */
+  position: absolute;
+  bottom: 8vh;
+  width: 40%;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+  justify-self: center;
+  align-self: center;
+  right: calc(50vw - 20%);
 }
 
 #timer {
