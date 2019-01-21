@@ -150,7 +150,7 @@ body {
   background-repeat: repeat;
 }
 
-#splash-outer {
+#splash-wrapper {
   @include flexbox();
   @include flex-direction(column);
   @include justify-content(center);
@@ -158,11 +158,11 @@ body {
   position: relative;
   margin: 0 auto;
   height: 100%;
-  padding-top: .5em;
-  padding-bottom: calc(5vh + (1.25em * 1.2) + 1.25em);
+  padding-top: .6em;
+  padding-bottom: calc(5vh + (1.25em * 1.2) + 1.75em);
 }
 
-#splash-inner {
+#splash {
   @include flexbox();
   @include flex-direction(column);
   @include justify-content(space-around);
@@ -267,7 +267,7 @@ body {
   bottom: 5vh !important;
   min-width: 90%;
   font-size: 1.25em;
-  padding: .5em;
+  padding: .625em;
   line-height: 1.2;
   border-radius: 2px;
   background-color: $hot-pink;
@@ -675,7 +675,7 @@ body {
     background-color: red;
   }
 
-  #splash-outer {
+  #splash-wrapper {
     max-width: 1440px !important;
   }
 

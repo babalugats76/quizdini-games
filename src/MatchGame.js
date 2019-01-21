@@ -287,7 +287,7 @@ class MatchGame extends Component {
                              wait={500} />)
              }
              { playing && (<MatchBoard
-                             canDrag={false}
+                             canDrag={true}
                              wait={500}
                              show={showBoard}
                              matches={matches}

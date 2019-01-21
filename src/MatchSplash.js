@@ -66,8 +66,8 @@ class MatchSplash extends Component {
         timeout={timeout}
         transitionStyles={transitionStyles}
         onExited={this.handleExited}>
-        <div id="splash-outer" style={style}>
-          <div id="splash-inner">
+        <div id="splash-wrapper" style={style}>
+          <div id="splash">
             <img id="splash-logo" src={logo} alt="Quizdini logo" />
             <div id="title">{title}</div>
             <div id="instructions">{instructions}</div>

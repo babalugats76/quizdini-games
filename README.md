@@ -8,10 +8,10 @@
    * Truncate
    * Overflow on hover, click, touch, over, etc.
 * Code canDrag functionality and reshuffle end of game to deal with Preview bug, etc.
-* Find and remove text-center classes as appropriate
 * Find places in code where hardcode style is used and augment with browser-specific prefixes, etc. 
 * Figure out a cross browser-compatible way to vertically center the scoreboard text
 * Add title to game somewhere
+* Consider replacing white text with a complementary gray; possibly change logo?
 * Adjust game tiles in each form factor; experiment with % vs. using viewport width, etc.
 * Make another star constellation based upon the computer stars, but with no gaps; add to full bleed on bottom left
 
