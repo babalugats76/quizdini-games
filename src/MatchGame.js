@@ -3,7 +3,6 @@ import { DragDropContext } from 'react-dnd';
 import MultiBackend from 'react-dnd-multi-backend';
 import HTML5toTouch from 'react-dnd-multi-backend/lib/HTML5toTouch'; // or any other pipeline
 
-// eslint-disable-next-line 
 import {generatePreview} from './Term';
 import {Preview} from 'react-dnd-multi-backend';
 
