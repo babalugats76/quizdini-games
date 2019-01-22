@@ -224,10 +224,10 @@ body {
   @include flex-grow(1);
   @include flex-shrink(1);
   @include justify-content(center);
-  @include align-items(center);
+  @include align-items(flex-start);
   position: relative;
   text-align: center;
-  line-height: 1.1;
+  line-height: 1;
   font-size: 3em;
   font-family: $helsinki;
   color: $baby-powder;
