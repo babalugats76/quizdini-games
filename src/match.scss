@@ -200,7 +200,7 @@ body {
   font-family: $jaywalker;
   color: $baby-powder;
   text-align: center;
-  text-shadow: 2px 3px 4px rgba(0,0,0,0.1);
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, .3);
   z-index: 109;
 }
 
@@ -217,6 +217,26 @@ body {
   color: $baby-powder;
   /*text-shadow: 0.125em 0.125em 0 rgba(0, 0, 0, .1);*/
   z-index: 109;
+}
+
+#score {
+  @include flexbox();
+  @include flex-grow(1);
+  @include flex-shrink(1);
+  @include justify-content(center);
+  @include align-items(center);
+  position: relative;
+  text-align: center;
+  line-height: 1.1;
+  font-size: 3em;
+  font-family: $helsinki;
+  color: $baby-powder;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, .3);
+  z-index: 109;
+}
+
+#score::before, #score::after {
+  content: "\00a0\2012\00a0";
 }
 
 #splash-details {

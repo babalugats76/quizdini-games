@@ -35,7 +35,7 @@ class MatchGame extends Component {
       author: author,
       instructions: instructions,
       termsPerBoard: 9,
-      duration: 450,
+      duration: 10,
       playing: false,
       showSplash: true,
       showBoard: true,
@@ -275,16 +275,6 @@ class MatchGame extends Component {
                 score={score} />
            </div>)
         : (<div id="match-container" className="page-container binding-dark dark-lavender">
-             <img id="game-logo" src={logo} alt="Quizdini Logo" />
-             <div id="game-title">{title}</div>
-             { playing && (<Timer
-                             correct={correct}
-                             duration={duration} 
-                             incorrect={incorrect}
-                             score={score}
-                             onGameOver={this.handleGameOver}
-                             wait={500} />)
-             }
              { playing && (<MatchBoard
                              canDrag={true}
                              wait={500}
@@ -295,6 +285,16 @@ class MatchGame extends Component {
                              onDrop={(dropResult) => this.handleDrop(dropResult)}
                              onExited={(id) => this.handleExited(id)}
                              onRoundStart={this.handleRoundStart} />)
+             }
+             <img id="game-logo" src={logo} alt="Quizdini Logo" />
+             <div id="game-title">{title}</div>
+             { playing && (<Timer
+                             correct={correct}
+                             duration={duration} 
+                             incorrect={incorrect}
+                             score={score}
+                             onGameOver={this.handleGameOver}
+                             wait={500} />)
              }
            </div>) }
            </React.Fragment>

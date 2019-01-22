@@ -13,7 +13,6 @@
 * Add title to game somewhere
 * Consider replacing white text with a complementary gray; possibly change logo?
 * Adjust game tiles in each form factor; experiment with % vs. using viewport width, etc.
-* Make another star constellation based upon the computer stars, but with no gaps; add to full bleed on bottom left
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
