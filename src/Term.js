@@ -15,14 +15,7 @@ const termSource = {
 
   canDrag(props, monitor) {
     return props.canDrag;
-  },
-
-  /*isDragging(props, monitor) {
-    console.log('is dragging called: ');
-    console.log(monitor.getItem());
-    console.log(monitor.getItem().hello())
-    return monitor.getItem().hello();
-  }  */
+  }
 
 }
 
