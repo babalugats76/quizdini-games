@@ -3,7 +3,7 @@ import { DragDropContext } from 'react-dnd';
 import MultiBackend from 'react-dnd-multi-backend';
 import HTML5toTouch from 'react-dnd-multi-backend/lib/HTML5toTouch'; // or any other pipeline
 
-import {generatePreview} from './Term';
+/*import {generatePreview} from './Term'; */
 import {Preview} from 'react-dnd-multi-backend';
 
 import shortid from 'shortid';
@@ -35,7 +35,7 @@ class MatchGame extends Component {
       author: author,
       instructions: instructions,
       termsPerBoard: 9,
-      duration: 10,
+      duration: 30,
       playing: false,
       showSplash: true,
       showBoard: true,
@@ -181,16 +181,31 @@ class MatchGame extends Component {
     this.switch('incorrect', 0);
     this.switch('score', 0);
     this.switch('showSplash', false);
+  }
+
+  /**
+   * Chang
+   */
+  handleTimerStart = () => {
+    console.log('Timer started...');
     this.switch('playing', true);
   }
 
+  /**
+   * 
+   */
+  handleTimerEnd = () => {
+    console.log('Timer ended...');
+    this.switch('playing', false);
+    setTimeout(() => this.handleGameOver(), 2500);
+  }
+
   /** 
-   * Stop the game
-   * Show splash
-   * Show results (on splash)
+   * Change state items used to: 
+   * stop the game, show the splash screen, including final results
    */
   handleGameOver = () => {
-    this.switch('playing', false);
+    console.log('handling game over...');
     this.switch('showSplash', true);
     this.switch('showResults', true);
   }
@@ -201,7 +216,7 @@ class MatchGame extends Component {
     * Show matches (initiates transitions)
     */
   handleRoundStart = () => {
-    console.log('starting round..');
+    console.log('starting round...');
     this.dealMatches();
     this.showMatches(true);
   }
@@ -213,6 +228,28 @@ class MatchGame extends Component {
     this.switch('showBoard', false);
     setTimeout(() => this.switch('showBoard', true), 250);
   }
+
+  /**
+   * @param {string} type - Category of source/target, i.e., "Match"
+   * @param {Object} item - Data related to, e.g., props, drag source (term)
+   * @param {Object} style - Style properties (to assign to parent element)
+   * 
+   * Generate HTML and inline style related to terms 
+   */
+  generatePreview = (type, item, style) => {
+    const { playing } = this.state;
+    const classes = ['term', 'preview', 'dragging'];
+    const classesString = classes.concat(...(item.color ? [item.color] : [])).join(' ');
+    return (<React.Fragment>
+             { playing ? 
+                     (<div style={style} className={classesString}>
+                        <div className="term-text">{item.term} {' ' + playing + ''}</div>
+                      </div>)
+             : (null)
+              
+            }
+            </React.Fragment>);
+  } 
 
   /**
    * When a Term component is dropped upon a Definition
@@ -260,45 +297,45 @@ class MatchGame extends Component {
     const { title, termCount, topic, author, instructions, playing, showSplash, showBoard, showResults, duration, correct, incorrect, score, matches, termOrder, definitionOrder } = this.state;
     return (
         <React.Fragment>
-        <Preview generator={generatePreview} />
-        { showSplash
-        ? (<div id="splash-container" className="page-container binding-dark dark-lavender">
-              <MatchSplash 
-                title={title}
-                termCount={termCount}
-                topic={topic}
-                author={author}
-                instructions={instructions}
-                wait={100} 
-                onGameStart={this.handleGameStart} 
-                showResults={showResults}
-                score={score} />
-           </div>)
-        : (<div id="match-container" className="page-container binding-dark dark-lavender">
-             { playing && (<MatchBoard
-                             canDrag={true}
-                             wait={500}
-                             show={showBoard}
-                             matches={matches}
-                             termOrder={termOrder}
-                             definitionOrder={definitionOrder}
-                             onDrop={(dropResult) => this.handleDrop(dropResult)}
-                             onExited={(id) => this.handleExited(id)}
-                             onRoundStart={this.handleRoundStart} />)
-             }
-             <img id="game-logo" src={logo} alt="Quizdini Logo" />
-             <div id="game-title">{title}</div>
-             { playing && (<Timer
-                             correct={correct}
-                             duration={duration} 
-                             incorrect={incorrect}
-                             score={score}
-                             onGameOver={this.handleGameOver}
-                             wait={500} />)
-             }
-           </div>) }
+          <Preview generator={this.generatePreview} />
+          { showSplash
+          ? (<div id="splash-container" className="page-container binding-dark dark-lavender">
+               <MatchSplash 
+                 title={title}
+                 termCount={termCount}
+                 topic={topic}
+                 author={author}
+                 instructions={instructions}
+                 wait={100} 
+                 onGameStart={this.handleGameStart} 
+                 showResults={showResults}
+                 score={score} />
+             </div>)
+          : (<div id="match-container" className="page-container binding-dark dark-lavender">
+               <MatchBoard
+                 wait={500}
+                 show={showBoard}
+                 playing={playing}
+                 matches={matches}
+                 termOrder={termOrder}
+                 definitionOrder={definitionOrder}
+                 onDrop={(dropResult) => this.handleDrop(dropResult)}
+                 onExited={(id) => this.handleExited(id)}
+                 onRoundStart={this.handleRoundStart} />
+               <img id="game-logo" src={logo} alt="Quizdini Logo" />
+               <div id="game-title">{title}</div>
+               <Timer
+                 correct={correct}
+                 duration={duration} 
+                 incorrect={incorrect}
+                 score={score}
+                 onTimerStart={this.handleTimerStart}
+                 onTimerEnd={this.handleTimerEnd}
+                 wait={500} />
+             </div>)
+          }
            </React.Fragment>
-    );
+      );
   }
 }
 

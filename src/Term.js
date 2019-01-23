@@ -4,22 +4,25 @@ import { DragSource } from 'react-dnd';
 const termSource = {
 
   beginDrag(props) {
-    console.log('begin drag...');
     return { ...props };
   },
 
   endDrag(props, monitor) {
-    console.log('end drag...');
     if (monitor.didDrop()) { 
       return props.onDrop(monitor.getDropResult());
     }
   },
 
   canDrag(props, monitor) {
-    console.log('calling canDrag');
-    console.log(props.canDrag);
     return props.canDrag;
-  }
+  },
+
+  /*isDragging(props, monitor) {
+    console.log('is dragging called: ');
+    console.log(monitor.getItem());
+    console.log(monitor.getItem().hello())
+    return monitor.getItem().hello();
+  }  */
 
 }
 
@@ -30,15 +33,6 @@ function collect(connect, monitor) {
     isDragging: monitor.isDragging()
   }
 }
-
-export function generatePreview (type, item, style) {
-  console.log(item);
-  const classes = ['term', 'preview', 'dragging'];
-  const classesString = classes.concat(...(item.color ? [item.color] : [])).join(' ');
-  return (<div style={style} className={classesString}>
-            <div className="term-text">{item.term}</div>
-          </div>);
-} 
 
 class Term extends Component {
 

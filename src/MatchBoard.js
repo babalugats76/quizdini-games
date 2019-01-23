@@ -5,7 +5,7 @@ import Term from './Term';
 
 class MatchBoard extends Component {
 
-  renderTerms(termOrder, canDrag, matches) {
+  renderTerms(termOrder, matches) {
     
     return termOrder.map((matchIdx, idx) => {
 
@@ -40,10 +40,10 @@ class MatchBoard extends Component {
         >
           <Term 
             id={match.id} 
-            canDrag={canDrag}
             color={match.color}
             term={match.term} 
             show={match.show}
+            canDrag={this.props.playing}
             matched={match.matched}
             onDrop={this.props.onDrop} />
         </GameTransition>);
@@ -97,8 +97,8 @@ class MatchBoard extends Component {
   render() {
 
     // eslint-disable-next-line
-    const { style, canDrag, show, matches, termOrder, definitionOrder, onRoundStart } = this.props;
-    const terms = this.renderTerms(termOrder, canDrag, matches);
+    const { style, show, playing, matches, termOrder, definitionOrder, onRoundStart } = this.props;
+    const terms = this.renderTerms(termOrder, matches);
     const definitions = this.renderDefinitions(definitionOrder, matches);
 
     /* Transition timeouts */

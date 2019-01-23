@@ -1,18 +1,17 @@
 ## To-Do List
 
-* Add score to Splash screen; consider hiding instructions and splash-details
 * Add back min-height for definition-text and term-text; tweak for it looks nice in single line
 * Another pass at term and definition elements and text children
    * Vertical centering
    * Line-height
    * Truncate
    * Overflow on hover, click, touch, over, etc.
-* Code canDrag functionality and reshuffle end of game to deal with Preview bug, etc.
 * Find places in code where hardcode style is used and augment with browser-specific prefixes, etc. 
 * Figure out a cross browser-compatible way to vertically center the scoreboard text
 * Add title to game somewhere
 * Consider replacing white text with a complementary gray; possibly change logo?
 * Adjust game tiles in each form factor; experiment with % vs. using viewport width, etc.
+* Cleanup MatchBoard making more consistent, e.g., renderTerm and renderDefinition either refer to this.props or take in arguments
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 

@@ -8,7 +8,7 @@ class Timer extends Component {
   constructor(props) {
     super(props);
     this.state = ({
-      active: false,
+      show: false,
       remaining: props.duration,
       showTransition: false,
       startTime: Date.now(),
@@ -38,9 +38,9 @@ class Timer extends Component {
     // Calculate time remaining
     const remaining = this.props.duration - ((Date.now() - this.state.startTime) / 1000);
 
-    if (Math.ceil(remaining) < 0) { // If game over  
+    if (Math.ceil(remaining) < 0) { // If no time remaining, i.e., game over  
       clearInterval(this.state.id); // clear execution of tick
-      return this.props.onGameOver(); // Let parent know game is over
+      return this.props.onTimerEnd(); // Let parent know that timer has exhausted itself
     } else { 
       this.setState((state, props) => {
         return { remaining }
@@ -52,8 +52,9 @@ class Timer extends Component {
   startTimer = () => {
     this.setState((state, props) => {
       const id = setInterval(this.tick, props.interval);
-      return { active: true, id: id }
+      return { show: true, id: id }
     });
+    return this.props.onTimerStart();
   }
 
   endTransition = () => {
@@ -63,7 +64,7 @@ class Timer extends Component {
   }
 
   render() {
-    const { remaining, showTransition, success, active } = this.state;
+    const { remaining, showTransition, success, show } = this.state;
     const { wait, duration, score } = this.props; 
     const percent = Math.ceil(((duration - remaining) / duration) * 100);
 
@@ -86,7 +87,7 @@ class Timer extends Component {
     const progressColor = ((percent <= 70) ? '#1fe73f' : (percent <= 85 ? '#ffe119' : '#e6194b')) ;
 
     return(<React.Fragment>
-             { active && 
+             { show && 
                (<GameTransition 
                   mountOnEnter={false}
                   unmountOnExit={false}
