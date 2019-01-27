@@ -3,22 +3,8 @@
 
 @include font-face($helsinki, "/fonts/helsinki-webfont");
 @include font-face($jaywalker, "/fonts/jaywalker-regular-webfont");
-@include font-face($rubik, "/fonts/rubik-regular-webfont");
-@include font-face($rubikmedium, "/fonts/rubik-medium-webfont");
-@include font-face($rubikbold, "/fonts/rubik-bold-webfont");
-@include font-face($rubiklight, "/fonts/rubik-light-webfont");
 @include font-face($jollygoodsans, "/fonts/jollygoodsans-regular-webfont");
 @include font-face($jollygoodsansbold, "/fonts/jollygoodsans-bold-webfont");
-@include font-face($poppins, "/fonts/poppins-semibold-webfont");
-@include font-face($merriweathersans, "/fonts/merriweathersans-regular-webfont");
-@include font-face($merriweather, "/fonts/merriweather-bold-webfont");
-@include font-face($bitterbold, "/fonts/bitter-bold-webfont");
-@include font-face($bitterbold, "/fonts/bitter-regular-webfont");
-@include font-face($museosans, "/fonts/fontspring-demo-museosans_700-webfont");
-@include font-face($jollygoodsanscondensed, "/fonts/fontspring-demo-jollygoodsanscondensed-bold");
-@include font-face($playtime, "/fonts/playtime-webfont");
-@include font-face($shortstack, "/fonts/shortstack-regular-webfont");
-@include font-face($signika, "/fonts/signika-semibold-webfont");
 @include font-face($hkgroteskbold, "/fonts/hkgrotesk-bold-webfont");
 @include font-face($hkgroteskmedium, "/fonts/hkgrotesk-medium-webfont");
 
@@ -41,98 +27,107 @@ body {
   @include flexbox;
   @include flex-direction(column);
   position: relative;
-  min-height: 100vh;
+  height: 100vh;
   font-size: 1.5rem;
+}
+
+.scroll-container {
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+  /*max-width: 1200px;*/
+  margin: 0 auto;
+  z-index: 102;
+  overflow: hidden;
+  overflow-y: auto;
 }
 
 .page-container {
   position: relative;
   width: 100%;
-  height: 100vh;
-  overflow: hidden;
-  max-width: 1200px;
+  min-height: 100vh;
+  /*max-width: 1200px;*/
   margin: 0 auto;
-  
-  &.binding-dark {
-    background-image: url("/img/triangle-question-mark.png"), url("/img/binding-dark.png");
-    background-repeat: repeat;
-  }
+  z-index: 102;
+}
 
-  &.assault {
-    background-image: url("/img/triangle-question-mark.png"), url("https://www.transparenttextures.com/patterns/assault.png");
-    background-repeat: repeat;
-  }
+.binding-dark {
+  background-image: url("/img/triangle-question-mark.png"), url("/img/binding-dark.png");
+  background-repeat: repeat;
+}
 
-  &.sandpaper {
-    background-image: url("/img/triangle-question-mark.png"), url("https://www.transparenttextures.com/patterns/sandpaper.png");
-    background-repeat: repeat;
-  }
-  
-  &.solid {
-    background-image: url("/img/triangle-question-mark.png"), url("https://www.transparenttextures.com/patterns/solid.png");
-    background-repeat: repeat;
-  }
+.assault {
+  background-image: url("/img/triangle-question-mark.png"), url("https://www.transparenttextures.com/patterns/assault.png");
+  background-repeat: repeat;
+}
 
-  &.triangle {
-    background-image: url("/img/triangle-question-mark.png");
-    background-repeat: repeat;
-  }
+.sandpaper {
+  background-image: url("/img/triangle-question-mark.png"), url("https://www.transparenttextures.com/patterns/sandpaper.png");
+  background-repeat: repeat;
+}
 
-  &.otis {
-    background-image: url("/img/triangle-question-mark.png"), url("https://www.transparenttextures.com/patterns/otis-redding.png");
-    background-repeat: repeat;
-  }
+.solid {
+  background-image: url("/img/triangle-question-mark.png"), url("https://www.transparenttextures.com/patterns/solid.png");
+  background-repeat: repeat;
+}
 
-  &.cardboard {
-    background-image: url("/img/triangle-question-mark.png"), url("https://www.transparenttextures.com/patterns/cardboard-flat.png");
-    background-repeat: repeat;
-  }
+.triangle {
+  background-image: url("/img/triangle-question-mark.png");
+  background-repeat: repeat;
+}
 
+.otis {
+  background-image: url("/img/triangle-question-mark.png"), url("https://www.transparenttextures.com/patterns/otis-redding.png");
+  background-repeat: repeat;
+}
 
-  &.imperial {
-    background-color: $imperial !important;
-  }
+.cardboard {
+  background-image: url("/img/triangle-question-mark.png"), url("https://www.transparenttextures.com/patterns/cardboard-flat.png");
+  background-repeat: repeat;
+}
 
-  &.purple {
-    background-color: $purple !important;
-  }
+.imperial {
+  background-color: $imperial !important;
+}
 
-  &.dark-lavender {
-    background-color: $dark-lavender !important;
-  }
+.purple {
+  background-color: $purple !important;
+}
 
-  &.green {
-    background-color: $splash-green !important;
-  }
+.dark-lavender {
+  background-color: $dark-lavender !important;
+}
 
-  &.yellow {
-    background-color: $splash-yellow !important;
-  }
+.green {
+  background-color: $splash-green !important;
+}
 
-  &.beige {
-    background-color: beige !important;
-  }
+.yellow {
+  background-color: $splash-yellow !important;
+}
 
-  &.banana {
-    background-color: $banana !important;
-  }
+.beige {
+  background-color: beige !important;
+}
 
-  &.gray-light {
-    background-color: $gray-light !important; 
-  }
+.banana {
+  background-color: $banana !important;
+}
 
-  &.seashell {
-    background-color: $seashell !important;
-  }
+.gray-light {
+  background-color: $gray-light !important; 
+}
 
-  &.silver {
-    background-color: $silver !important;
-  }
+.seashell {
+  background-color: $seashell !important;
+}
 
-  &.platinum {
-    background-color: $platinum !important;
-  }
+.silver {
+  background-color: $silver !important;
+}
 
+.platinum {
+  background-color: $platinum !important;
 }
 
 .brilliant {
@@ -151,15 +146,15 @@ body {
 }
 
 #splash-wrapper {
-  @include flexbox();
-  @include flex-direction(column);
-  @include justify-content(center);
-  @include align-items(center);
+ /* @include flexbox(); */
+/*  @include flex-direction(column); */
+/*  @include justify-content(center); */
+ /* @include align-items(center); */
   position: relative;
   margin: 0 auto;
   height: 100%;
-  padding-top: .6em;
-  padding-bottom: calc(5vh + (1.25em * 1.2) + 1.75em);
+  padding: .6em 1em 0;
+  margin: 0 auto 6em; /* Bottom margin = height of #footer */
 }
 
 #splash {
@@ -168,8 +163,7 @@ body {
   @include justify-content(space-around);
   @include align-items(center);
   position: relative;
-  height: calc(100vh - (5vh + (1.25em * 1.2) + 1.75em));
-  margin: 0 1em;
+  min-height: calc(100vh - 6.6em); /* Height of viewport - ((height of #footer) + (padding-top of #splash-wrapper)) */
 }
 
 #splash-logo {
@@ -201,7 +195,7 @@ body {
   color: $baby-powder;
   text-align: center;
   text-shadow: 2px 2px 4px rgba(0, 0, 0, .3);
-  z-index: 109;
+  z-index: 102;
 }
 
 #instructions {
@@ -216,7 +210,7 @@ body {
   font-family: $hkgroteskbold;
   color: $baby-powder;
   /*text-shadow: 0.125em 0.125em 0 rgba(0, 0, 0, .1);*/
-  z-index: 109;
+  z-index: 102;
 }
 
 #score {
@@ -232,7 +226,7 @@ body {
   font-family: $helsinki;
   color: $baby-powder;
   text-shadow: 2px 2px 4px rgba(0, 0, 0, .3);
-  z-index: 109;
+  z-index: 102;
 }
 
 #score::before, #score::after {
@@ -255,7 +249,7 @@ body {
     font-family: $hkgroteskbold;
     color: $baby-powder;
     /*text-shadow: 0.125em 0.125em 0 rgba(0, 0, 0, 0.1);*/
-    z-index: 109;
+    z-index: 102;
   }
 
   *::before {
@@ -264,36 +258,21 @@ body {
 
 }
 
-#stars {
-  display: none;
-  position: absolute;
-  top: 0 !important;
-  left: 100%;
-  z-index: 101;
-  opacity: .4;
-}
-
-#computer {
-  display: none;
-  position: absolute;
-  bottom: 0 !important;
-  width: 350px;
-  z-index: 101;
-  opacity: .4;
-}
-
-#computer-stars {
-  position: absolute;
-  bottom: 0 !important;
-  width: 600px;
-  top: 0;
-  z-index: 100;
-  opacity: .4;
+#footer {
+  @include flexbox();
+  @include align-items(center);
+  @include justify-content(center);
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 6em;
+  background-color: $black-alpha1;
+  z-index: 108;
 }
 
 #play {
-  position: fixed;
-  bottom: 5vh !important;
+  position: relative;
   min-width: 90%;
   font-size: 1.25em;
   padding: .625em;
@@ -308,23 +287,82 @@ body {
   z-index: 110;
 }
 
+#stars {
+  display: none;
+  position: absolute;
+  top: 0 !important;
+  left: 100%;
+  z-index: 101;
+  opacity: .4;
+}
+
+#computer {
+  position: fixed;
+  bottom: 0 !important;
+  width: 300px;
+  left: calc(50vw - 15px);
+  z-index: 101;
+  opacity: .4;
+}
+
+#computer-stars {
+  position: absolute;
+  bottom: 0 !important;
+  width: 600px;
+  top: 0;
+  z-index: 100;
+  opacity: .4;
+}
+
+#match-wrapper {
+  @include flexbox();
+  @include flex-direction(column);
+  @include justify-content(center);
+  @include align-items(center);
+  position: relative;
+  height: 100vh;
+  margin: 0 auto;
+  padding: 1em;
+}
+
+#match-board {
+  @include flexbox;
+  @include flex-direction(column);
+  @include justify-content(space-evenly);
+  @include align-items(center);
+  position: relative;
+  height: 100%;
+  width: 100%;
+}
+
+#term-container,
+#definition-container {
+  @include flexbox;
+  @include flex-direction(row);
+  @include flex-flow(wrap);
+  @include justify-content(center);
+  @include align-items(center);
+  width: 100%;
+}
+
 .term,
 .definition {
   @include flexbox;
   @include justify-content(center);
   @include align-items(center);
+  min-height: calc((1em * 1.3 * 1.5) + 8px);
+  min-width: 10ch; /* Necessary for broadest flex support */
+  max-width: 24ch;
   text-align: center;
-  min-width: 0; /* Necessary for broadest flex support */
-  width: 80%;
+  /*width: 80%; */
   margin: .3125em;
-  margin: calc(100vmax / 320);
+  /*margin: calc(100vmax / 320);*/
   @include user-select(none);
   z-index: 102;
 }
 
 .term {
-  border-radius: 2px;
-  padding: .25em;
+  border-radius: 3px;
   background-image: url("/img/brilliant.png");
   background-repeat: repeat;
   /*@include box-shadow(
@@ -358,7 +396,7 @@ body {
     &.#{$color}:hover,
     &.#{$color}.dragging {
       border: 2px solid $borderColor;
-      transform: scale(1.025, 1.025);
+      transform: scale(1.02, 1.02);
       transition: transform 0.1s ease-in-out !important;
     }
     &.#{$color}.dragging {
@@ -379,8 +417,7 @@ body {
 }
 
 .definition {
-  border-radius: 2px;
-  /*padding: .25em;*/
+  border-radius: 3px;
   background-color: $gray-light-light;
   touch-action: none;
   background-color: $logo-white;
@@ -391,6 +428,8 @@ body {
 
 .term-text,
 .definition-text {
+  width: 100%;
+  padding: 3px 7px 5px;
   margin: auto;
   white-space: nowrap;
   overflow: hidden;
@@ -398,24 +437,15 @@ body {
 }
 
 .term-text {
-  background: inherit;
-  font-family: 'Poppinssemibold';
-  font-family: 'Noto Sans';
-  font-family: $museosans;
-  font-family: 'Barlow';
+  /*background: inherit;*/
   font-family: $hkgroteskbold;
-  padding: 3px 7px 5px;
-  margin: 2px;
+  font-size: 1em;
   line-height: 1.3;
   font-weight: 600;
-  /*font-weight: 700; */
-  font-size: 1em;
 }
 
 .definition-text {
   font-family: $jollygoodsansbold;
-  padding: 3px 7px 5px;
-  margin: 2px;
   font-size: 0.85em;
   line-height: 1.3;
   color: $graphite;
@@ -442,12 +472,20 @@ body {
   border: none;
 }
 
-.term.expand {
+/*.term.expand {
   border: 2px solid $white;
+}*/
+
+.term.expand {
+  border: none;
 }
 
-.definition.expand {
+/*.definition.expand {
   border: 2px solid $graphite;
+}*/
+
+.definition.expand {
+  border: none;
 }
 
 .term.expand > .term-text,
@@ -466,25 +504,6 @@ body {
   border-color: $yellow;
 }
 
-#match-board {
-  @include flexbox;
-  @include flex-direction(column);
-  @include justify-content(flex-end);
-  min-height: 60vh;
-  width: 100%;
-  /* margin: 1vh auto; */
-}
-
-#term-container,
-#definition-container {
-  @include flexbox;
-  @include flex-direction(column);
-  @include justify-content(center);
-  @include align-items(center);
-  min-height: 45vh;
-  overflow-y: visible;
-}
-
 #game-logo {
   display: none;
   position: absolute;
@@ -495,13 +514,14 @@ body {
 }
 
 #game-title {
+  display: flex;
+  display: none;
   font-family: $jaywalker;
   color: $baby-powder;
   line-height: 1.1;
   justify-content: center;
   font-size: 2em;
   /* top: 3vh; */
-  display: flex;
   flex-direction: column;
   margin-top: .5em;
   /* margin-bottom: .5em; */
@@ -650,32 +670,34 @@ body {
     background-color: brown;
   }  
 
-  #match-board {
-    /* min-height: calc(92vh); */
+  /*#match-board {
+    height: unset;
+    min-height: 60vh;
+    max-height: 80vh;
     width: 100%;
     margin: 0 auto;
-    @include justify-content(flex-start);
-    @include align-items(center);
-  }
+  }*/
 
   #term-container,
   #definition-container {
-    @include align-items(flex-start);
-    @include justify-content(center);
-    @include flex-direction(row);
-    @include flex-wrap(wrap);
-    @include align-content(center);
-    min-height: 40vh;
-    width: 96%;
-    margin: 2vh 0 1vh;
+   /* @include flex-direction(row); */
+   /* @include flex-wrap(wrap); */
+   /* @include align-content(center); */
+  /*  @include align-items(center); */
+ /*   @include justify-content(center); */
+ /*   min-height: 40vh; */
+    /*width: 96%; */
   }
 
   .term,
   .definition {
-    @include flex-basis(30vw);
+   /* @include flex-basis(30vw);
     @include flex-grow(0);
     max-width: 30vw;
-    min-height: 6vw;
+    min-height: 6vw; */
+    @include flex-basis(31%);
+    @include flex-grow(0);
+    @include flex-shrink(0);
   }
 } 
 
@@ -722,33 +744,32 @@ body {
     width: 400px;
     transform: translate(-240px, 0);
     opacity: 1.0;
+    z-index: 108;
   }
   
   #computer-stars {
     left: 100% !important;
     width: 1024px;
-    transform: translate(-552px, 240px);
+    transform: translate(-552px, 0px);
     opacity: .4;
   }
   
   #match-board {
     @include flex-direction(row);
-    @include justify-content(flex-start);
-    @include align-items(center);
-    position: absolute;
-    top: 7vh;
+    @include align-items(flex-start);
+    padding-top: 1em;
   }
   
   #term-container,
   #definition-container {
-    @include flex-direction(row);
-    @include flex-wrap(wrap);
-    @include justify-content(center);
-    @include align-content(center);
-    @include align-items(flex-start);
-    width: 50%;
-    min-height: 0; /* Needed for flexbox support */
-    margin: 2vh 0;
+  /*  @include flex-direction(row); */
+ /*   @include flex-wrap(wrap); */
+   /* @include justify-content(center); */
+  /*  @include align-content(center); */
+ /*   @include align-items(flex-start); */
+   /* @include align-self(flex-start); */
+ /*   width: 100%; */
+  /*  min-height: 0; */
   }
   
   #term-container {
@@ -761,12 +782,11 @@ body {
   
   .term,
   .definition {
-    @include flex-basis(14vw);
+    @include flex-basis(31%);
     @include flex-grow(0);
-    width: 14vw;
-    height: 8vw;
+    @include flex-shrink(0);
     margin: 5px;
-    min-height: 3.25em;
+    min-height: 5em;
     overflow: hidden;
   }
   

@@ -35,7 +35,7 @@ class MatchGame extends Component {
       author: author,
       instructions: instructions,
       termsPerBoard: 9,
-      duration: 30,
+      duration: 600,
       playing: false,
       showSplash: true,
       showBoard: true,
@@ -235,6 +235,7 @@ class MatchGame extends Component {
    * @param {Object} style - Style properties (to assign to parent element)
    * 
    * Generate HTML and inline style related to terms 
+   * Return null if game currently is not interactive, i.e., !playing
    */
   generatePreview = (type, item, style) => {
     const { playing } = this.state;
@@ -243,7 +244,7 @@ class MatchGame extends Component {
     return (<React.Fragment>
              { playing ? 
                      (<div style={style} className={classesString}>
-                        <div className="term-text">{item.term} {' ' + playing + ''}</div>
+                        <div className="term-text">{item.term}</div>
                       </div>)
              : (null)
               
@@ -299,7 +300,7 @@ class MatchGame extends Component {
         <React.Fragment>
           <Preview generator={this.generatePreview} />
           { showSplash
-          ? (<div id="splash-container" className="page-container binding-dark dark-lavender">
+          ? (<div id="splash-container" className="scroll-container binding-dark dark-lavender">
                <MatchSplash 
                  title={title}
                  termCount={termCount}
@@ -312,26 +313,28 @@ class MatchGame extends Component {
                  score={score} />
              </div>)
           : (<div id="match-container" className="page-container binding-dark dark-lavender">
-               <MatchBoard
-                 wait={500}
-                 show={showBoard}
-                 playing={playing}
-                 matches={matches}
-                 termOrder={termOrder}
-                 definitionOrder={definitionOrder}
-                 onDrop={(dropResult) => this.handleDrop(dropResult)}
-                 onExited={(id) => this.handleExited(id)}
-                 onRoundStart={this.handleRoundStart} />
-               <img id="game-logo" src={logo} alt="Quizdini Logo" />
-               <div id="game-title">{title}</div>
-               <Timer
-                 correct={correct}
-                 duration={duration} 
-                 incorrect={incorrect}
-                 score={score}
-                 onTimerStart={this.handleTimerStart}
-                 onTimerEnd={this.handleTimerEnd}
-                 wait={500} />
+               <div id="match-wrapper">
+                 <MatchBoard
+                   wait={500}
+                   show={showBoard}
+                   playing={playing}
+                   matches={matches}
+                   termOrder={termOrder}
+                   definitionOrder={definitionOrder}
+                   onDrop={(dropResult) => this.handleDrop(dropResult)}
+                   onExited={(id) => this.handleExited(id)}
+                   onRoundStart={this.handleRoundStart} />
+                 <img id="game-logo" src={logo} alt="Quizdini Logo" />
+                 <div id="game-title">{title}</div>
+                 <Timer
+                   correct={correct}
+                   duration={duration} 
+                   incorrect={incorrect}
+                   score={score}
+                   onTimerStart={this.handleTimerStart}
+                   onTimerEnd={this.handleTimerEnd}
+                   wait={500} />
+               </div>    
              </div>)
           }
            </React.Fragment>

@@ -66,6 +66,13 @@ class MatchSplash extends Component {
         timeout={timeout}
         transitionStyles={transitionStyles}
         onExited={this.handleExited}>
+        <React.Fragment>
+        <div id="footer">
+          <button id="play" onClick={(e) => this.handleClick(e)} style={style}>PLAY {((showResults) ? 'AGAIN' : 'GAME')}</button>
+        </div>
+        <img id="stars" src={stars} alt="Stars" />
+        <img id="computer-stars" src={computerStars} alt="Computer Stars" />
+        <img id="computer" src={computer} alt="Computer" />
         <div id="splash-wrapper" style={style}>
           <div id="splash">
             <img id="splash-logo" src={logo} alt="Quizdini logo" />
@@ -80,11 +87,8 @@ class MatchSplash extends Component {
               <div id="author">{author}</div>
             </div>
           </div>
-          <button id="play" onClick={(e) => this.handleClick(e)} style={style}>PLAY {((showResults) ? 'AGAIN' : 'GAME')}</button>
-          <img id="stars" src={stars} alt="Stars" />
-          <img id="computer" src={computer} alt="Computer" />
-          <img id="computer-stars" src={computerStars} alt="Computer Stars" />
         </div>
+        </React.Fragment>
       </GameTransition>
     );
   }
