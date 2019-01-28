@@ -96,19 +96,27 @@ class Timer extends Component {
                   timeout={wait} 
                   transitionStyles={transitionStyles}
                   onExited={this.endTransition}>
-                    <div id="timer">
-                      <CircularProgressbar 
-                        initialAnimation
-                        background
-                        classes={classes}
-                        counterClockwise
-                        percentage={percent} 
-                        strokeWidth={4}
-                        styles={{ 'trail': { stroke: progressColor, visibility: ((showTransition) ? 'hidden' : 'visible') }, 
-                                 'background': { fill: ((showTransition) ? ((success) ? '#1fe73f' : '#e6194b') : undefined) }
-                               }}
-                        text={score.toString()} />
-                    </div>
+                  <div id="timer">
+                    <div style={{ position: "relative", width: "100%", height: "100%" }}>
+                      <div style={{ position: "absolute" }}>
+                        <CircularProgressbar 
+                          initialAnimation
+                          background
+                          classes={classes}
+                          counterClockwise
+                          percentage={percent} 
+                          strokeWidth={4}
+                          styles={{ 'trail': { stroke: progressColor, visibility: ((showTransition) ? 'hidden' : 'visible') }, 
+                                    'background': { fill: ((showTransition) ? ((success) ? '#1fe73f' : '#e6194b') : undefined) },
+                                    'text': { display: 'none' }
+                                 }}
+                          text={score.toString()} />
+                      </div>  
+                      <div style={{ position: "absolute", height: "100%", width: "100%", display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center"}}>
+                        <div id="timer-score">{score.toString()}</div>
+                      </div> 
+                  </div>  
+                  </div>
                 </GameTransition>)
              }
           </React.Fragment>);
