@@ -13,7 +13,8 @@
   margin: 0;
   padding: 0;
   -webkit-font-smoothing: antialiased;
-	-moz-osx-font-smoothing: grayscale;
+  -moz-osx-font-smoothing: grayscale;
+  @include user-select(none);
 }
 
 html,
@@ -313,7 +314,6 @@ body {
   padding: 1px;
   overflow: hidden;
   text-align: center;
-  @include user-select(none);
   z-index: 102;
   @include box-shadow(0 0.4em 0.8em $black-alpha1, 0 0.3em 0.6em $black-alpha2);
 }
