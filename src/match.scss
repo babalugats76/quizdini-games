@@ -112,7 +112,7 @@ body {
 #splash {
   @include flexbox();
   @include flex-direction(column);
-  @include justify-content(space-around);
+  @include justify-content(space-evenly);
   @include align-items(center);
   position: relative;
   min-height: calc(100vh - 6.6em); /* Height of viewport - ((height of #footer) + (padding-top of #splash-wrapper)) */
@@ -242,19 +242,25 @@ body {
   z-index: 110;
 }
 
+#splash-background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
 #stars {
   display: none;
   position: absolute;
-  bottom: 0;
-  left: 100%;
   z-index: 101;
   opacity: .4;
 }
 
 #computer {
-  position: fixed;
-  bottom: 0;
+  position: absolute;
   width: 250px;
+  bottom: 0;
   left: calc(50vw - 125px);
   z-index: 101;
   opacity: .5;
@@ -263,7 +269,6 @@ body {
 #computer-stars {
   display: none;
   position: absolute;
-  bottom: 0;
   z-index: 100;
   opacity: .4;
 }
@@ -298,7 +303,7 @@ body {
   @include justify-content(center);
   @include align-items(center);
   width: 100%;
-  min-height: 30%;
+  min-height: 3.4em;
 }
 
 .term,
@@ -338,6 +343,7 @@ body {
     ("navy", $navy, $white, $white),
     ("teal", $teal, $white, $white)
   );
+
   /* Dynamically generate tile color classes */
   @each $color, $background, $textColor, $borderColor in $tileColors {
     &.#{$color} {
@@ -354,6 +360,7 @@ body {
       text-transform: uppercase;
     }
   }
+
 }
 
 .term.preview {
@@ -692,6 +699,10 @@ term.dragging {
     background-color: red;
   }
 
+  #splash-background {
+    max-width: 1440px;
+  }
+
   #splash-wrapper {
     max-width: 1440px !important;
   }
@@ -702,22 +713,22 @@ term.dragging {
 
   #stars {
     display: block;
-    transform: translate(-2100px, -100px);
+    transform: translate(1100px, -100px);
   }
 
   #computer {
     left: 100%;
-    width: 450px;
-    transform: translate(-280px, 0);
+    width: 400px;
+    transform: translate(-200px, 0);
     opacity: 1.0;
   }
   
   #computer-stars {
     display: block;
     bottom: 0;
-    left: 100%;
+    right: 0;
     width: 1024px;
-    transform: translate(-600px, -100px);
+    transform: translate(400px, -100px);
     opacity: .4;
   }
   
@@ -729,7 +740,7 @@ term.dragging {
   
   #term-container,
   #definition-container {
-    min-height: 60%; 
+    min-height: 5.4em; 
   }
   
   #term-container {

@@ -67,27 +67,29 @@ class MatchSplash extends Component {
         transitionStyles={transitionStyles}
         onExited={this.handleExited}>
         <React.Fragment>
-        <div id="footer">
-          <button id="play" onClick={(e) => this.handleClick(e)} style={style}>PLAY {((showResults) ? 'AGAIN' : 'GAME')}</button>
-        </div>
-        <img id="stars" src={stars} alt="Stars" />
-        <img id="computer-stars" src={computerStars} alt="Computer Stars" />
-        <img id="computer" src={computer} alt="Computer" />
-        <div id="splash-wrapper" style={style}>
-          <div id="splash">
-            <img id="splash-logo" src={logo} alt="Quizdini logo" />
-            <div id="title">{title}</div>
-            { showResults 
-                ? (<div id="score">{score}</div>)
-                : (<div id="instructions">{instructions}</div>)
-            }
-            <div id="splash-details">
-              <div id="matches">{termCount} matches</div>
-              <div id="topic">{topic}</div>
-              <div id="author">{author}</div>
+          <div id="splash-background">
+            <img id="stars" src={stars} alt="Stars" />
+            <img id="computer-stars" src={computerStars} alt="Computer Stars" />
+            <img id="computer" src={computer} alt="Computer" />
+          </div>
+          <div id="splash-wrapper" style={style}>
+            <div id="splash">
+              <img id="splash-logo" src={logo} alt="Quizdini logo" />
+              <div id="title">{title}</div>
+              { showResults 
+                  ? (<div id="score">{score}</div>)
+                  : (<div id="instructions">{instructions}</div>)
+              }
+              <div id="splash-details">
+                <div id="matches">{termCount} matches</div>
+                <div id="topic">{topic}</div>
+                <div id="author">{author}</div>
+              </div>
             </div>
           </div>
-        </div>
+          <div id="footer">
+            <button id="play" onClick={(e) => this.handleClick(e)} style={style}>PLAY {((showResults) ? 'AGAIN' : 'GAME')}</button>
+          </div>
         </React.Fragment>
       </GameTransition>
     );
