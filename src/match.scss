@@ -147,7 +147,7 @@ body {
   font-family: $jaywalker;
   color: $baby-powder;
   text-align: center;
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, .3);
+  text-shadow: 2px 2px 10px rgba(0, 0, 0, .3);
   z-index: 102;
 }
 
@@ -248,7 +248,7 @@ body {
   bottom: 0;
   left: 100%;
   z-index: 101;
-  opacity: .3;
+  opacity: .4;
 }
 
 #computer {
@@ -257,7 +257,7 @@ body {
   width: 250px;
   left: calc(50vw - 125px);
   z-index: 101;
-  opacity: .3;
+  opacity: .5;
 }
 
 #computer-stars {
@@ -265,7 +265,7 @@ body {
   position: absolute;
   bottom: 0;
   z-index: 100;
-  opacity: .3;
+  opacity: .4;
 }
 
 #match-wrapper {
@@ -444,8 +444,8 @@ term.dragging {
 #game-computer-stars {
   display: none;
   position: absolute;
-  width: 1044px;
-  left: calc(50vw - 522px);
+  width: 1300px;
+  left: calc(50vw - 650px);
   bottom: 100px;
   opacity: .2;
 }
@@ -453,10 +453,10 @@ term.dragging {
 #game-computer {
   display: none;
   position: absolute;
-  width: 400px;
-  left: calc(50vw - 200px);
+  width: 450px;
+  left: calc(50vw - 225px);
   bottom: 0 !important;
-  opacity: .2;
+  opacity: .3;
 }
 
 #game-logo {
@@ -465,7 +465,8 @@ term.dragging {
   bottom: 1em;
   left: 1em;
   max-height: 5em;
-  opacity: .8;
+  opacity: 1.0;
+  z-index: 102;
 }
 
 #game-title {
@@ -483,7 +484,7 @@ term.dragging {
   line-height: 1;
   font-size: 2em;
   overflow: hidden;
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, .3);
+  text-shadow: 2px 2px 10px rgba(0, 0, 0, .3);
 }
 
 #timer {
@@ -560,8 +561,8 @@ term.dragging {
   }
 
   #computer {
-    width: 400px;
-    left: calc(50vw - 200px);
+    width: 450px;
+    left: calc(50vw - 225px);
   }
 
 }
@@ -581,7 +582,7 @@ term.dragging {
   #computer {
     left: unset;
     right: 0;
-    opacity: .4;
+    opacity: 1.0;
     width: 200px;
     transform: translate(60px, 0);
   }
@@ -623,7 +624,7 @@ term.dragging {
   }
 
   #play {
-    min-width: 13em;
+    min-width: 15em;
   }
 
 }
@@ -646,14 +647,11 @@ term.dragging {
     background-color: brown;
   }  
 
-  #play {
-    min-width: 10em;
-  }
-
   #computer {
-    width: 400px;
+    width: 350px;
     left: unset;
     right: -120px;
+    opacity: 1.0;
   }
 
   .term,
@@ -709,9 +707,9 @@ term.dragging {
 
   #computer {
     left: 100%;
-    width: 400px;
+    width: 450px;
     transform: translate(-280px, 0);
-    opacity: .3;
+    opacity: 1.0;
   }
   
   #computer-stars {
@@ -720,7 +718,7 @@ term.dragging {
     left: 100%;
     width: 1024px;
     transform: translate(-600px, -100px);
-    opacity: .3;
+    opacity: .4;
   }
   
   #match-board {

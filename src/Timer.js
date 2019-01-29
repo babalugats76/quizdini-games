@@ -72,7 +72,7 @@ class Timer extends Component {
       default: { opacity: 1.0 },
       entering: { transition: `transform cubic-bezier(1, 0, 0, 1)`, transform: 'scale(1, 1)' },
       entered: { transform: 'scale(1, 1)', 'opacity': 1.0},
-      exiting: { transition: `transform cubic-bezier(1, 0, 0, 1)`, transform: 'scale(1.1, 1.1)', opacity: 1.0},
+      exiting: { transition: `transform cubic-bezier(1, 0, 0, 1)`, transform: 'scale(1.02, 1.02)', opacity: 1.0},
       exited: { opacity: .95}
     };
 
