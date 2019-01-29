@@ -17,6 +17,8 @@ import MatchSplash from './MatchSplash';
 import Timer from './Timer';
 import MatchBoard from './MatchBoard';
 
+import computer from './computer.svg';
+import computerStars from './computer-stars.svg';
 import logo from './logo.svg';
 
 class MatchGame extends Component {
@@ -35,7 +37,7 @@ class MatchGame extends Component {
       author: author,
       instructions: instructions,
       termsPerBoard: 9,
-      duration: 600,
+      duration: 900,
       playing: false,
       showSplash: true,
       showBoard: true,
@@ -325,15 +327,17 @@ class MatchGame extends Component {
                    onExited={(id) => this.handleExited(id)}
                    onRoundStart={this.handleRoundStart} />
                  <img id="game-logo" src={logo} alt="Quizdini Logo" />
+                 <img id="game-computer-stars" src={computerStars} alt="Computer Stars" />
+                 <img id="game-computer" src={computer} alt="Computer" />
                  <div id="game-title">{title}</div>
                  <Timer
-                   correct={correct}
-                   duration={duration} 
-                   incorrect={incorrect}
-                   score={score}
-                   onTimerStart={this.handleTimerStart}
-                   onTimerEnd={this.handleTimerEnd}
-                   wait={500} />
+                     correct={correct}
+                     duration={duration} 
+                     incorrect={incorrect}
+                     score={score}
+                     onTimerStart={this.handleTimerStart}
+                     onTimerEnd={this.handleTimerEnd}
+                     wait={500} />
                </div>    
              </div>)
           }

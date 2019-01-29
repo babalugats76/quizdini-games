@@ -84,7 +84,13 @@ class Timer extends Component {
       text: 'timer-text' 
     };
 
-    const progressColor = ((percent <= 70) ? '#1fe73f' : (percent <= 85 ? '#ffe119' : '#e6194b')) ;
+    const colors = {
+      GREEN: '#1fe73f',
+      YELLOW: '#ffe119',
+      RED: '#e6194b'
+    }
+
+    const progressColor = ((percent <= 70) ? colors.GREEN : (percent <= 85 ? colors.YELLOW : colors.RED)) ;
 
     return(<React.Fragment>
              { show && 
@@ -97,8 +103,8 @@ class Timer extends Component {
                   transitionStyles={transitionStyles}
                   onExited={this.endTransition}>
                   <div id="timer">
-                    <div style={{ position: "relative", width: "100%", height: "100%" }}>
-                      <div style={{ position: "absolute" }}>
+                    <div className="timer-wrapper">
+                      <div className="progress-bar-wrapper">
                         <CircularProgressbar 
                           initialAnimation
                           background
@@ -107,15 +113,13 @@ class Timer extends Component {
                           percentage={percent} 
                           strokeWidth={4}
                           styles={{ 'trail': { stroke: progressColor, visibility: ((showTransition) ? 'hidden' : 'visible') }, 
-                                    'background': { fill: ((showTransition) ? ((success) ? '#1fe73f' : '#e6194b') : undefined) },
-                                    'text': { display: 'none' }
-                                 }}
-                          text={score.toString()} />
+                                    'background': { fill: ((showTransition) ? ((success) ? colors.GREEN : colors.RED) : undefined) }
+                                 }} />
                       </div>  
-                      <div style={{ position: "absolute", height: "100%", width: "100%", display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center"}}>
+                      <div className="timer-score-wrapper">
                         <div id="timer-score">{score.toString()}</div>
                       </div> 
-                  </div>  
+                    </div>  
                   </div>
                 </GameTransition>)
              }

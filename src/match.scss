@@ -275,6 +275,7 @@ body {
   height: 100vh;
   margin: 0 auto;
   padding: 1em;
+  overflow: hidden;
 }
 
 #match-board {
@@ -308,6 +309,7 @@ body {
   min-width: 5em; /* Necessary for broadest flex support */
   max-width: 24ch;
   margin: .2em;
+  padding: 1px;
   overflow: hidden;
   text-align: center;
   @include user-select(none);
@@ -438,45 +440,66 @@ term.dragging {
   text-shadow: none !important;
 }
 
+#game-computer-stars {
+  position: absolute;
+  width: 1044px;
+  left: calc(50vw - 522px);
+  bottom: 0;
+  opacity: .2;
+}
+
+#game-computer {
+  position: absolute;
+  width: 400px;
+  left: calc(50vw - 200px);
+  bottom: 0 !important;
+  opacity: .2;
+}
+
 #game-logo {
   display: none;
   position: absolute;
-  width: 10em;
-  bottom: calc(3vw *.67);
-  left: calc(3vw);
-  opacity: .4;
+  bottom: 1em;
+  left: 1em;
+  max-height: 5em;
+  opacity: .8;
 }
 
 #game-title {
-  display: flex;
-  display: none;
+  @include flexbox;
+  @include flex-direction(column);
+  @include justify-content(flex-start);
+  @include align-items(center);
+  position: fixed;
+  bottom: .5em;
+  min-height: 1.6em;
+  max-width: 30ch;
+  text-align: center;
   font-family: $jaywalker;
   color: $baby-powder;
-  line-height: 1.1;
-  justify-content: center;
+  line-height: 1;
   font-size: 2em;
-  /* top: 3vh; */
-  flex-direction: column;
-  margin-top: .5em;
-  /* margin-bottom: .5em; */
-  position: absolute;
-  bottom: 8vh;
-  width: 40%;
-  text-align: center;
-  align-items: center;
-  justify-content: center;
-  justify-self: center;
-  align-self: center;
-  right: calc(50vw - 20%);
+  overflow: hidden;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, .3);
 }
 
 #timer {
   position: fixed;
-  width: 5em;
-  height: 5em;
-  bottom: calc(3vw *.67);
-  right: calc(3vw);
+  width: 4em;
+  height: 4em;
+  bottom: 1em;
+  right: 1em;
   z-index: 112;
+}
+
+.progress-bar-wrapper {
+  position: absolute;
+}
+
+.timer-wrapper {
+  position: relative; 
+  width: 100%;
+  height: 100%;
 }
 
 .timer {
@@ -492,20 +515,27 @@ term.dragging {
   transition: stroke 1s ease-in-out;
 }
 
-.timer .timer-text {
-  fill: $white;
+.timer .timer-background {
+  fill: $black-alpha4;
+}
+
+.timer-score-wrapper {
+  @include flexbox;
+  @include flex-direction(column);
+  @include justify-content(center);
+  @include align-items(center);
+  position: absolute;
+  height: 100%; 
+  width: 100%;
+}
+
+#timer-score {
+  color: $white;
   font-family: $helsinki;
   font-weight: bold;
   font-size: 1.6em;   
   letter-spacing: 2px;
-  text-anchor: middle;
-  dominant-baseline: central;
-  alignment-baseline: central;
   transition: width 1s ease-in-out;
-}
-
-.timer .timer-background {
-  fill: $black-alpha4;
 }
 
 @media (min-width: 600px) {
@@ -610,7 +640,6 @@ term.dragging {
     @include flex-basis(31%);
     @include flex-grow(0);
     @include flex-shrink(0);
-    /*@include align-self(center);*/
   }
 
 } 
@@ -647,10 +676,6 @@ term.dragging {
     max-width: 1920px !important;
   }
 
-  #game-logo {
-    display: block;
-  }
-
   #stars {
     display: block;
     transform: translate(-2100px, 0);
@@ -673,8 +698,8 @@ term.dragging {
   
   #match-board {
     @include flex-direction(row);
-    @include align-items(flex-start);
-    padding-top: 5vh;
+   /* @include align-items(flex-start); */
+    padding-bottom: 5em;
   }
   
   #term-container,
@@ -703,6 +728,10 @@ term.dragging {
   .term-text,
   .definition-text {
     white-space: normal;
+  }
+
+  #game-logo {
+    display: block;
   }
 
 }
