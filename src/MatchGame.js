@@ -3,9 +3,7 @@ import { DragDropContext } from 'react-dnd';
 import MultiBackend from 'react-dnd-multi-backend';
 import HTML5toTouch from 'react-dnd-multi-backend/lib/HTML5toTouch'; // or any other pipeline
 
-/*import {generatePreview} from './Term'; */
 import {Preview} from 'react-dnd-multi-backend';
-
 import shortid from 'shortid';
 
 import { shuffleArray } from './utilities.js';
@@ -29,6 +27,7 @@ class MatchGame extends Component {
    */
   constructor(props) {
     super(props);
+    console.log('User requested', props.match.params.id);
     let matchDeck = this.transformData(data.matches);
     const {title, topic, author, instructions} = data;
     this.state = {
@@ -300,6 +299,7 @@ class MatchGame extends Component {
     const { title, termCount, topic, author, instructions, playing, showSplash, showBoard, showResults, duration, correct, incorrect, score, matches, termOrder, definitionOrder } = this.state;
     return (
         <React.Fragment>
+          <div id="debug" style={{ position: 'fixed', top: '0', left: '0', color: 'white', zIndex: '1000'}}>{this.props.match.params.id}</div>
           <Preview generator={this.generatePreview} />
           { showSplash
           ? (<div id="splash-container" className="scroll-container triangle dark-lavender">
