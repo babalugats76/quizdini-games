@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import axios from 'axios';
 import { DragDropContext } from 'react-dnd';
 import MultiBackend from 'react-dnd-multi-backend';
 import HTML5toTouch from 'react-dnd-multi-backend/lib/HTML5toTouch'; // or any other pipeline
@@ -7,7 +8,7 @@ import {Preview} from 'react-dnd-multi-backend';
 import shortid from 'shortid';
 
 import { shuffleArray } from './utilities.js';
-import data from './match2.json';
+/*import data from './match2.json'; */
 import './normalize.css';
 import './match.scss';
 
@@ -19,6 +20,8 @@ import computer from './computer.svg';
 import computerStars from './computer-stars.svg';
 import logo from './logo.svg';
 
+const API = 'http://quizdini-poc.s3.amazonaws.com/match/';
+
 class MatchGame extends Component {
 
   /**
@@ -27,22 +30,20 @@ class MatchGame extends Component {
    */
   constructor(props) {
     super(props);
-    console.log('User requested', props.match.params.id);
-    let matchDeck = this.transformData(data.matches);
-    const {title, topic, author, instructions} = data;
     this.state = {
-      title: title,
-      topic: topic,
-      author: author,
-      instructions: instructions,
+      title: null,
+      topic: null,
+      author: null,
+      instructions: null,
       termsPerBoard: 9,
       duration: 60,
+      loading: true,
       playing: false,
-      showSplash: true,
-      showBoard: true,
+      showSplash: false,
+      showBoard: false,
       showResults: false,
-      matchDeck: matchDeck,
-      termCount: matchDeck.length,
+      matchDeck: [],
+      termCount: null,
       matches: [],
       termOrder: [],
       definitionOrder: [],
@@ -51,6 +52,42 @@ class MatchGame extends Component {
       incorrect: 0,
       score: 0
     };
+  }
+
+  /**
+   * Method called once in component lifecycle after all elements of the page have been rendered
+   * Grab query args from router and asynchronously grab game data
+   */
+  componentDidMount() {
+    const { id } = this.props.match.params;
+    console.log('Attempting to fetch', id, '....');
+    axios.get(API + id + '.json')
+      .then((response) => {
+        console.log('Status',response.status);
+        console.log('Payload', response.data);
+        return response.data; // pass payload to next function
+      })
+      .then((data) => {
+        console.log('Processing payload and updating state');
+        const { title, topic, author, instructions, matches } = data;
+        const matchDeck = this.transformData(matches);
+        this.setState((state, props) => {
+          return { 
+            title: title,
+            topic: topic,
+            author: author,
+            instructions: instructions,
+            matchDeck: matchDeck,
+            termCount: matchDeck.length,
+            loading: false,
+            showSplash: true
+          };
+        });
+      })
+      .catch((error) => {
+        console.log('Error Status', error.response.status || error.request.status);
+        console.log('Error details', error.response || error.request);
+      });
   }
 
   /**
@@ -107,7 +144,7 @@ class MatchGame extends Component {
   toggle = (property) => {
     this.setState((state, props) => {
       return { [property] : !state[property]};
-    })
+    });
   }
 
   /**
@@ -118,7 +155,7 @@ class MatchGame extends Component {
   switch = (property, value) => {
     this.setState((state, props) => {
       return { [property] : value };
-    })
+    });
   }
 
   /**
@@ -178,10 +215,12 @@ class MatchGame extends Component {
    * Show game board 
    */
   handleGameStart = () => {
+    console.log('Handling game start...');
     this.switch('correct', 0);
     this.switch('incorrect', 0);
     this.switch('score', 0);
     this.switch('showSplash', false);
+    this.switch('showBoard', true);
   }
 
   /**
@@ -296,7 +335,12 @@ class MatchGame extends Component {
 
   /* Conditionally render splash, scoreboard, and game board */
   render() {
-    const { title, termCount, topic, author, instructions, playing, showSplash, showBoard, showResults, duration, correct, incorrect, score, matches, termOrder, definitionOrder } = this.state;
+    const { title, termCount, topic, author, instructions, playing, loading, showSplash, showBoard, showResults, duration, correct, incorrect, score, matches, termOrder, definitionOrder } = this.state;
+    
+    if (loading) {
+      return (<div>Spinner goes here...</div>);
+    }
+    
     return (
         <React.Fragment>
           <div id="debug" style={{ position: 'fixed', top: '0', left: '0', color: 'white', zIndex: '1000'}}>{this.props.match.params.id}</div>
@@ -340,8 +384,8 @@ class MatchGame extends Component {
                      wait={500} />
                </div>    
              </div>)
-          }
-           </React.Fragment>
+          })}
+        </React.Fragment>
       );
   }
 }

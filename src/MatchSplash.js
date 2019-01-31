@@ -28,11 +28,13 @@ class MatchSplash extends Component {
   /* When clicked toggle visibility; triggers exit transition */
   handleClick = (e) => {
     e.preventDefault();
+    console.log('Play button clicked...');
     this.toggleShow();
   }
 
   /* When exited, call parent function to start game */
   handleExited = () => {
+    console.log('Splash component exited; starting game...');
     this.props.onGameStart();
   }
 
