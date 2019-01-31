@@ -3,22 +3,17 @@ import axios from 'axios';
 import { DragDropContext } from 'react-dnd';
 import MultiBackend from 'react-dnd-multi-backend';
 import HTML5toTouch from 'react-dnd-multi-backend/lib/HTML5toTouch'; // or any other pipeline
-
 import {Preview} from 'react-dnd-multi-backend';
 import shortid from 'shortid';
-
 import { shuffleArray } from './utilities.js';
-/*import data from './match2.json'; */
-import './normalize.css';
-import './match.scss';
-
 import MatchSplash from './MatchSplash';
 import Timer from './Timer';
 import MatchBoard from './MatchBoard';
-
 import computer from './computer.svg';
 import computerStars from './computer-stars.svg';
 import logo from './logo.svg';
+import './normalize.css';
+import './match.scss';
 
 const API = 'http://quizdini-poc.s3.amazonaws.com/match/';
 
