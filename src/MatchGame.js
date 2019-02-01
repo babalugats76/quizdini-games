@@ -379,7 +379,7 @@ class MatchGame extends Component {
                      wait={500} />
                </div>    
              </div>)
-          })}
+          }
         </React.Fragment>
       );
   }
